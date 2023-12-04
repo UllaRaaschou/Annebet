@@ -5,7 +5,12 @@ VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPFApp", "src\WpfApp\WPFApp.csproj", "{611794D6-FD98-4ED2-8854-62AA2C9F6943}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFApp.Tests", "tests\WPFApp.Tests\WPFApp.Tests.csproj", "{D667CA39-622D-420B-B772-8BF253BF7F0A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPFApp.Tests", "tests\WPFApp.Tests\WPFApp.Tests.csproj", "{D667CA39-622D-420B-B772-8BF253BF7F0A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BDC0F042-E086-48D5-9F0B-C7289EA92902}"
+	ProjectSection(SolutionItems) = preProject
+		SqlQueries.sql = SqlQueries.sql
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

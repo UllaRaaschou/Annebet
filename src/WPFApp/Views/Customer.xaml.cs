@@ -13,22 +13,19 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WPFApp.ViewModels;
-using WPFApp.Views;
 
-namespace WPFApp
+namespace WPFApp.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Page1.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Customer  : Page
     {
-        
-        public MainWindow()
+        CustomerViewModel cvm = new CustomerViewModel();
+        public Customer()
         {
             InitializeComponent();
-            MainFrame.NavigationService.Navigate(new StartPage());
+            DataContext = cvm;
         }
-
-        
     }
 }

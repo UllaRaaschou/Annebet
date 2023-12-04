@@ -19,11 +19,19 @@
             Id = id;
         }
 
+        /// <summary>
+        /// Metode, der skaber en Customer-instans fra UI-input (uden id)
+        /// </summary>
+    
         public static Customer MakeNewCustomerFromUI(string firstName, string lastName, string address, string phone, string email) 
         {
             return new Customer(0, firstName, lastName, address, phone, email);
         }
 
+        /// <summary>
+        /// Metode, der skaber en Customer-instans med værdier fra db (incl. id)
+        /// </summary>
+      
         public static Customer GetCustomerFromDb(int id, string firstName, string lastName, string address, string phone, string email) 
         {
             return new Customer(id, firstName, lastName, address, phone, email);
