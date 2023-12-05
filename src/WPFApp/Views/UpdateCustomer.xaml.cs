@@ -17,25 +17,20 @@ using WPFApp.ViewModels;
 namespace WPFApp.Views
 {
     /// <summary>
-    /// Interaction logic for Page2.xaml
+    /// Interaction logic for UpdateCustomer.xaml
     /// </summary>
-    public partial class StartPage : Page
+    public partial class UpdateCustomer : Page
     {
-        //private MainViewModel mvm = new MainViewModel();
-        public StartPage()
+        CustomerViewModel cvm = new CustomerViewModel();
+        public UpdateCustomer()
         {
             InitializeComponent();
-            //DataContext = new MainViewModel();
+            DataContext = cvm;
         }
 
-        private void Button_Click_3(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new CreateCustomer());
-        }
 
-        private void Bt_OpdaterKunde_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new UpdateCustomer());
         }
     }
 }

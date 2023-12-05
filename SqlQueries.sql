@@ -8,7 +8,7 @@ CREATE PROC sp_AddCustomer
 
 AS
 BEGIN
-INSERT INTO dbo.CUSTOMER (FirstName, LastName, Address, Phone, Email) 
+INSERT INTO dbo.CUSTOMER (FirstName, LastName, [Address], Phone, Email) 
 VALUES(@firstName, @lastName, @address, @phone, @email);
 SELECT SCOPE_IDENTITY() AS NewId;
 END;

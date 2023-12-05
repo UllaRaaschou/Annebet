@@ -39,6 +39,8 @@ namespace WPFApp.ViewModels
         /// </summary>
         public ICommand ConstructCustomerCommand { get; } = new ConstructCustomerCommand();
 
+        public ICommand UpdateCustomerCommand { get; } = new UpdateCustomerCommand();
+
 
         private string firstName;
         public string FirstName

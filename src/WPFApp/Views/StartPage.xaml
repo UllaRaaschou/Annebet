@@ -12,7 +12,7 @@
         <Label Content="Annebet" HorizontalAlignment="Center" Margin="0,43,0,0" Height="62" Width="146" FontSize="36" VerticalAlignment="Top"/>
         <Label Content="Kunder" HorizontalAlignment="Left" Margin="133,123,0,0" VerticalAlignment="Top" FontSize="20"/>
         <Button x:Name="Bt_OpretKunde" Content="Opret Kunde" HorizontalAlignment="Left" Margin="116,178,0,0" VerticalAlignment="Top" Height="39" Width="108" Click="Button_Click_3"/>
-        <Button x:Name="Bt_OpdaterKunde" Content="Opdater Kunde" HorizontalAlignment="Left" Margin="116,242,0,0" VerticalAlignment="Top" Height="39" Width="108"/>
+        <Button x:Name="Bt_OpdaterKunde" Content="Opdater Kunde" HorizontalAlignment="Left" Margin="116,242,0,0" VerticalAlignment="Top" Height="39" Width="108" Click="Bt_OpdaterKunde_Click"/>
         <Button x:Name="Bt_SletKunde" Content="SletKunde" HorizontalAlignment="Left" Margin="116,307,0,0" VerticalAlignment="Top" Height="39" Width="108"/>
 
     </Grid>

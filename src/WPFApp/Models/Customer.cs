@@ -37,6 +37,10 @@
             return new Customer(id, firstName, lastName, address, phone, email);
         }
 
+        public override string ToString() 
+        {
+            return$"{FirstName} {LastName} - {Address} - {Phone} - {Email}";
+        }
 
 
 

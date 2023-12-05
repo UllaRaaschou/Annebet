@@ -19,13 +19,18 @@ namespace WPFApp.Views
     /// <summary>
     /// Interaction logic for Page1.xaml
     /// </summary>
-    public partial class Customer  : Page
+    public partial class CreateCustomer  : Page
     {
         CustomerViewModel cvm = new CustomerViewModel();
-        public Customer()
+        public CreateCustomer()
         {
             InitializeComponent();
             DataContext = cvm;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new StartPage());
         }
     }
 }
