@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
+using System.Windows.Navigation;
 using WPFApp.Models;
 using WPFApp.ViewModels;
+using WPFApp.Views;
 
 namespace WPFApp.Commands
 {
-    class ConstructCustomerCommand : ICommand
+    class CustomerCreateCommand : ICommand
     {
        
         /// <summary>
@@ -33,9 +36,9 @@ namespace WPFApp.Commands
         {
             bool result = false;
 
-            if (parameter is CustomerViewModel cvm)
+            if (parameter is CustomerCreateViewModel ccvm)
             {
-                if (cvm.FirstName != null && cvm.LastName != null && cvm.Address != null && cvm.Phone != null && cvm.Email != null)
+                if (ccvm.FirstName != null && ccvm.LastName != null && ccvm.Address != null && ccvm.Phone != null && ccvm.Email != null)
                 {
                     result = true;
                 }
@@ -54,18 +57,21 @@ namespace WPFApp.Commands
       
         public void Execute(object? parameter)
         {
-            if (parameter is CustomerViewModel cvm)
+            if (parameter is CustomerCreateViewModel ccvm)
             {
                 CustomerRepository customerRepo = new CustomerRepository();
-                customerRepo.AddCustomer(Customer.MakeNewCustomerFromUI(cvm.FirstName, cvm.LastName, cvm.Address, cvm.Phone, cvm.Email));
-                cvm.FirstName = null;
-                cvm.LastName = null;
-                cvm.Address = null;
-                cvm.Phone = null;
-                cvm.Email = null;
+                customerRepo.AddCustomer(Customer.MakeNewCustomerFromUI(ccvm.FirstName, ccvm.LastName, ccvm.Address, ccvm.Phone, ccvm.Email));
+                ccvm.FirstName = null;
+                ccvm.LastName = null;
+                ccvm.Address = null;
+                ccvm.Phone = null;
+                ccvm.Email = null;
             }
             else throw new Exception("Wrong type of paratemer");
+
+            MessageBox.Show("Kunde oprettet");
             
+
 
         }
     }

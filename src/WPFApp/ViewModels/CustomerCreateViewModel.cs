@@ -12,7 +12,7 @@ using WPFApp.Models;
 
 namespace WPFApp.ViewModels
 {
-    public class CustomerViewModel : INotifyPropertyChanged  // Interface-nedarves 
+    public class CustomerCreateViewModel : INotifyPropertyChanged  // Interface-nedarves 
     {
         public event PropertyChangedEventHandler PropertyChanged; // Interface implementeres som event
         
@@ -31,15 +31,15 @@ namespace WPFApp.ViewModels
             }
         }
 
-       public CustomerViewModel() { }
+       public CustomerCreateViewModel() { }
 
         /// <summary>
         /// Property af typen "interfacet ICommand", instantieres til ConstructCustomer-kommandoen. 
         /// Construct-Cusstomer-klassen skal implementere ICommand-interfacet
         /// </summary>
-        public ICommand ConstructCustomerCommand { get; } = new ConstructCustomerCommand();
+        public ICommand CustomerCreateCommand { get; } = new CustomerCreateCommand();
 
-        public ICommand UpdateCustomerCommand { get; } = new UpdateCustomerCommand();
+        public ICommand CustomerUpdateCommand { get; } = new CustomerSearchCommand();
 
 
         private string firstName;

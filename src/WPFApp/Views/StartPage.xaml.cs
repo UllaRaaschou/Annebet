@@ -30,12 +30,12 @@ namespace WPFApp.Views
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new CreateCustomer());
+            NavigationService.Navigate(new CustomerCreate());
         }
 
         private void Bt_OpdaterKunde_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new UpdateCustomer());
+            NavigationService.Navigate(new CustomerUpdate());
         }
     }
 }

@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using WPFApp.Models;
 using WPFApp.ViewModels;
 
 namespace WPFApp.Commands
 {
-    class UpdateCustomerCommand : ICommand
+    class CustomerSearchCommand : ICommand
     {
         /// <summary>
         /// CanExecuteChanged-eventet har fået add'et et RequerySuggested-event. 
@@ -27,7 +28,7 @@ namespace WPFApp.Commands
         {
             bool result = false;
 
-            if (parameter is CustomerViewModel cvm)
+            if (parameter is CustomerCreateViewModel cvm)
             {
                 if (cvm.FirstName != null && cvm.LastName != null)
                 {
@@ -41,7 +42,12 @@ namespace WPFApp.Commands
 
         public void Execute(object? parameter)
         {
-            throw new NotImplementedException();
+            if (parameter is CustomerCreateViewModel cvm)
+            {
+                CustomerRepository customerRepo = new CustomerRepository();
+                customerRepo.GetAllCustomersFromFirstNameAndLastName(cvm.FirstName, cvm.LastName);
+            }
+            else throw new Exception("Wrong type of paratemer");
         }
     }
 }

@@ -134,6 +134,50 @@ namespace WPFApp.Models
             return null;
         }
 
+        public List<Customer> GetAllCustomersFromFirstNameAndLastName(string firstName, string lastName) 
+        {
+            List<Customer> listOfCustomersWithTheSpecifiedFirstNameAndLastName = new List<Customer>(); // ny instans af tom liste
+
+            using (SqlConnection con = new SqlConnection(connectionString)) // skaber forbindelse til vores db med vores connectionstring
+            {
+                con.Open(); // Åbner den skabte forbindelse
+
+                using (SqlCommand cmd = new SqlCommand("dbo.sp_GetAllCustomersFromFirstNameAndLastName", con)) // Anvender vores stored procedure, via klassen SQLCommand
+                {
+                    cmd.CommandType = CommandType.StoredProcedure; // Anvender kommandotypen til stored procedures
+
+                    cmd.Parameters.AddWithValue("@firstName", firstName );  // Indsætter vores id fra parameter
+                    cmd.Parameters.AddWithValue("@lastName", lastName );
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())  // Metoden ExecuteReader køres på SQL-Command-objektet cmd.
+                                                                        // SQLDataReader objektet repræsenterer den datastrøm, der er resultatet
+                                                                        // af database-forespørgslen
+                    {
+                        try // Read-metoden afprøves i en try-catch
+                        {
+                            while (reader.Read()) // Sålænge readeren læser data...
+                            {
+                                int id = reader.GetInt32(0);                             
+                                string address = reader.GetString(3);
+                                string phone = reader.GetString(4);
+                                string email = reader.GetString(5);
+
+                                Customer customer = Customer.GetCustomerFromDb(id, firstName, lastName, address, phone, email); // Customer-instans oprettes
+                                listOfCustomersWithTheSpecifiedFirstNameAndLastName.Add(customer); // kunden med efterspurgte for- og efternavn add'es til listen                                                                         // - og returneres
+                            }
+                        }
+                        catch (Exception ex) // Eventuel fejl udstilles
+                        {
+                            Console.WriteLine(ex.Message);
+                            return null;
+
+                        }
+                    }
+                }
+            }
+            return listOfCustomersWithTheSpecifiedFirstNameAndLastName; // listen returneres
+        }
+
         public void DeleteCustomerById(int id)
         {
             using (SqlConnection con = new SqlConnection(connectionString)) // skaber forbindelse til vores db med vores connectionstring
