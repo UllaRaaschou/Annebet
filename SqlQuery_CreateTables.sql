@@ -1,0 +1,68 @@
+﻿DROP TABLE BOOKING
+GO
+
+DROP TABLE SALE_SALESITEM_PRODUCT_TREATMENT
+GO
+
+DROP TABLE SALESITEM_PRODUCT_TREATMENT
+GO
+
+DROP TABLE SALE
+GO
+
+DROP TABLE CUSTOMER
+GO
+
+CREATE TABLE CUSTOMER (
+    PK_CustomerId INT IDENTITY(1,1) PRIMARY KEY,
+    FirstName NVARCHAR(50) NOT NULL,
+	LastName NVarChar (50) NOT NULL,
+    Address NVARCHAR(100) NOT NULL,
+    Phone NVARCHAR(10) NOT NULL,
+    Email NVARCHAR(100) NOT NULL
+   );
+GO
+
+   CREATE TABLE SALE (
+PK_SaleId INT IDENTITY(1,1) PRIMARY KEY,
+TotalPrice DECIMAL NOT NULL,
+FK_Sale_CustomerId INT NOT NULL,
+FOREIGN KEY (FK_Sale_CustomerId) REFERENCES CUSTOMER(PK_CustomerId)
+);
+GO
+
+CREATE TABLE SALESITEM_PRODUCT_TREATMENT (
+PK_SalesItemId_Product_Treatment INT IDENTITY(1,1) PRIMARY KEY,
+Category NVarChar(50) NOT NULL,
+Type NVarChar(50) NOT NULL,
+Name NVarChar(100) NOT NULL,
+Description NVarChar(255) NOT NULL,
+Price Decimal NOT NULL,
+FK_SalesItemId_Product_Treatment_CustomerId INT NOT NULL,
+FOREIGN KEY (FK_SalesItemId_Product_Treatment_CustomerId) REFERENCES CUSTOMER (PK_CustomerId)
+);
+GO
+
+CREATE TABLE SALE_SALESITEM_PRODUCT_TREATMENT (
+PK_SaleIdSalesItemId_Product_Treatment INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+Amount DECIMAL NOT NULL,
+TotalPrice DECIMAL NOT NULL,
+FK_SaleIdSalesItemId_Product_Treatment_SaleId INT NOT NULL,
+FK_SaleIdSalesItemId_Product_Treatment_SalesItemId_Product_Treatment INT NOT NULL,
+FOREIGN KEY (FK_SaleIdSalesItemId_Product_Treatment_SaleId) REFERENCES SALE (PK_SaleId),
+FOREIGN KEY (FK_SaleIdSalesItemId_Product_Treatment_SalesItemId_Product_Treatment) REFERENCES SALESITEM_PRODUCT_TREATMENT(PK_SalesItemId_Product_Treatment)
+);
+GO
+
+CREATE TABLE BOOKING (
+PK_BookingId INT IDENTITY(1,1) PRIMARY KEY,
+CurrentTime DateTime2 NOT NULL,
+BookingTime DateTime2 NOT NULL,
+Treatment NVarChar(50) NOT NULL,
+Canceled Bit NOT NULL,
+FK_Booking_CustomerId INT NOT NULL,
+FK_Booking_SalesItemId_Product_Treatment INT NOT NULL,
+FOREIGN KEY (FK_Booking_CustomerId) REFERENCES CUSTOMER (PK_CustomerId),
+FOREIGN KEY (FK_Booking_SalesItemId_Product_Treatment) REFERENCES SALESITEM_PRODUCT_TREATMENT (PK_SalesItemId_Product_Treatment)
+);
+GO
