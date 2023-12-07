@@ -7,11 +7,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using WPFApp.Commands;
-using WPFApp.Models;
 
 namespace WPFApp.ViewModels
 {
-    public class CustomerUpdateViewModel : INotifyPropertyChanged  // Interface nedarves
+    public class CustomerDeleteViewModel: INotifyPropertyChanged  // Interface nedarves
     {
         public event PropertyChangedEventHandler PropertyChanged; // Interface implementeres som event
 
@@ -29,16 +28,16 @@ namespace WPFApp.ViewModels
                 propertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
-               
-        public CustomerUpdateViewModel() 
+
+        public CustomerDeleteViewModel()
         {
             SearchedCustomers = new ObservableCollection<CustomerSearchViewModel>(); // instansierer collection til fremsøgte customers
-                      
+
         }
-       
+
         public ObservableCollection<CustomerSearchViewModel> SearchedCustomers { get; } // Collections sættes til property
-        public ICommand CustomerSearchToUpdateCommand { get; } = new CustomerSearchToUpdateCommand(); // Ny instans af Command-klassen, der implementerer Icommand-interfacet
-        public ICommand CustomerUpdateCommand { get; } = new CustomerUpdateCommand();
+        public ICommand CustomerSearchToDeleteCommand { get; } = new CustomerSearchToDeleteCommand(); // Ny instans af Command-klassen, der implementerer Icommand-interfacet
+        public ICommand CustomerDeleteCommand { get; } = new CustomerDeleteCommand();
 
         private string firstName;
         public string FirstName
@@ -68,12 +67,14 @@ namespace WPFApp.ViewModels
         public CustomerSearchViewModel SelectedCustomer
         {
             get { return selectedCustomer; }
-            set { selectedCustomer = value;
+            set
+            {
+                selectedCustomer = value;
                 OnPropertyChanged(nameof(SelectedCustomer));
             }
         }
 
-        
+
 
     }
 }

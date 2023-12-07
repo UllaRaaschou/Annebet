@@ -1,4 +1,6 @@
-﻿namespace WPFApp.Models
+﻿using System.ComponentModel;
+
+namespace WPFApp.Models
 {
     public class Customer
     {
@@ -19,10 +21,12 @@
             Id = id;
         }
 
+        public event PropertyChangedEventHandler? PropertyChanged;
+
         /// <summary>
         /// Metode, der skaber en Customer-instans fra UI-input (uden id)
         /// </summary>
-    
+
         public static Customer MakeNewCustomerFromUI(string firstName, string lastName, string address, string phone, string email) 
         {
             return new Customer(0, firstName, lastName, address, phone, email);

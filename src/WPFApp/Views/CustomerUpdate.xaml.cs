@@ -27,5 +27,9 @@ namespace WPFApp.Views
             InitializeComponent();
             DataContext = cuvm;
         }
+
+        
+
+       
     }
 }

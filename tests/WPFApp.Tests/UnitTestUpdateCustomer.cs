@@ -14,16 +14,17 @@ namespace WPFApp.Tests
                 // Arrange
                 Customer customer = Customer.MakeNewCustomerFromUI("Thilde", "Torn", "Thisevej 3, 8000 Kolding", "748394857", "ThildeTorn@gmail.com");
                 CustomerRepository customerRepo = new CustomerRepository();
-                customerRepo.AddCustomer(customer);
-                Customer updatedCustomer = Customer.MakeNewCustomerFromUI("Tora", "Torn", "Thisevej 3, 8000 Kolding", "748394857", "ThildeTorn@gmail.com");
+                int id = customerRepo.AddCustomer(customer);
+                Customer customerWithUpdatedValues = Customer.MakeNewCustomerFromUI("Tora", "Torn", "Thisevej 3, 8000 Kolding", "748394857", "ThildeTorn@gmail.com");
 
 
+                
                 // Act
-                customerRepo.UpdateCustomer(updatedCustomer);
+                customerRepo.UpdateCustomer(customerWithUpdatedValues, id);
 
 
                 // Assert
-                Assert.AreEqual("Tora", updatedCustomer.FirstName);
+                Assert.AreEqual("Tora", customerWithUpdatedValues.FirstName);
 
             }
             

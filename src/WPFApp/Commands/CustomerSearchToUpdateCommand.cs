@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,7 +10,7 @@ using WPFApp.ViewModels;
 
 namespace WPFApp.Commands
 {
-    class CustomerSearchCommand : ICommand
+    class CustomerSearchToUpdateCommand : ICommand
     {
         /// <summary>
         /// CanExecuteChanged-eventet har fået add'et et RequerySuggested-event. 
@@ -28,26 +29,41 @@ namespace WPFApp.Commands
         {
             bool result = false;
 
-            if (parameter is CustomerCreateViewModel cvm)
+
+            if (parameter is CustomerUpdateViewModel cuvm)
+            
             {
-                if (cvm.FirstName != null && cvm.LastName != null)
+               if (cuvm.FirstName != null && cuvm.LastName != null)
                 {
                     result = true;
                 }
                 return result;
             }
-
             return false;
+
+         
         }
 
         public void Execute(object? parameter)
         {
-            if (parameter is CustomerCreateViewModel cvm)
+            addCustomersFromDbToList(parameter); // Metoden ligger nedenfor
+        }
+
+        public void addCustomersFromDbToList(object? parameter) // tager et parameter, som grundet vores binding i Xaml, skal være Xaml's
+                                                                // datakontekst, som i dette tilfælde er cuvm
+        {
+            if (parameter is CustomerUpdateViewModel cuvm) 
             {
                 CustomerRepository customerRepo = new CustomerRepository();
-                customerRepo.GetAllCustomersFromFirstNameAndLastName(cvm.FirstName, cvm.LastName);
-            }
-            else throw new Exception("Wrong type of paratemer");
+                List<Customer> customerList = customerRepo.GetAllCustomersFromFirstNameAndLastName(cuvm.FirstName, cuvm.LastName); //Fremsøger kunder
+                foreach (Customer customer in customerList)
+                {
+                    CustomerSearchViewModel csvm = new CustomerSearchViewModel(customer); //Wrapper customers ind i en viewmodel 
+                    cuvm.SearchedCustomers.Add(csvm);         // add'er de nu wrappede customers i en observable collection i cuvm           
+                }
+                
+            }  
+            else throw new Exception("Wrong type of parameter");
         }
     }
 }

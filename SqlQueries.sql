@@ -16,17 +16,21 @@ END;
 GO
 
 CREATE PROC sp_UpdateCustomer
+@customerId int,
 @firstName Nvarchar(50),
 @lastName Nvarchar(50),
 @address Nvarchar(100),
 @phone Nvarchar(10),
-@email Nvarchar(100),
-@customerId Int
-
+@email Nvarchar(100)
 AS
 BEGIN
-UPDATE dbo.CUSTOMER SET FirstName = @firstName, LastName = @lastname,
-[Address] = @address, Phone = @phone, Email = @email WHERE PK_CustomerId = @customerId
+UPDATE dbo.CUSTOMER 
+SET FirstName = @firstName, 
+	LastName = @lastname,
+	[Address] = @address, 
+	Phone = @phone, 
+	Email = @email 
+WHERE PK_CustomerId = @customerId
 END;
 
 GO

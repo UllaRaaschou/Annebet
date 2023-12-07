@@ -63,7 +63,8 @@ namespace WPFApp.Models
             
         }
 
-        public void UpdateCustomer(Customer customerWithUpdatedValues)
+
+        public void UpdateCustomer(Customer customerWithUpdatedValues, int id)
         {
             using (SqlConnection con = new SqlConnection(connectionString)) // skaber forbindelse til vores db med vores connectionstring
             {
@@ -74,6 +75,8 @@ namespace WPFApp.Models
                 {                    
                     cmd.CommandType = CommandType.StoredProcedure; // Anvender kommandotypen til stored procedures
 
+                    // Jeg har opdateret 
+                    cmd.Parameters.AddWithValue("@customerId", id);// customerWithUpdatedValues.Id);
                     cmd.Parameters.AddWithValue("@firstName", customerWithUpdatedValues.FirstName); // Indsætter den opdaterede parameter-kundens properties som værdier i SQL-queryens parametre 
                     cmd.Parameters.AddWithValue("@lastName", customerWithUpdatedValues.LastName);
                     cmd.Parameters.AddWithValue("@address", customerWithUpdatedValues.Address);
@@ -84,7 +87,7 @@ namespace WPFApp.Models
                     {
                         cmd.ExecuteNonQuery();
                     }
-
+                    
                     catch (Exception ex) // udstiller en eventuel fejlmeddelelse
                     {
                         Console.WriteLine(ex.Message);
@@ -136,8 +139,7 @@ namespace WPFApp.Models
 
         public List<Customer> GetAllCustomersFromFirstNameAndLastName(string firstName, string lastName) 
         {
-            List<Customer> listOfCustomersWithTheSpecifiedFirstNameAndLastName = new List<Customer>(); // ny instans af tom liste
-
+            List<Customer> allSpecifiedCustomer = new List<Customer>(); 
             using (SqlConnection con = new SqlConnection(connectionString)) // skaber forbindelse til vores db med vores connectionstring
             {
                 con.Open(); // Åbner den skabte forbindelse
@@ -163,7 +165,7 @@ namespace WPFApp.Models
                                 string email = reader.GetString(5);
 
                                 Customer customer = Customer.GetCustomerFromDb(id, firstName, lastName, address, phone, email); // Customer-instans oprettes
-                                listOfCustomersWithTheSpecifiedFirstNameAndLastName.Add(customer); // kunden med efterspurgte for- og efternavn add'es til listen                                                                         // - og returneres
+                                allSpecifiedCustomer.Add(customer); // kunden med efterspurgte for- og efternavn add'es til listen                                                                         // - og returneres
                             }
                         }
                         catch (Exception ex) // Eventuel fejl udstilles
@@ -175,7 +177,7 @@ namespace WPFApp.Models
                     }
                 }
             }
-            return listOfCustomersWithTheSpecifiedFirstNameAndLastName; // listen returneres
+            return allSpecifiedCustomer; // listen returneres
         }
 
         public void DeleteCustomerById(int id)

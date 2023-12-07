@@ -12,10 +12,10 @@ using WPFApp.Models;
 
 namespace WPFApp.ViewModels
 {
-    public class CustomerCreateViewModel : INotifyPropertyChanged  // Interface-nedarves 
+    public class CustomerSearchViewModel : INotifyPropertyChanged  // Interface-nedarves 
     {
         public event PropertyChangedEventHandler PropertyChanged; // Interface implementeres som event
-        
+
         /// <summary>
         /// Metode, der kan bruges i klasser, der implementerer INotifyPropertyChanged-interfacet.
         /// Hvis der sker en ændring i en property, sammenlignes den med property'ens private felt. 
@@ -31,50 +31,72 @@ namespace WPFApp.ViewModels
             }
         }
 
-       public CustomerCreateViewModel() { }
+        public CustomerSearchViewModel(Customer customer) // konstuktør, der tager en Customer som parameter. Formålet er alene at indsætte et lag mellem model og view
+        {
+            id = customer.Id;
+            FirstName = customer.FirstName;
+            LastName = customer.LastName;
+            Address = customer.Address;
+            Phone = customer.Phone;
+            Email = customer.Email;
+        }
 
-        /// <summary>
-        /// Property af typen "interfacet ICommand", instantieres til ConstructCustomer-kommandoen. 
-        /// Construct-Cusstomer-klassen skal implementere ICommand-interfacet
-        /// </summary>
-        public ICommand CustomerCreateCommand { get; } = new CustomerCreateCommand();
 
-        public ICommand CustomerUpdateCommand { get; } = new CustomerSearchToUpdateCommand();
+        private int id;
+
+        public int Id
+        {
+            get { return id; }
+            set { id = value;
+                OnPropertyChanged(nameof(id)); // Metoden kaldes, fordi FirstName ændres.
+                                                      // Det udløser PropertyChanged-eventet og abonnenter informeres
+            }
+        }
 
 
         private string firstName;
         public string FirstName
         {
             get { return firstName; }
-            set { 
+            set
+            {
                 firstName = value;
                 OnPropertyChanged(nameof(firstName)); // Metoden kaldes, fordi FirstName ændres.
                                                       // Det udløser PropertyChanged-eventet og abonnenter informeres
-               }
+            }
         }
 
         private string lastName;
         public string LastName
         {
             get { return lastName; }
-            set { lastName = value;
-                OnPropertyChanged(nameof(lastName)); }
+            set
+            {
+                lastName = value;
+                OnPropertyChanged(nameof(lastName));
+            }
         }
 
         private string address;
         public string Address
         {
             get { return address; }
-            set { address = value;
-                OnPropertyChanged(nameof(address)); }
+            set
+            {
+                address = value;
+                OnPropertyChanged(nameof(address));
+            }
         }
 
         private string phone;
         public string Phone
         {
             get { return phone; }
-            set { phone = value;
-                OnPropertyChanged(nameof(phone)); }
+            set
+            {
+                phone = value;
+                OnPropertyChanged(nameof(phone));
+            }
         }
 
         private string email;
@@ -82,15 +104,19 @@ namespace WPFApp.ViewModels
         public string Email
         {
             get { return email; }
-            set { email = value;
-                OnPropertyChanged(nameof(email)); }
+            set
+            {
+                email = value;
+                OnPropertyChanged(nameof(email));
+            }
         }
 
-       
-
-        
-       
 
 
-    }   
+
+
+
+
+    }
 }
+

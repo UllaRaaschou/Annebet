@@ -17,25 +17,15 @@ using WPFApp.ViewModels;
 namespace WPFApp.Views
 {
     /// <summary>
-    /// Interaction logic for Page2.xaml
+    /// Interaction logic for CustomerDelete.xaml
     /// </summary>
-    public partial class StartPage : Page
+    public partial class CustomerDelete : Page
     {
-        //private MainViewModel mvm = new MainViewModel();
-        public StartPage()
+        CustomerDeleteViewModel cdvm = new CustomerDeleteViewModel();
+        public CustomerDelete()
         {
             InitializeComponent();
-            //DataContext = new MainViewModel();
-        }
-
-        private void Button_Click_3(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new CustomerCreate());
-        }
-
-        private void Bt_OpdaterKunde_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new CustomerUpdate());
+            DataContext = cdvm;
         }
     }
 }
