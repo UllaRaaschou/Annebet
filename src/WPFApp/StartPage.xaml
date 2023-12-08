@@ -14,6 +14,10 @@
         <Button x:Name="Bt_OpretKunde" Content="Opret Kunde" HorizontalAlignment="Left" Margin="116,178,0,0" VerticalAlignment="Top" Height="39" Width="108" Click="Button_Click_3"/>
         <Button x:Name="Bt_OpdaterKunde" Content="Opdater Kunde" HorizontalAlignment="Left" Margin="116,242,0,0" VerticalAlignment="Top" Height="39" Width="108" Click="Bt_OpdaterKunde_Click"/>
         <Button x:Name="Bt_SletKunde" Content="SletKunde" HorizontalAlignment="Left" Margin="116,307,0,0" VerticalAlignment="Top" Height="39" Width="108" Click="Bt_SletKunde_Click"/>
+        <Label Content="Produkter og behandlinger" HorizontalAlignment="Left" Margin="294,123,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <Button x:Name="Bt_OpretKunde_Copy" Content="Opret &#xD;&#xA;Produkt eller Behandling" HorizontalAlignment="Left" Margin="327,178,0,0" VerticalAlignment="Top" Height="39" Width="154" Click="Button_Click_3"/>
+        <Button x:Name="Bt_OpretKunde_Copy1" Content="Slet &#xA;Produkt eller Behandling" HorizontalAlignment="Left" Margin="327,307,0,0" VerticalAlignment="Top" Height="39" Width="154" Click="Button_Click_3"/>
+        <Button x:Name="Bt_OpretKunde_Copy2" Content="Opdater &#xA;Produkt eller Behandling" HorizontalAlignment="Left" Margin="327,242,0,0" VerticalAlignment="Top" Height="39" Width="154" Click="Button_Click_3"/>
 
     </Grid>
 </Page>

@@ -40,7 +40,7 @@ namespace WPFApp.Views
 
         private void Bt_SletKunde_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new CustomerDelete());
+            NavigationService.Navigate(new POSCreate());
         }
     }
 }
