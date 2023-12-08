@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WPFApp.ViewModels
 {
-    public class POSCreateViewModel : INotifyPropertyChanged
+    public class POTCreateViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged; // Interface implementeres som event
 
@@ -26,7 +26,7 @@ namespace WPFApp.ViewModels
             }
         }
 
-        public POSCreateViewModel() { }
+        public POTCreateViewModel() { }
 
 
         private string category;

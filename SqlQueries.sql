@@ -69,3 +69,21 @@ AS
 BEGIN
 SELECT * FROM dbo.CUSTOMER WHERE FirstName = @firstName AND LastName = @lastName
 END;
+
+GO
+
+CREATE PROC sp_AddSalesItem
+@category Nvarchar(50),
+@type Nvarchar(100),
+@name Nvarchar(100),
+@description Nvarchar(max),
+@price decimal(18,0)
+
+AS
+BEGIN
+INSERT INTO dbo.SALESITEM_PRODUCT_TREATMENT (Category, [Type], [Name], [Description], Price) 
+VALUES(@category, @type, @name, @description, @price);
+SELECT SCOPE_IDENTITY() AS NewId;
+END;
+
+GO

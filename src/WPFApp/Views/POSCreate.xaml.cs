@@ -21,7 +21,7 @@ namespace WPFApp.Views
     /// </summary>
     public partial class POSCreate : Page
     {
-        POSCreateViewModel POScvm = new POSCreateViewModel();
+        POTCreateViewModel POScvm = new POTCreateViewModel();
         public POSCreate()
         {
             InitializeComponent();
