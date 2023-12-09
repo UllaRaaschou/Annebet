@@ -222,5 +222,79 @@ namespace WPFApp.Models
             }
             return allSpecifiedSalesitems; // listen returneres
         }
+
+        public void UpdateSalesItem(SalesItem salesItemWithUpdatedValues)
+        {
+            if (salesItemWithUpdatedValues is Product)
+            {
+                Product product = (Product)salesItemWithUpdatedValues;
+                EnumCategory category = EnumCategory.Product;
+
+                using (SqlConnection con = new SqlConnection(connectionString)) // skaber forbindelse til vores db med vores connectionstring
+                {
+                    con.Open(); // Åbner den skabte connection
+
+                    using (SqlCommand cmd = new SqlCommand("sp_UpdateSalesItem", con)) // Anvender vores stored procedure, der ligger i db, hvor en opdateret kunde er parameter
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure; // Anvender kommandotypen til stored procedures
+
+                        // Jeg har opdateret 
+                        cmd.Parameters.AddWithValue("@salesItemId", product.Id);// customerWithUpdatedValues.Id);
+                        cmd.Parameters.AddWithValue("@category", category); // Indsætter den opdaterede parameter-kundens properties som værdier i SQL-queryens parametre 
+                        cmd.Parameters.AddWithValue("@type", product.Type);
+                        cmd.Parameters.AddWithValue("@name", product.Name);
+                        cmd.Parameters.AddWithValue("@description", product.Description);
+                        cmd.Parameters.AddWithValue("@price", product.Price);
+
+                        try //forsøger at eksekvere ovenstående (uden returværdi)
+                        {
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        catch (Exception ex) // udstiller en eventuel fejlmeddelelse
+                        {
+                            Console.WriteLine(ex.Message);
+                        }
+                    }
+                }
+            }
+            else if (salesItemWithUpdatedValues is Treatment)
+            {
+                Treatment treatment = (Treatment)salesItemWithUpdatedValues;
+                EnumCategory category = EnumCategory.Treatment;
+
+                using (SqlConnection con = new SqlConnection(connectionString)) // skaber forbindelse til vores db med vores connectionstring
+                {
+                    con.Open(); // Åbner den skabte connection
+
+                    using (SqlCommand cmd = new SqlCommand("sp_UpdateSalesItem", con)) // Anvender vores stored procedure, der ligger i db, hvor en opdateret kunde er parameter
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure; // Anvender kommandotypen til stored procedures
+
+                        // Jeg har opdateret 
+                        cmd.Parameters.AddWithValue("@salesItemId", treatment.Id);// customerWithUpdatedValues.Id);
+                        cmd.Parameters.AddWithValue("@category", category); // Indsætter den opdaterede parameter-kundens properties som værdier i SQL-queryens parametre 
+                        cmd.Parameters.AddWithValue("@type", treatment.Type);
+                        cmd.Parameters.AddWithValue("@name", treatment.Name);
+                        cmd.Parameters.AddWithValue("@description", treatment.Description);
+                        cmd.Parameters.AddWithValue("@price", treatment.Price);
+
+                        try //forsøger at eksekvere ovenstående (uden returværdi)
+                        {
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        catch (Exception ex) // udstiller en eventuel fejlmeddelelse
+                        {
+                            Console.WriteLine(ex.Message);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                throw new Exception("Opdatering mislykket");
+            }
+        }
     }    
 }

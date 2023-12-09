@@ -106,3 +106,23 @@ AS
 BEGIN
 SELECT * FROM dbo.SALESITEM_PRODUCT_TREATMENT
 END;
+
+GO
+
+CREATE PROC sp_UpdateSalesItem
+@salesItemId int,
+@category Nvarchar(50),
+@type Nvarchar(50),
+@name Nvarchar(100),
+@description Nvarchar(max),
+@price decimal(18,0)
+AS
+BEGIN
+UPDATE dbo.SALESITEM_PRODUCT_TREATMENT 
+SET Category = @category, 
+	[Type] = @type,
+	[Name] = @name, 
+	[Description] = @description, 
+	Price = @price 
+WHERE PK_SalesItemId_Product_Treatment = @salesItemId
+END;
