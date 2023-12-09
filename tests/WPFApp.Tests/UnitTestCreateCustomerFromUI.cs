@@ -4,10 +4,10 @@ using WPFApp.Models;
 namespace WPFApp.Tests
 {
     [TestClass]
-    public class UnitTestMakeNewCustomerFromUI
+    public class UnitTestCreateCustomerFromUI
     {
         [TestMethod]
-        public void TestMakeNewCustomerFromUI()
+        public void TestCreateCustomerFromUI()
         {
 
             using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Required, new TransactionOptions() { IsolationLevel = IsolationLevel.ReadUncommitted })) 
@@ -22,7 +22,7 @@ namespace WPFApp.Tests
                 string email = "JensHansen@gmail.com";
 
                 // Act
-                Customer customer = Customer.MakeNewCustomerFromUI(firstName, lastName, address, phone, email);
+                Customer customer = Customer.CreateCustomerFromUI(firstName, lastName, address, phone, email);
 
                 // Assert
                 Assert.AreEqual("Jens", customer.FirstName);

@@ -13,8 +13,8 @@ namespace WPFApp.Tests
             using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Required, new TransactionOptions() { IsolationLevel = IsolationLevel.ReadUncommitted })) 
             {
                 // Arrange
-                Customer customer1 = Customer.MakeNewCustomerFromUI("Ninna", "Nielsen", "Bogensevej 20, 8600 Bogense", "33333333", "NinnaNielsen@gmail.com");
-                Customer customer2 = Customer.MakeNewCustomerFromUI("Peter", "Krakow", "Hyttevej 10", "857937493", "PeterKrakow@gmail.com");
+                Customer customer1 = Customer.CreateCustomerFromUI("Ninna", "Nielsen", "Bogensevej 20, 8600 Bogense", "33333333", "NinnaNielsen@gmail.com");
+                Customer customer2 = Customer.CreateCustomerFromUI("Peter", "Krakow", "Hyttevej 10", "857937493", "PeterKrakow@gmail.com");
 
                 CustomerRepository customerRepo = new CustomerRepository();
                 customerRepo.AddCustomer(customer1);

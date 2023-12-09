@@ -223,6 +223,67 @@ namespace WPFApp.Models
             return allSpecifiedSalesitems; // listen returneres
         }
 
+        public SalesItem GetSalesItemById(int id) 
+        {
+           SalesItem item = null;  
+           using (SqlConnection con = new SqlConnection(connectionString)) // skaber forbindelse til vores db med vores connectionstring
+            {
+                con.Open(); // Åbner den skabte forbindelse
+
+                using (SqlCommand cmd = new SqlCommand("dbo.sp_GetSalesItemFromId", con)) // Anvender vores stored procedure, via klassen SQLCommand
+
+                {
+                    cmd.CommandType = CommandType.StoredProcedure; // Anvender kommandotypen til stored procedures
+
+                    cmd.Parameters.AddWithValue("@id", id);  // Indsætter vores id fra parameter
+                   
+                    using (SqlDataReader reader = cmd.ExecuteReader())  // Metoden ExecuteReader køres på SQL-Command-objektet cmd.
+                                                                        // SQLDataReader objektet repræsenterer den datastrøm, der er resultatet
+                                                                        // af database-forespørgslen
+                    {
+                        try // Read-metoden afprøves i en try-catch
+                        {
+                            while (reader.Read()) // Sålænge readeren læser data...
+                            {                                  
+                                string categoryString = reader.GetString(0);
+                                string type = reader.GetString(1);
+                                string name = reader.GetString(2);
+                                string description = reader.GetString(3); // De efterspurgte SQL-kolonner læses
+                                decimal price = reader.GetDecimal(4);
+
+                                EnumCategory category;
+                                if (Enum.TryParse(categoryString, out category))  // string forsøges parset til Enumværdi
+
+                                    if (category is EnumCategory.Product)
+                                    {
+                                        Product product = Product.CreateProductFromDb(id ,type, name, description, price);
+                                        item = product;
+                                        return item;    
+                                        
+                                    }
+                                    else if (category is EnumCategory.Treatment)
+                                    {
+                                        Treatment treatment = Treatment.CreateTreatmentFromDb(id, type, name, description, price);
+                                        item = treatment;
+                                        return item;
+                                    }
+                                    else 
+                                    {
+                                        throw new Exception("Category ikke defineret");
+                                    }                                
+                            }
+                        }
+                        catch (Exception ex) // Eventuel fejl udstilles
+                        {
+                            Console.WriteLine(ex.Message);
+                            return null;
+                        }
+                    }
+                }
+            }
+            return item;
+        }
+
         public void UpdateSalesItem(SalesItem salesItemWithUpdatedValues)
         {
             if (salesItemWithUpdatedValues is Product)
@@ -296,5 +357,33 @@ namespace WPFApp.Models
                 throw new Exception("Opdatering mislykket");
             }
         }
+
+        public void DeleteSalesItemById(int id) 
+        {
+            using (SqlConnection con = new SqlConnection(connectionString)) // skaber forbindelse til vores db med vores connectionstring
+            {
+                con.Open(); // Den skabte forbindelse åbnes
+
+
+                using (SqlCommand cmd = new SqlCommand("dbo.sp_DeleteSalesItemById", con)) // Anvender vores stored procedure, der ligger i db, via SQLCommand-klassen
+                {
+                    cmd.CommandType = CommandType.StoredProcedure; // Anvender kommandotypen til stored procedures
+
+                    cmd.Parameters.AddWithValue("@salesItemId", id); // Indsætter værdier i parametre fra sp
+
+                    try // forsøger at køre ovenstående kode uden returværdi
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch (Exception ex) // evt fejl udstilles
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                }
+            }
+        }
     }    
 }
+
+
+

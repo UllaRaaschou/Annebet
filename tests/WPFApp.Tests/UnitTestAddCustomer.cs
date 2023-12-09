@@ -17,7 +17,7 @@ namespace WPFApp.Tests
                 List<Customer> allCustomers = customerRepo.GetAllCustomers();
                 int firstCount = allCustomers.Count();
 
-                Customer customer = Customer.MakeNewCustomerFromUI("Anne999", "Petersen", "granvej 5, 3000 Gryse", "789849302", "AnnaPetersen@gmail.com");
+                Customer customer = Customer.CreateCustomerFromUI("Anne999", "Petersen", "granvej 5, 3000 Gryse", "789849302", "AnnaPetersen@gmail.com");
 
 
                 // Act

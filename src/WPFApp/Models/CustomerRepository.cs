@@ -122,7 +122,7 @@ namespace WPFApp.Models
                                 string phone = reader.GetString(4);
                                 string email = reader.GetString(5);
 
-                                Customer customer = Customer.GetCustomerFromDb(id, firstName, lastName, address, phone, email); // Customer-instans oprettes
+                                Customer customer = Customer.CreateCustomerFromDb(id, firstName, lastName, address, phone, email); // Customer-instans oprettes
                                 return customer;                                                                                // - og returneres
                             }
                         }
@@ -164,7 +164,7 @@ namespace WPFApp.Models
                                 string phone = reader.GetString(4);
                                 string email = reader.GetString(5);
 
-                                Customer customer = Customer.GetCustomerFromDb(id, firstName, lastName, address, phone, email); // Customer-instans oprettes
+                                Customer customer = Customer.CreateCustomerFromDb(id, firstName, lastName, address, phone, email); // Customer-instans oprettes
                                 allSpecifiedCustomer.Add(customer); // kunden med efterspurgte for- og efternavn add'es til listen                                                                         // - og returneres
                             }
                         }
@@ -232,7 +232,7 @@ namespace WPFApp.Models
                                 string phone = reader.GetString(4);
                                 string email = reader.GetString(5);
 
-                                Customer customer = Customer.GetCustomerFromDb(id, firstName, lastName, address, phone, email); // Customer objekt/INSTANS dannes
+                                Customer customer = Customer.CreateCustomerFromDb(id, firstName, lastName, address, phone, email); // Customer objekt/INSTANS dannes
                                 allCustomers.Add(customer); // Objektet/INSYANSEN add'es til listen
 
                             }

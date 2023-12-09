@@ -35,7 +35,7 @@ namespace WPFApp.Commands
                                                            // og om datakontekten er kommet med som parameter
             {
                
-                Customer customerWithUpdatedValues = Customer.MakeNewCustomerFromUI(  //opdateret kundeinstans laves ud fra opdaterede
+                Customer customerWithUpdatedValues = Customer.CreateCustomerFromUI(  //opdateret kundeinstans laves ud fra opdaterede
                                                                                       //værdier (som User har tastet på selected item)
                                                                                       
                     cuvm.SelectedCustomer.FirstName, 

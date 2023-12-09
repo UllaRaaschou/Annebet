@@ -70,6 +70,15 @@ BEGIN
 SELECT * FROM dbo.CUSTOMER WHERE FirstName = @firstName AND LastName = @lastName
 END;
 
+GO 
+
+CREATE PROC sp_DeleteCustomerById
+@customerId Int
+AS
+BEGIN
+Delete FROM dbo.CUSTOMER WHERE PK_CustomerId = @customerId
+END;
+
 GO
 
 CREATE PROC sp_AddSalesItem
@@ -124,5 +133,25 @@ SET Category = @category,
 	[Name] = @name, 
 	[Description] = @description, 
 	Price = @price 
+WHERE PK_SalesItemId_Product_Treatment = @salesItemId
+END;
+
+GO
+
+CREATE PROC sp_GetSalesItemFromId
+@id int
+AS
+BEGIN
+SELECT Category, [Type], [Name], [Description], Price FROM dbo.SALESITEM_PRODUCT_TREATMENT
+WHERE PK_SalesItemId_Product_Treatment = @id
+END;
+
+GO
+
+CREATE PROC sp_DeleteSalesItemById
+@salesItemId Int
+AS
+BEGIN
+Delete FROM dbo.SALESITEM_PRODUCT_TREATMENT 
 WHERE PK_SalesItemId_Product_Treatment = @salesItemId
 END;

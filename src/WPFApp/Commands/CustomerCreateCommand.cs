@@ -60,7 +60,7 @@ namespace WPFApp.Commands
             if (parameter is CustomerCreateViewModel ccvm)
             {
                 CustomerRepository customerRepo = new CustomerRepository();
-                customerRepo.AddCustomer(Customer.MakeNewCustomerFromUI(ccvm.FirstName, ccvm.LastName, ccvm.Address, ccvm.Phone, ccvm.Email));
+                customerRepo.AddCustomer(Customer.CreateCustomerFromUI(ccvm.FirstName, ccvm.LastName, ccvm.Address, ccvm.Phone, ccvm.Email));
                 ccvm.FirstName = null;
                 ccvm.LastName = null;
                 ccvm.Address = null;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 using WPFApp.Models;
 
 namespace WPFApp.Tests
@@ -12,9 +13,9 @@ namespace WPFApp.Tests
     public class UnitTestGetAllSalesItems
     {
         [TestMethod]
-        public void TestAddSalesItem()
+        public void TestGetAllSalesItems()
         {
-            // using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Required, new TransactionOptions() { IsolationLevel = IsolationLevel.ReadUncommitted }))
+             using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Required, new TransactionOptions() { IsolationLevel = IsolationLevel.ReadUncommitted }))
             {
                 // Arrange
                 POTRepository pOTRepo = new POTRepository();

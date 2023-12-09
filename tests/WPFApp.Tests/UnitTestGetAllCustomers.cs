@@ -18,8 +18,8 @@ namespace WPFApp.Tests
                 List<Customer> allCustomers0 = customerRepo.GetAllCustomers();
                 int count0 = allCustomers0.Count();
 
-                Customer customer1 = Customer.MakeNewCustomerFromUI("Tove", "Hils", "Ypper All4 8, 6688 Høng", "837483930", "ToveHils@gmail.com");
-                Customer customer2 = Customer.MakeNewCustomerFromUI("Mads", "Hils", "Ypper All4 8, 6688 Høng", "837483930", "MadsHils@gmail.com");
+                Customer customer1 = Customer.CreateCustomerFromUI("Tove", "Hils", "Ypper All4 8, 6688 Høng", "837483930", "ToveHils@gmail.com");
+                Customer customer2 = Customer.CreateCustomerFromUI("Mads", "Hils", "Ypper All4 8, 6688 Høng", "837483930", "MadsHils@gmail.com");
 
                 customerRepo.AddCustomer(customer1);
                 customerRepo.AddCustomer(customer2);

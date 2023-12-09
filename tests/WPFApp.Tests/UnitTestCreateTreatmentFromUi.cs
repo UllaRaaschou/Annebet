@@ -8,10 +8,10 @@ using WPFApp.Models;
 namespace WPFApp.Tests
 {
     [TestClass]
-    public class UnitTestCreateserviceFromUI
+    public class UnitTestCreateTreatmentFromUi
     {
         [TestMethod]
-        public void TestCreateServiceFromUI()
+        public void TestCreateTreatmentFromUI()
         {
             // Arrange           
             string type = "Klassiske Ansigtsbehandlinger";
@@ -20,13 +20,12 @@ namespace WPFApp.Tests
             decimal price = 1300.00m;
 
             // Act
-            Service service = Service.CreateServiceFromUI(type, name, description, price);
-
+            Treatment treatment = Treatment.CreateTreatmentFromUI(type, name, description, price);
             // Assert
-            Assert.AreEqual("Klassiske Ansigtsbehandlinger", service.Type);
-            Assert.AreEqual("Stressless", service.Name);
-            Assert.AreEqual("Regelmæssige ansigtsbehandlinger samt den korrekte daglige pleje, giver din hud fornyet energi", service.Description);
-            Assert.AreEqual(1300.00m, service.Price);
+            Assert.AreEqual("Klassiske Ansigtsbehandlinger", treatment.Type);
+            Assert.AreEqual("Stressless", treatment.Name);
+            Assert.AreEqual("Regelmæssige ansigtsbehandlinger samt den korrekte daglige pleje, giver din hud fornyet energi", treatment.Description);
+            Assert.AreEqual(1300.00m, treatment.Price);
 
 
         }
