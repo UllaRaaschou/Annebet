@@ -87,3 +87,22 @@ SELECT SCOPE_IDENTITY() AS NewId;
 END;
 
 GO
+
+
+CREATE PROC sp_GetAllSalesItemsFromCategoryAndTypeAndName
+@category Nvarchar(50),
+@type Nvarchar(50),
+@name Nvarchar(100)
+AS
+BEGIN
+SELECT PK_SalesItemId_Product_Treatment, [Description], [Price] FROM dbo.SALESITEM_PRODUCT_TREATMENT 
+WHERE Category = @category AND [Type] = @type AND [Name] like '%' +@name + '%'
+END;
+
+GO
+
+CREATE PROC sp_GetAllSalesItems
+AS
+BEGIN
+SELECT * FROM dbo.SALESITEM_PRODUCT_TREATMENT
+END;

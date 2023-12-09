@@ -9,7 +9,7 @@ namespace WPFApp.Models
     public class Product : SalesItem
     {
         private Product(int id, string type, string name, string description, decimal price) //privat constructor til brug for de 2
-                                                                                                                        // create-metoder
+                                                                                             // create-metoder
         {
             Id = id;
             Type = type;
@@ -35,7 +35,7 @@ namespace WPFApp.Models
         /// <summary>
         /// Create-metode ud fra Db, dvs med et id
         /// </summary>    
-        public static SalesItem CreateProductFromDb(int id, string type, string name, string description, decimal price)
+        public static Product CreateProductFromDb(int id, string type, string name, string description, decimal price)
         {
             Product product = new Product(id, type, name, description, price);
             return product;

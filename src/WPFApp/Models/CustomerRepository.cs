@@ -18,6 +18,7 @@ namespace WPFApp.Models
         private List<Customer> allCustomers;
         public CustomerRepository() { }
 
+
         public int AddCustomer(Customer customer)
         {
             int newId; // Simpel variabel-deklaration uden værdi-tildeling
@@ -62,7 +63,6 @@ namespace WPFApp.Models
             }
             
         }
-
 
         public void UpdateCustomer(Customer customerWithUpdatedValues, int id)
         {
