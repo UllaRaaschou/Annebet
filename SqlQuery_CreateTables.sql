@@ -36,7 +36,7 @@ PK_SalesItemId_Product_Treatment INT IDENTITY(1,1) PRIMARY KEY,
 Category NVarChar(50) NOT NULL,
 Type NVarChar(50) NOT NULL,
 Name NVarChar(100) NOT NULL,
-Description NVarChar(255) NOT NULL,
+Description NVarChar(MAX) NOT NULL,
 Price Decimal NOT NULL,
 );
 GO
