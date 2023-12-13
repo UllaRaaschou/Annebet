@@ -11,13 +11,13 @@ namespace WPFApp.ViewModels
 {
     public class ProductToViewModel
     {
-        public ProductRepository productRepo;
+        public ProductRepository productRepo; // Deklarering af productRepo
 
-        public ProductToViewModel() 
+        public ProductToViewModel() // parameterløs constructor, der instantierer productRepo
         {
             productRepo = new ProductRepository();
         }
-        public ProductToViewModel(Product product) 
+        public ProductToViewModel(Product product)  // constructor, der tager Product som parameter
         {
             Id = product.Id;
             Type = product.Type;
@@ -25,9 +25,12 @@ namespace WPFApp.ViewModels
             Description = product.Description;
             Price = product.Price;
 
-            ProductToViewModel model = new ProductToViewModel();
         }
 
+
+        /// <summary>
+        /// Metode, der converter et object af typen Product til et object af typen ProductToViewModel
+        /// </summary>
         public ProductToViewModel ProductToViewModelConvert(Product product) 
         {            
             int id = product.Id;
@@ -35,9 +38,9 @@ namespace WPFApp.ViewModels
             string name = product.Name;
             string description = product.Description;
             decimal price = product.Price;
-            Product createdProduct = Product.CreateProductFromDb(id, type, name, description, price);
-            ProductToViewModel model = new ProductToViewModel(createdProduct);
-            return model;
+            Product createdProduct = Product.CreateProductFromDb(id, type, name, description, price); // product-klassens statiske metode creater product
+            ProductToViewModel model = new ProductToViewModel(createdProduct); // product konverteres til ProductToViewModel
+            return model; // ProductToViewModel returneres
         }
 
         public int Id { get; set; }
@@ -46,6 +49,9 @@ namespace WPFApp.ViewModels
         public string Description { get; set; }
         public decimal Price { get; set; }
 
+        /// <summary>
+        /// Metode, der via repo henter ønskede products i db
+        /// </summary>
         public List<Product> SearchForProducts(string type, string name) 
         {
             List<Product> products = productRepo.GetAllProducts(type, name);

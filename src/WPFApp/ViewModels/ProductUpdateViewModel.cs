@@ -32,16 +32,16 @@ namespace WPFApp.ViewModels
 
 
 
-        public ProductUpdateViewModel() 
+        public ProductUpdateViewModel()  // constructoer instantierer Observable Collections af fremsøgte Products's ToViewModels
         {
             ProductsToView = new ObservableCollection<ProductToViewModel>();
         }
 
-        public ObservableCollection<ProductToViewModel> ProductsToView { get; } 
+        public ObservableCollection<ProductToViewModel> ProductsToView { get; } //ObservableCollection sættes som property
 
-		private string type;
-
-		public string Type
+		
+        private string type;
+        public string Type
 		{
 			get { return type; }
 			set { type = value;
@@ -61,13 +61,12 @@ namespace WPFApp.ViewModels
             }
         }
 
-        public ICommand ProductSearchCommand { get; } = new ProductSearchCommand();
+        public ICommand ProductSearchCommand { get; } = new ProductSearchCommand(); // Ny instans af Command-klassen, der implementerer Icommand-interfacet
         public ICommand ProductUpdateCommand { get; } = new ProductUpdateCommand();
 
 
 
-        private ProductToViewModel selectedProduct;
-
+        private ProductToViewModel selectedProduct;  // property til brug for selected item
         public ProductToViewModel SelectedProduct
         {
             get { return selectedProduct; }

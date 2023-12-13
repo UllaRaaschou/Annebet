@@ -29,17 +29,23 @@ namespace WPFApp.ViewModels
             }
         }
 
+
+
         public CustomerDeleteViewModel()
         {
-            CustomersToView = new ObservableCollection<CustomerToViewModel>(); // instansierer collection til fremsøgte customers
+            CustomersToView = new ObservableCollection<CustomerToViewModel>(); // instansierer  Observable Collection til fremsøgte customers
 
         }
-        public ObservableCollection<CustomerToViewModel> CustomersToView { get; }
+        public ObservableCollection<CustomerToViewModel> CustomersToView { get; }  // Observable Collection laves til property
+
 
        
         public ICommand CustomerSearchCommand { get; } = new CustomerSearchCommand(); // Ny instans af Command-klassen, der implementerer Icommand-interfacet
         public ICommand CustomerDeleteCommand { get; } = new CustomerDeleteCommand();
 
+        
+        
+        
         private string firstName;
         public string FirstName
         {
@@ -63,8 +69,9 @@ namespace WPFApp.ViewModels
             }
         }
 
+        
+        
         private CustomerToViewModel selectedCustomer; // Property til listbox's selected item
-
         public CustomerToViewModel SelectedCustomer
         {
             get { return selectedCustomer; }

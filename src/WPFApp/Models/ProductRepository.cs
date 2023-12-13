@@ -20,7 +20,7 @@ namespace WPFApp.Models
             List<Product> wantedProducts = new List<Product>(); // instantiering af tom liste af produkter
 
             using (SqlDataReader reader = base.GetAllSalesItems(EnumCategory.Product, type, name)) // Kalder den abstrakte getAll-metode i parent-class med et produkts værdier.
-                                                                                                   // Metoden returnerer et reader-object, som derefter skal læses
+            // Her tjekker vi ikke for, om reader != 0, da den abstrakte metode altid returnerer et readerObjekt.                                                                                     // Metoden returnerer et reader-object, som derefter skal læses
             {
                 while (reader.Read())  // Hvis reader læser
                 {

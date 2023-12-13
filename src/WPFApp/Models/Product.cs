@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WPFApp.Models
 {
-    public class Product : SalesItem
+    public class Product : SalesItem  //Nedarvning fra SalesItem
     {
         private Product(int id, string type, string name, string description, decimal price) : 
             base(id, type, name, description, price) { }//privat constructor til brug for de 2 create-metoder                                                                                                                                      // create-metoder

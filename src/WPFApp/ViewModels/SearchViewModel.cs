@@ -12,7 +12,7 @@ using WPFApp.Models;
 
 namespace WPFApp.ViewModels
 {
-    public class CustomerSearchViewModel : INotifyPropertyChanged  // Interface-nedarves 
+    public class SearchViewModel : INotifyPropertyChanged  // Interface-nedarves 
     {
         public event PropertyChangedEventHandler PropertyChanged; // Interface implementeres som event
 
@@ -31,7 +31,9 @@ namespace WPFApp.ViewModels
             }
         }
 
-        public CustomerSearchViewModel(Customer customer) // konstuktør, der tager en Customer som parameter. Formålet er alene at indsætte et lag mellem model og view
+
+
+        public SearchViewModel(Customer customer) // konstuktør, der tager en Customer som parameter. Formålet er alene at indsætte et lag mellem model og view
         {
             id = customer.Id;
             FirstName = customer.FirstName;
@@ -43,7 +45,6 @@ namespace WPFApp.ViewModels
 
 
         private int id;
-
         public int Id
         {
             get { return id; }
@@ -100,7 +101,6 @@ namespace WPFApp.ViewModels
         }
 
         private string email;
-
         public string Email
         {
             get { return email; }

@@ -5,7 +5,7 @@ using WPFApp.Commands;
 
 namespace WPFApp.ViewModels
 {
-    public class ProductCreateViewModel : INotifyPropertyChanged
+    public class ProductCreateViewModel : INotifyPropertyChanged  // Nedarvning fra interface
     {
         public event PropertyChangedEventHandler PropertyChanged; // Interface implementeres som event
 
@@ -23,6 +23,7 @@ namespace WPFApp.ViewModels
                 propertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
+
 
         private string type;
         public string Type
@@ -66,7 +67,7 @@ namespace WPFApp.ViewModels
             }
         }
 
-        public ICommand ProductCreateCommand { get; } = new ProductCreateCommand();
+        public ICommand ProductCreateCommand { get; } = new ProductCreateCommand();  // Property til Create command sættes til instans af klassen
 
         
 

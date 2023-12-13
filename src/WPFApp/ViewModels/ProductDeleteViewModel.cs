@@ -34,10 +34,12 @@ namespace WPFApp.ViewModels
 
         public ProductDeleteViewModel()
         {
-            ProductsToView = new ObservableCollection<ProductToViewModel>();
+            ProductsToView = new ObservableCollection<ProductToViewModel>(); // instantierer Observable Collection til fremsøgte products
         }
+        public ObservableCollection<ProductToViewModel> ProductsToView { get; } // Collection sættes til property
 
-        public ObservableCollection<ProductToViewModel> ProductsToView { get; }
+
+
 
         private string type;
 
@@ -63,13 +65,12 @@ namespace WPFApp.ViewModels
             }
         }
 
-        public ICommand ProductSearchCommand { get; } = new ProductSearchCommand();
+        public ICommand ProductSearchCommand { get; } = new ProductSearchCommand(); // Ny instans af Command-klassen, der implementerer Icommand-interfacet
         public ICommand ProductDeleteCommand { get; } = new ProductDeleteCommand();
 
 
 
-        private ProductToViewModel selectedProduct;
-
+        private ProductToViewModel selectedProduct; // Property til selected item fra listbox
         public ProductToViewModel SelectedProduct
         {
             get { return selectedProduct; }

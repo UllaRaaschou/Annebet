@@ -155,5 +155,10 @@ namespace WPFApp.Models
                 }
             }
         }
+
+        public void UpdateCustomer(Customer customerWithUpdatedValues, int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -120,7 +120,8 @@ namespace WPFApp.Models
                                                                                                   //Metoden er protected og nedarves til children
         {
             SqlConnection con = new SqlConnection(connectionString); // skaber forbindelse til vores db med vores connectionstring
-            
+            // Ingen brug af using, da de lukker readeren ned, hvorved children ikke kan bruge reader-metoden
+
             con.Open(); // Åbner den skabte forbindelse
 
             SqlCommand cmd = new SqlCommand("dbo.sp_GetAllSalesItemsFromCategoryAndTypeAndName_abs", con); // Anvender vores stored procedure, via klassen SQLCommand
@@ -132,13 +133,9 @@ namespace WPFApp.Models
             cmd.Parameters.AddWithValue("@type", type);
             cmd.Parameters.AddWithValue("@name", name);
 
-            return cmd.ExecuteReader();  // Metoden ExecuteReader køres på SQL-Command-objektet cmd.
-                                             // SQLDataReader objektet repræsenterer den datastrøm, der er resultatet
-                                             // af database-forespørgslen
-
-
-            
-
+            return cmd.ExecuteReader();  // Metoden ExecuteReader køres på SQLDataReader objektet og repræsenterer den datastrøm, der er resultatet af database-forespørgslen
+            // Ingen brug af using, da de lukker readeren ned, hvorved children ikke kan bruge reader-metoden
+              
         }
     }
     
