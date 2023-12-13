@@ -41,9 +41,25 @@ namespace WPFApp.Models
                 throw new Exception("Fejl i category");
             }
 
-
         }
 
-       
+        public static SalesItem CreateSalesItemFromUI(EnumCategory category, string type, string name, string description, decimal price)
+        {
+            if (category == EnumCategory.Product)
+            {
+                Product product = Product.CreateProductFromDb(0, type, name, description, price);
+                return product;
+            }
+            else if (category == EnumCategory.Treatment)
+            {
+                Treatment treatment = Treatment.CreateTreatmentFromDb(0, type, name, description, price);
+                return treatment;
+            }
+            else
+            {
+                throw new Exception("Fejl i category");
+            }
+
+        }
     }
 }

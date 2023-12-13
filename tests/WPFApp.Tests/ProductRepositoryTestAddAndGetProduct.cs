@@ -6,6 +6,20 @@ namespace WPFApp.Tests
     [TestClass]
     public class ProductRepositoryTestAddAndGetProduct
     {
+        /// <summary>
+        /// Metode, hvis eneste formål er at oprette et unikt produkt. Viste sig at være en god ide, fordi vi sad 3 studerende og arbejdede
+        /// på samme database og de produkter, som vi oprettede i vores unit-tests, havde navne som produkter, der 
+        /// allerede var i databasen
+        /// </summary>      
+        private Product CreateUniqueProduct()
+        {
+            Guid guid = Guid.NewGuid();
+            return Product.CreateProductFromUI("Stjerneserien" + guid, "Ansigtscreme", "Fugtcreme til ansigtet", 450.00m);
+        }
+
+
+
+
         [TestMethod]
         public void TestAddAndGetProduct()
         {
@@ -13,16 +27,21 @@ namespace WPFApp.Tests
             {
                 // Arrange
                 ProductRepository productRepo = new ProductRepository();
+                Product uniqueProduct = CreateUniqueProduct();  // unikt product oprettes
 
 
-                // Act
-                int productId = productRepo.AddProduct(Product.CreateProductFromUI("HerreSerien", "HerreCreme", "En herrecreme", 1200.00m));
-                List<Product> addetProduct = productRepo.GetAllProductsFromCategoryAndTypeAndName("HerreSerien", "Herrecreme");
+               // Act
+                int newId = productRepo.AddProduct(uniqueProduct);
+                List<Product> listOfuniqueProduct = productRepo.GetAllProducts(uniqueProduct.Type, "Ansigtscreme");
+
+
 
                 // Assert
-                Assert.AreEqual((addetProduct[0].Id), productId);
-                Assert.AreEqual((addetProduct[0].Description), "En herrecreme");
-                Assert.AreEqual((addetProduct[0].Price), 1200.00m);
+                Assert.AreEqual(listOfuniqueProduct[0].Id, newId);
+                Assert.AreEqual(listOfuniqueProduct[0].Type, uniqueProduct.Type);
+                Assert.AreEqual(listOfuniqueProduct[0].Name, uniqueProduct.Name);
+                Assert.AreEqual(listOfuniqueProduct[0].Description, uniqueProduct.Description);
+                Assert.AreEqual(listOfuniqueProduct[0].Price, uniqueProduct.Price);
 
             }
 

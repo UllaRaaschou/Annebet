@@ -39,7 +39,7 @@ namespace WPFApp.ViewModels
         /// </summary>
         public ICommand CustomerCreateCommand { get; } = new CustomerCreateCommand();
 
-        public ICommand CustomerUpdateCommand { get; } = new CustomerSearchToUpdateCommand();
+        //public ICommand CustomerUpdateCommand { get; } = new CustomerSearchToUpdateCommand();
 
 
         private string firstName;

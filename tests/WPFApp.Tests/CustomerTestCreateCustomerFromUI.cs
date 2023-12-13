@@ -4,17 +4,16 @@ using WPFApp.Models;
 namespace WPFApp.Tests
 {
     [TestClass]
-    public class UnitTestCreateCustomerFromUI
+    public class CustomerTestCreateCustomerFromUI
     {
         [TestMethod]
-        public void TestCreateCustomerFromUI()
+
+        public void TestCustomerCreateCustomerFromUI()
         {
 
             using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Required, new TransactionOptions() { IsolationLevel = IsolationLevel.ReadUncommitted })) 
             {
                 // Arrange
-
-
                 string firstName = "Jens";
                 string lastName = "Hansen";
                 string address = "Enebærvej 17, 4000 Roskilde";

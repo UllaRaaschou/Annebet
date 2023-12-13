@@ -32,9 +32,9 @@
         </Label>
         <TextBox x:Name="Tb_FirstName_Search" Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="98,58,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="174" Height="23"/>
         <TextBox x:Name="Tb_EfterNavn_Search" Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="98,99,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="174" Height="23" />
-        <Button x:Name="Bt_Customer_Search" Content="Søg"  Command="{Binding Path=CustomerSearchToUpdateCommand}" CommandParameter="{Binding}" HorizontalAlignment="Left" Margin="144,136,0,0" VerticalAlignment="Top" Height="56" Width="82"/>
+        <Button x:Name="Bt_Customer_Search" Content="Søg"  Command="{Binding Path=CustomerSearchCommand}" CommandParameter="{Binding}" HorizontalAlignment="Left" Margin="144,136,0,0" VerticalAlignment="Top" Height="56" Width="82"/>
         <Button x:Name="Bt_Opdater" Content="Opdater" Command="{Binding Path=CustomerUpdateCommand}" CommandParameter="{Binding}" HorizontalAlignment="Left" Margin="635,280,0,0" VerticalAlignment="Top" Height="88" Width="97" />
-        <ListBox ItemsSource="{Binding SearchedCustomers}" SelectedItem="{Binding SelectedCustomer}" HorizontalAlignment="Left" Margin="345,53,0,316" Width="379" d:ItemsSource="{d:SampleData ItemCount=5}">
+        <ListBox ItemsSource="{Binding CustomersToView}" SelectedItem="{Binding SelectedCustomer}" HorizontalAlignment="Left" Margin="345,53,0,316" Width="379" d:ItemsSource="{d:SampleData ItemCount=5}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">

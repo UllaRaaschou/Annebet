@@ -50,11 +50,17 @@ namespace WPFApp.Commands
             
         }
 
+        public int MyProperty { get; set; }
+
+
+
+
+
         /// <summary>
         /// Metoden, der udfører opret_kunde_funktionen og får den add'et til repository.
         /// Parameteren er i xaml-koden sat som "CommandParameter = Binding", og datakontekst er i code behind sat til cvm.
         /// </summary>
-      
+
         public void Execute(object? parameter)
         {
             if (parameter is CustomerCreateViewModel ccvm)
@@ -66,10 +72,12 @@ namespace WPFApp.Commands
                 ccvm.Address = null;
                 ccvm.Phone = null;
                 ccvm.Email = null;
+
+                MessageBox.Show("Kunde oprettet");
+
             }
             else throw new Exception("Wrong type of paratemer");
 
-            MessageBox.Show("Kunde oprettet");
             
 
 

@@ -114,7 +114,7 @@ namespace WPFApp.Models
         }
 
 
-        protected SqlDataReader GetAllSalesItemsFromCategoryAndTypeAndName(EnumCategory category, string type, string name)
+        protected SqlDataReader GetAllSalesItems(EnumCategory category, string type, string name)
         {
             SqlConnection con = new SqlConnection(connectionString); // skaber forbindelse til vores db med vores connectionstring
             

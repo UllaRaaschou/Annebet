@@ -21,14 +21,14 @@ namespace WPFApp.Views
     /// </summary>
     public partial class StartPage : Page
     {
-       
+
         public StartPage()
         {
             InitializeComponent();
-           
+
         }
 
-        private void Button_Click_3(object sender, RoutedEventArgs e)
+        private void Bt_OpretKunde_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new CustomerCreate());
         }
@@ -40,7 +40,34 @@ namespace WPFApp.Views
 
         private void Bt_SletKunde_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new POSCreate());
+            NavigationService.Navigate(new CustomerDelete());
+        }
+
+        private void Bt_OpretProduct_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new ProductCreate());
+        }
+
+        private void Bt_OpdaterProdukt_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new ProductUpdate());
+        }
+
+
+        private void Bt_SletProdukt_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new ProductDelete());
+        }
+
+        private void Bt_OpretBehandling_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Bt_OpdaterBehandling_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
+

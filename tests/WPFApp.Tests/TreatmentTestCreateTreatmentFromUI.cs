@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WPFApp.Models;
+﻿using WPFApp.Models;
 
 namespace WPFApp.Tests
 {
     [TestClass]
-    public class UnitTestCreateTreatmentFromUi
+    public class TreatmentTestCreateTreatmentFromUi
     {
         [TestMethod]
-        public void TestCreateTreatmentFromUI()
+        public void TestTreatmentCreateTreatmentFromUI()
         {
             // Arrange           
             string type = "Klassiske Ansigtsbehandlinger";

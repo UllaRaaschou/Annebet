@@ -33,22 +33,12 @@ namespace WPFApp.Commands
         {
             if(parameter is CustomerUpdateViewModel cuvm)  // kontrol af, om datakonteksten er cuvm (sat som code-behind i xaml)
                                                            // og om datakontekten er kommet med som parameter
-            {
-               
-                Customer customerWithUpdatedValues = Customer.CreateCustomerFromUI(  //opdateret kundeinstans laves ud fra opdaterede
-                                                                                      //værdier (som User har tastet på selected item)
-                                                                                      
-                    cuvm.SelectedCustomer.FirstName, 
-                    cuvm.SelectedCustomer.LastName,
-                    cuvm.SelectedCustomer.Address, 
-                    cuvm.SelectedCustomer.Phone, 
-                    cuvm.SelectedCustomer.Email
-                    );
-
-                int id = cuvm.SelectedCustomer.Id; // id'et er id'et på selected item
-                CustomerRepository customerRepo = new CustomerRepository();
+            {              
                 
-                customerRepo.UpdateCustomer(customerWithUpdatedValues, id);  // den opdaterede cutomer gemmes i db under sit oprindelige id
+                Customer updatedCustomer = Customer.CreateCustomerFromDb(cuvm.SelectedCustomer.Id, cuvm.SelectedCustomer.FirstName, cuvm.SelectedCustomer.LastName,
+                    cuvm.SelectedCustomer.Address, cuvm.SelectedCustomer.Phone, cuvm.SelectedCustomer.Email);
+                CustomerRepository customerRepo = new CustomerRepository();
+                customerRepo.UpdateCustomer(updatedCustomer);                                   
 
                 cuvm.SelectedCustomer.FirstName = null;
                 cuvm.SelectedCustomer.LastName = null;

@@ -17,20 +17,17 @@ using WPFApp.ViewModels;
 namespace WPFApp.Views
 {
     /// <summary>
-    /// Interaction logic for POSCreate.xaml
+    /// Interaction logic for ProductDelete.xaml
     /// </summary>
-    public partial class POSCreate : Page
+    public partial class ProductDelete : Page
     {
-        POTCreateViewModel POScvm = new POTCreateViewModel();
-        public POSCreate()
+        ProductDeleteViewModel pdvm = new ProductDeleteViewModel();
+        public ProductDelete()
         {
             InitializeComponent();
-            DataContext = POScvm;
+            DataContext = pdvm;
         }
 
-        private void Tb_Email_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
+        
     }
 }

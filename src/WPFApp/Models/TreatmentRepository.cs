@@ -7,22 +7,22 @@ using System.Threading.Tasks;
 
 namespace WPFApp.Models
 {
-    public class TreatmentRepository : SalesItemRepository
+    public class TreatmentRepository : SalesItemRepository, ITreatmentRepository
     {
-        public int AddTreatment(Treatment treatment) 
+        public int AddTreatment(Treatment treatment)
         {
             return base.AddSalesItem(treatment, EnumCategory.Treatment);
         }
 
-        public void UpdateTreatment(Treatment treatment) 
+        public void UpdateTreatment(Treatment treatment)
         {
             base.UpdateSalesItem(treatment, EnumCategory.Treatment);
         }
 
-        public List<Treatment> GetAllTreatmentsFromCategoryAndTypeAndName(string type, string name)
+        public List<Treatment> GetAllTreatments(string type, string name)
         {
             List<Treatment> wantedTreatments = new List<Treatment>();
-            SqlDataReader reader = base.GetAllSalesItemsFromCategoryAndTypeAndName(EnumCategory.Treatment, type, name);
+            SqlDataReader reader = base.GetAllSalesItems(EnumCategory.Treatment, type, name);
             // Her tjekker vi ikke for, om reader != 0, da den abstrakte metode altid returnerer et readerObjekt.
             while (reader.Read())
             {
@@ -36,5 +36,11 @@ namespace WPFApp.Models
 
             return wantedTreatments;
         }
+
+        public void DeleteTreatmentById(int id) 
+        {
+            base.DeleteSalesItemById(id);
+        }
+
     }
 }

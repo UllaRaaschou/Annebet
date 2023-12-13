@@ -52,7 +52,7 @@ namespace WPFApp.Commands
             if (parameter is CustomerDeleteViewModel cdvm) 
             {
                 CustomerRepository customerRepo = new CustomerRepository();
-                List<Customer> customerList = customerRepo.GetAllCustomersFromFirstNameAndLastName(cdvm.FirstName, cdvm.LastName);
+                List<Customer> customerList = customerRepo.GetAllCustomers(cdvm.FirstName, cdvm.LastName);
                 foreach (Customer customer in customerList)
                 {
                     CustomerSearchViewModel csvm = new CustomerSearchViewModel(customer);

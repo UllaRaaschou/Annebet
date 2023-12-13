@@ -32,12 +32,13 @@ namespace WPFApp.ViewModels
                
         public CustomerUpdateViewModel() 
         {
-            SearchedCustomers = new ObservableCollection<CustomerSearchViewModel>(); // instansierer collection til fremsøgte customers
+            CustomersToView = new ObservableCollection<CustomerToViewModel>(); // instansierer collection til fremsøgte customers
                       
         }
-       
-        public ObservableCollection<CustomerSearchViewModel> SearchedCustomers { get; } // Collections sættes til property
-        public ICommand CustomerSearchToUpdateCommand { get; } = new CustomerSearchToUpdateCommand(); // Ny instans af Command-klassen, der implementerer Icommand-interfacet
+        public ObservableCollection<CustomerToViewModel> CustomersToView { get; }
+
+        //public ObservableCollection<CustomerSearchViewModel> SearchedCustomers { get; } // Collections sættes til property
+        public ICommand CustomerSearchCommand { get; } = new CustomerSearchCommand(); // Ny instans af Command-klassen, der implementerer Icommand-interfacet
         public ICommand CustomerUpdateCommand { get; } = new CustomerUpdateCommand();
 
         private string firstName;
@@ -63,9 +64,9 @@ namespace WPFApp.ViewModels
             }
         }
 
-        private CustomerSearchViewModel selectedCustomer; // Property til listbox's selected item
+        private CustomerToViewModel selectedCustomer; // Property til listbox's selected item
 
-        public CustomerSearchViewModel SelectedCustomer
+        public CustomerToViewModel SelectedCustomer
         {
             get { return selectedCustomer; }
             set { selectedCustomer = value;
