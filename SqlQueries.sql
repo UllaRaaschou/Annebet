@@ -62,12 +62,12 @@ END;
 
 GO 
 
-CREATE PROC sp_GetAllCustomersFromFirstNameAndLastName
+CREATE PROC sp_GetAllCustomers
 @firstName Nvarchar(50),
 @lastName Nvarchar(50)
 AS
 BEGIN
-SELECT * FROM dbo.CUSTOMER WHERE FirstName = @firstName AND LastName = @lastName
+SELECT PK_CustomerId, [Address], Phone, Email FROM dbo.CUSTOMER WHERE FirstName = @firstName AND LastName = @lastName
 END;
 
 GO 

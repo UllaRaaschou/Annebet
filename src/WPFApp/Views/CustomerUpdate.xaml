@@ -101,11 +101,12 @@
                 </TransformGroup>
             </Label.RenderTransform>
         </Label>
-        <TextBox x:Name="Tb_FirstName_Updated" Text="{Binding SelectedCustomer.FirstName}" HorizontalAlignment="Left" Margin="221,239,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="283" Height="28" />
-        <TextBox x:Name="Tb_LastName_Updated" Text="{Binding SelectedCustomer.LastName}" HorizontalAlignment="Left" Margin="221,280,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="283" Height="28"/>
-        <TextBox x:Name="Tb_Address_Updated" Text="{Binding SelectedCustomer.Address}" HorizontalAlignment="Left" Margin="221,313,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="283" Height="28"/>
-        <TextBox x:Name="Tb_Phone_Updated" Text="{Binding SelectedCustomer.Phone}" HorizontalAlignment="Left" Margin="221,354,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="283" Height="28"/>
-        <TextBox x:Name="Tb_Email_Updated" Text="{Binding SelectedCustomer.Email}" HorizontalAlignment="Left" Margin="221,395,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="283" Height="28" />
+        <TextBox x:Name="Tb_FirstName_Updated" Text="{Binding SelectedCustomer.FirstName, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="221,239,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="283" Height="28" />
+        <TextBox x:Name="Tb_LastName_Updated" Text="{Binding SelectedCustomer.LastName, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="221,280,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="283" Height="28"/>
+        <TextBox x:Name="Tb_Address_Updated" Text="{Binding SelectedCustomer.Address, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="221,313,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="283" Height="28"/>
+        <TextBox x:Name="Tb_Phone_Updated" Text="{Binding SelectedCustomer.Phone, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="221,354,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="283" Height="28"/>
+        <TextBox x:Name="Tb_Email_Updated" Text="{Binding SelectedCustomer.Email, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="221,395,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="283" Height="28" />
+        <Button x:Name="Bt_Tilbage" Content="Tilbage" HorizontalAlignment="Left" Margin="38,164,0,0" VerticalAlignment="Top" Height="40" Width="61" Click="Button_Click"/>
 
     </Grid>
 </Page>

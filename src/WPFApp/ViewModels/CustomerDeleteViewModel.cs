@@ -38,7 +38,7 @@ namespace WPFApp.ViewModels
 
        
         public ICommand CustomerSearchCommand { get; } = new CustomerSearchCommand(); // Ny instans af Command-klassen, der implementerer Icommand-interfacet
-        public ICommand CustomerDeleteCommand { get; } = new CustomerUpdateCommand();
+        public ICommand CustomerDeleteCommand { get; } = new CustomerDeleteCommand();
 
         private string firstName;
         public string FirstName
@@ -47,7 +47,7 @@ namespace WPFApp.ViewModels
             set
             {
                 firstName = value;
-                OnPropertyChanged(nameof(FirstName)); // Metoden kaldes, fordi FirstName ændres.
+                OnPropertyChanged(nameof(firstName)); // Metoden kaldes, fordi FirstName ændres.
                                                       // Det udløser PropertyChanged-eventet og abonnenter informeres
             }
         }
@@ -59,7 +59,7 @@ namespace WPFApp.ViewModels
             set
             {
                 lastName = value;
-                OnPropertyChanged(nameof(LastName));
+                OnPropertyChanged(nameof(lastName));
             }
         }
 
@@ -71,7 +71,7 @@ namespace WPFApp.ViewModels
             set
             {
                 selectedCustomer = value;
-                OnPropertyChanged(nameof(SelectedCustomer));
+                OnPropertyChanged(nameof(selectedCustomer));
             }
         }
 

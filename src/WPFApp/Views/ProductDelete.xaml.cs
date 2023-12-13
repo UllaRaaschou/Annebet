@@ -28,6 +28,9 @@ namespace WPFApp.Views
             DataContext = pdvm;
         }
 
-        
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

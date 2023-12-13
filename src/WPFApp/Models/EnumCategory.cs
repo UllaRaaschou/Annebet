@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace WPFApp.Models
 {
-    public enum EnumCategory
+    public enum EnumCategory // Enum-klasse
     {
-        Product,
+        Product, //Enumv-værdier
         Treatment
     }
 }

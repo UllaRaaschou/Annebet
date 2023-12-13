@@ -45,9 +45,10 @@
         <Label Content="Pris" HorizontalAlignment="Left" Margin="50,327,0,0" VerticalAlignment="Top" Height="26" Width="49"/>
         <TextBox x:Name="Tb_OpdateretPris" Text="{Binding SelectedProduct.Price, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="199,331,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="Tb_OpdateretBeskrivelse" Text="{Binding SelectedProduct.Description, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="199,290,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="Tb_OpdateretNavn" Text="{Binding SelectedProduct.Name, UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Left" Margin="199,251,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" TextChanged="Tb_Navn_Copy2_TextChanged"/>
+        <TextBox x:Name="Tb_OpdateretNavn" Text="{Binding SelectedProduct.Name, UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Left" Margin="199,251,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" />
         <TextBox x:Name="Tb__OpdateretType" Text="{Binding SelectedProduct.Type, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="199,0,0,0" TextWrapping="Wrap"  VerticalAlignment="Center" Width="120"/>
         <Button x:Name="Bt_Opdater" Content="Opdater&#xD;&#xA;" HorizontalAlignment="Left" Margin="484,268,0,0" VerticalAlignment="Top" Command="{Binding ProductUpdateCommand}" CommandParameter="{Binding}" Height="44" Width="53"/>
+        <Button x:Name="Bt_Tilbage" Content="Tilbage" HorizontalAlignment="Left" Margin="38,32,0,0" VerticalAlignment="Top" Height="40" Width="61" Click="Button_Click"/>
 
     </Grid>
 </Page>

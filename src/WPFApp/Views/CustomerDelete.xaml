@@ -32,21 +32,21 @@
         </Label>
         <TextBox x:Name="Tb_FirstName_Search" Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="98,58,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="174" Height="23"/>
         <TextBox x:Name="Tb_EfterNavn_Search" Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="98,99,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="174" Height="23" />
-        <Button x:Name="Bt_Customer_Search" Content="Søg"  Command="{Binding CustomerSearchToDeleteCommand}" CommandParameter="{Binding}" HorizontalAlignment="Left" Margin="144,136,0,0" VerticalAlignment="Top" Height="56" Width="82"/>
+        <Button x:Name="Bt_Customer_Search" Content="Søg"  Command="{Binding CustomerSearchCommand}" CommandParameter="{Binding}" HorizontalAlignment="Left" Margin="144,136,0,0" VerticalAlignment="Top" Height="56" Width="82"/>
         <Button x:Name="Bt_Slet" Content="SLET" Command="{Binding CustomerDeleteCommand}" CommandParameter="{Binding}" HorizontalAlignment="Left" Margin="635,280,0,0" VerticalAlignment="Top" Height="88" Width="97" />
-        <ListBox ItemsSource="{Binding SearchedCustomers}" SelectedItem="{Binding SelectedCustomer}" HorizontalAlignment="Left" Margin="345,53,0,316" Width="379" d:ItemsSource="{d:SampleData ItemCount=5}">
+        <ListBox ItemsSource="{Binding CustomersToView}" SelectedItem="{Binding SelectedCustomer, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="345,53,0,316" Width="379" d:ItemsSource="{d:SampleData ItemCount=5}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding FirstName}"/>
+                        <TextBlock Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged}"/>
                         <TextBlock Text=" "/>
-                        <TextBlock Text="{Binding LastName}"/>
+                        <TextBlock Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged}"/>
                         <TextBlock Text=" "/>
-                        <TextBlock Text="{Binding Address}"/>
+                        <TextBlock Text="{Binding Address, UpdateSourceTrigger=PropertyChanged}"/>
                         <TextBlock Text=" "/>
-                        <TextBlock Text="{Binding Phone}"/>
+                        <TextBlock Text="{Binding Phone, UpdateSourceTrigger=PropertyChanged}"/>
                         <TextBlock Text=" "/>
-                        <TextBlock Text="{Binding Email}"/>
+                        <TextBlock Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
@@ -101,11 +101,12 @@
                 </TransformGroup>
             </Label.RenderTransform>
         </Label>
-        <TextBox x:Name="Tb_FirstName_Updated" Text="{Binding SelectedCustomer.FirstName}" HorizontalAlignment="Left" Margin="221,239,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="283" Height="28" />
-        <TextBox x:Name="Tb_LastName_Updated" Text="{Binding SelectedCustomer.LastName}" HorizontalAlignment="Left" Margin="221,280,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="283" Height="28"/>
-        <TextBox x:Name="Tb_Address_Updated" Text="{Binding SelectedCustomer.Address}" HorizontalAlignment="Left" Margin="221,313,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="283" Height="28"/>
-        <TextBox x:Name="Tb_Phone_Updated" Text="{Binding SelectedCustomer.Phone}" HorizontalAlignment="Left" Margin="221,354,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="283" Height="28"/>
-        <TextBox x:Name="Tb_Email_Updated" Text="{Binding SelectedCustomer.Email}" HorizontalAlignment="Left" Margin="221,395,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="283" Height="28" />
+        <TextBox x:Name="Tb_FirstName_Updated" Text="{Binding SelectedCustomer.FirstName, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="221,239,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="283" Height="28" />
+        <TextBox x:Name="Tb_LastName_Updated" Text="{Binding SelectedCustomer.LastName, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="221,280,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="283" Height="28"/>
+        <TextBox x:Name="Tb_Address_Updated" Text="{Binding SelectedCustomer.Address, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="221,313,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="283" Height="28"/>
+        <TextBox x:Name="Tb_Phone_Updated" Text="{Binding SelectedCustomer.Phone, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="221,354,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="283" Height="28"/>
+        <TextBox x:Name="Tb_Email_Updated" Text="{Binding SelectedCustomer.Email, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="221,395,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="283" Height="28" />
+        <Button x:Name="Bt_Tilbage" Content="Tilbage" HorizontalAlignment="Left" Margin="26,10,0,0" VerticalAlignment="Top" Height="40" Width="61" Click="Button_Click"/>
 
     </Grid>
 </Page>

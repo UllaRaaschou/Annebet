@@ -15,17 +15,14 @@ namespace WPFApp.Models
         /// </summary>
         private string connectionString = "Server=10.56.8.36;Database=DB_F23_TEAM_04;User Id=DB_F23_TEAM_04;Password=TEAMDB_DB_04; TrustServerCertificate=True";
 
-        private List<Customer> allCustomers;
-        public CustomerRepository() { }
 
         public int AddCustomer(Customer customer)
         {
             int newId; // Simpel variabel-deklaration uden værdi-tildeling
 
-            using (SqlConnection con = new SqlConnection(connectionString)) // Skaber forb til db med klassen SqlConnection
+            using (SqlConnection con = new SqlConnection(connectionString)) // Skaber forb til db med klassen SqlConnection-klassen
             {
                 con.Open(); // Åbner den skabte connection
-
                 using (SqlCommand cmd = new SqlCommand("dbo.sp_AddCustomer", con)) // Anvender vores stored procedure, der ligger i db
                 {
                     cmd.CommandType = CommandType.StoredProcedure; // Anvender kommandotypen til stored procedures (både INSERT INTO og SELECT SCOPE_IDENTITY as NewId)
@@ -38,16 +35,16 @@ namespace WPFApp.Models
 
                     try // forsøger at eksekvere ovenstående ( med newId som returværdi)
                     {
-                        object result = cmd.ExecuteScalar();
+                        object result = cmd.ExecuteScalar();  // returværdien fra ExecuteScalar er af typen object
 
-                        if (result != null)
+                        if (result != null) // hvis der er kommet noget retur 
                         {
-                            newId = Convert.ToInt32(result);
-                            return newId;
+                            newId = Convert.ToInt32(result); //returværid parses til int
+                            return newId; //int returneres og er den add'ede customers id
                         }
                         else
                         {
-                            newId = 0;
+                            newId = 0; // hvis der ikke er kommet noget retur
                             return newId;
                         }
 
@@ -68,16 +65,13 @@ namespace WPFApp.Models
             using (SqlConnection con = new SqlConnection(connectionString)) // skaber forbindelse til vores db med vores connectionstring
             {
                 con.Open(); // Åbner den skabte connection
-
-
-                using (SqlCommand cmd = new SqlCommand("sp_UpdateCustomer", con)) // Anvender vores stored procedure, der ligger i db, hvor en opdateret kunde er parameter
+                using (SqlCommand cmd = new SqlCommand("sp_UpdateCustomer", con)) // Anvender vores stored procedure, der ligger i db, hvori en opdateret kunde er parameter
                 {
                     cmd.CommandType = CommandType.StoredProcedure; // Anvender kommandotypen til stored procedures
 
-                    // Jeg har opdateret 
-                    cmd.Parameters.AddWithValue("@customerId", customerWithUpdatedValues.Id);// customerWithUpdatedValues.Id);
-                    cmd.Parameters.AddWithValue("@firstName", customerWithUpdatedValues.FirstName); // Indsætter den opdaterede parameter-kundens properties som værdier i SQL-queryens parametre 
+                    cmd.Parameters.AddWithValue("@customerId", customerWithUpdatedValues.Id); // Indsætter den opdaterede parameter-kundens properties som værdier i SQL-queryens parametre 
                     cmd.Parameters.AddWithValue("@lastName", customerWithUpdatedValues.LastName);
+                    cmd.Parameters.AddWithValue("@firstName", customerWithUpdatedValues.FirstName);
                     cmd.Parameters.AddWithValue("@address", customerWithUpdatedValues.Address);
                     cmd.Parameters.AddWithValue("@phone", customerWithUpdatedValues.Phone);
                     cmd.Parameters.AddWithValue("@email", customerWithUpdatedValues.Email);
@@ -97,12 +91,12 @@ namespace WPFApp.Models
 
         public List<Customer> GetAllCustomers(string firstName, string lastName)
         {
-            List<Customer> allSpecifiedCustomer = new List<Customer>();
+            List<Customer> allSpecifiedCustomer = new List<Customer>(); // instantiering af tom Customerliste
             using (SqlConnection con = new SqlConnection(connectionString)) // skaber forbindelse til vores db med vores connectionstring
             {
                 con.Open(); // Åbner den skabte forbindelse
 
-                using (SqlCommand cmd = new SqlCommand("dbo.sp_GetAllCustomersFromFirstNameAndLastName", con)) // Anvender vores stored procedure, via klassen SQLCommand
+                using (SqlCommand cmd = new SqlCommand("dbo.sp_GetAllCustomers", con)) // Anvender vores stored procedure, via klassen SQLCommand
                 {
                     cmd.CommandType = CommandType.StoredProcedure; // Anvender kommandotypen til stored procedures
 
@@ -117,10 +111,10 @@ namespace WPFApp.Models
                         {
                             while (reader.Read()) // Sålænge readeren læser data...
                             {
-                                int id = reader.GetInt32(0);
-                                string address = reader.GetString(3);
-                                string phone = reader.GetString(4);
-                                string email = reader.GetString(5);
+                                int id = reader.GetInt32(0);  //SQL kolonne 0 sættes til int'en id
+                                string address = reader.GetString(1);
+                                string phone = reader.GetString(2);
+                                string email = reader.GetString(3);
 
                                 Customer customer = Customer.CreateCustomerFromDb(id, firstName, lastName, address, phone, email); // Customer-instans oprettes
                                 allSpecifiedCustomer.Add(customer); // kunden med efterspurgte for- og efternavn add'es til listen                                                                         // - og returneres
@@ -144,12 +138,11 @@ namespace WPFApp.Models
             {
                 con.Open(); // Den skabte forbindelse åbnes
 
-
                 using (SqlCommand cmd = new SqlCommand("dbo.sp_DeleteCustomerById", con)) // Anvender vores stored procedure, der ligger i db, via SQLCommand-klassen
                 {
                     cmd.CommandType = CommandType.StoredProcedure; // Anvender kommandotypen til stored procedures
 
-                    cmd.Parameters.AddWithValue("@customerId", id); // Indsætter værdier i parametre fra sp
+                    cmd.Parameters.AddWithValue("@customerId", id); // Indsætter værdier i parametre fra den stored procedure
 
                     try // forsøger at køre ovenstående kode uden returværdi
                     {
@@ -161,11 +154,6 @@ namespace WPFApp.Models
                     }
                 }
             }
-        }
-
-        public void UpdateCustomer(Customer customerWithUpdatedValues, int id)
-        {
-            throw new NotImplementedException();
         }
     }
 }
