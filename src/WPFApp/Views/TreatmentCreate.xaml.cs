@@ -17,15 +17,15 @@ using WPFApp.ViewModels;
 namespace WPFApp.Views
 {
     /// <summary>
-    /// Interaction logic for CustomerDelete.xaml
+    /// Interaction logic for TreatmentCreate.xaml
     /// </summary>
-    public partial class CustomerDelete : Page
+    public partial class TreatmentCreate : Page
     {
-        CustomerDeleteViewModel cdvm = new CustomerDeleteViewModel();
-        public CustomerDelete()
+        TreatmentCreateViewModel tcvm = new TreatmentCreateViewModel();
+        public TreatmentCreate()
         {
             InitializeComponent();
-            DataContext = cdvm;
+            DataContext = tcvm;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

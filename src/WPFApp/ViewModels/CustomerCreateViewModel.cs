@@ -31,16 +31,14 @@ namespace WPFApp.ViewModels
             }
         }
 
-       public CustomerCreateViewModel() { }
+            
 
         /// <summary>
         /// Property af typen "interfacet ICommand", instantieres til ConstructCustomer-kommandoen. 
-        /// Construct-Cusstomer-klassen skal implementere ICommand-interfacet
         /// </summary>
         public ICommand CustomerCreateCommand { get; } = new CustomerCreateCommand();
 
-        public ICommand CustomerUpdateCommand { get; } = new CustomerSearchToUpdateCommand();
-
+        
 
         private string firstName;
         public string FirstName

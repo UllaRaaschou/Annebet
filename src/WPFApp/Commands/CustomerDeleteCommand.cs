@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using WPFApp.Models;
 using WPFApp.ViewModels;
 
 namespace WPFApp.Commands
 {
-    public class CustomerDeleteCommand : ICommand
+    public class CustomerDeleteCommand : ICommand // Nedarvning fra interfacet ICommand
     {
         /// <summary>
         /// CanExecuteChanged-eventet har fået add'et et RequerySuggested-event. 
@@ -23,57 +24,51 @@ namespace WPFApp.Commands
             remove { CommandManager.RequerySuggested -= value; }
         }
 
+
+
         /// <summary>
         /// Metode, der undersøger, om Execute skal afvikles.
-        /// Parameteren er i xaml-koden sat som "CommandParameter = Binding", og datakontekst er i code behind sat til cvm.
+        /// Parameteren er i xaml-koden sat som "CommandParameter = Binding", og datakontekst er i code behind sat til cdvm.
         /// </summary>
-
         public bool CanExecute(object? parameter)
         {
-            
-            bool result = false;
+            bool result = false; // variablen sættes i første omgang til false
 
-            if (parameter is CustomerDeleteViewModel cdvm)
+            if (parameter is CustomerDeleteViewModel cdvm) // tjek af, om datakontekst er den rette
             {
-                if(cdvm.SelectedCustomer != null) 
+                if (cdvm.SelectedCustomer != null) // tjek af, at der er valgt en customer i listbox
                 {
-                    if (cdvm.SelectedCustomer.FirstName != null && cdvm.SelectedCustomer.LastName != null && cdvm.SelectedCustomer.Address != null && cdvm.SelectedCustomer.Phone != null && cdvm.SelectedCustomer.Email != null)
+                    if (cdvm.SelectedCustomer.FirstName != null && cdvm.SelectedCustomer.LastName != null && // tjek af, at alle selected Customers properties er udfyldt
+                        cdvm.SelectedCustomer.Address != null && cdvm.SelectedCustomer.Phone != null && cdvm.SelectedCustomer.Email != null)
                     {
-                        result = true;
+                        result = true; // hvis ok, sættes variabel til  true
                     }
                 }
-                
-                return result;
-
-            }
-
-            return false;
-
+                return result; //variabel returneres
+            }   
+            return false; // hvis parameter test fejler, returenes false
         }
 
         /// <summary>
-        /// 
+        /// Selve commandens "execute-metode".
         /// </summary>
-
         public void Execute(object? parameter)
         {
-            if (parameter is CustomerDeleteViewModel cdvm) //det tjekkes, om datakontekst (sat i xaml.cs) er kommet med
-                                                            // som parameter
+            if (parameter is CustomerDeleteViewModel cdvm) //det tjekkes, om datakontekst er kommet med som paramter                                                           // som parameter
             {
-                int id = cdvm.SelectedCustomer.Id;  // selected item har et id
-                CustomerRepository customerRepo = new CustomerRepository();
-                customerRepo.DeleteCustomerById(id);
-                
-                cdvm.SelectedCustomer.FirstName = null;
-                cdvm.SelectedCustomer.LastName = null;
-                cdvm.SelectedCustomer.Address = null;
-                cdvm.SelectedCustomer.Phone = null;
-                cdvm.SelectedCustomer.Email = null;
+                int id = cdvm.SelectedCustomer.Id;  // en variabel sættes til selected customers id
+                CustomerRepository customerRepo = new CustomerRepository(); // ny instans af CustomerRepository
+                customerRepo.DeleteCustomerById(id); //customerRepo sletter selected Customer
+
+                cdvm.SelectedCustomer = null;  //Tekstboksenes værdier nulstilles
 
                 cdvm.FirstName = null;
                 cdvm.LastName = null;
+
+                MessageBox.Show("Kunde slettet");
             }
-            else throw new Exception("Wrong type of paratemer");
+
+            else throw new Exception("Wrong type of parameter");
 
         }
     }

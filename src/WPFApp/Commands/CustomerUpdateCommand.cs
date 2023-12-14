@@ -26,36 +26,35 @@ namespace WPFApp.Commands
 
         public bool CanExecute(object? parameter)
         {
-            return true;
+            bool result = false;  // parameteren sættes i første omgang til false
+
+            if (parameter is CustomerUpdateViewModel cuvm) // tjek af parameter som datekontext
+            {
+                if (cuvm.SelectedCustomer != null) // tjek af, at der er valgt et selected item
+                {
+                    if (cuvm.SelectedCustomer.FirstName != null && cuvm.SelectedCustomer.LastName != null // tjek af, om selected items properties alle er sat
+                        && cuvm.SelectedCustomer.Address != null && cuvm.SelectedCustomer.Phone != null && cuvm.SelectedCustomer.Email != null)
+                    {
+                        result = true; // hvis ja, sættes parameter til true
+                    }
+                }
+                return result; // parameter returneres
+            }
+            return false; // hvis parametertjek fejler, returneres false
         }
 
         public void Execute(object? parameter)
         {
-            if(parameter is CustomerUpdateViewModel cuvm)  // kontrol af, om datakonteksten er cuvm (sat som code-behind i xaml)
-                                                           // og om datakontekten er kommet med som parameter
-            {
-               
-                Customer customerWithUpdatedValues = Customer.MakeNewCustomerFromUI(  //opdateret kundeinstans laves ud fra opdaterede
-                                                                                      //værdier (som User har tastet på selected item)
-                                                                                      
-                    cuvm.SelectedCustomer.FirstName, 
-                    cuvm.SelectedCustomer.LastName,
-                    cuvm.SelectedCustomer.Address, 
-                    cuvm.SelectedCustomer.Phone, 
-                    cuvm.SelectedCustomer.Email
-                    );
-
-                int id = cuvm.SelectedCustomer.Id; // id'et er id'et på selected item
-                CustomerRepository customerRepo = new CustomerRepository();
+            if(parameter is CustomerUpdateViewModel cuvm)  // kontrol af, om datakonteksten er cuvm                                                            // og om datakontekten er kommet med som parameter
+            {              
                 
-                customerRepo.UpdateCustomer(customerWithUpdatedValues, id);  // den opdaterede cutomer gemmes i db under sit oprindelige id
+                Customer updatedCustomer = Customer.CreateCustomerFromDb(cuvm.SelectedCustomer.Id, // Den statiske Customer-metode laver en updated Customer
+                    cuvm.SelectedCustomer.FirstName, cuvm.SelectedCustomer.LastName,
+                    cuvm.SelectedCustomer.Address, cuvm.SelectedCustomer.Phone, cuvm.SelectedCustomer.Email);
+                CustomerRepository customerRepo = new CustomerRepository(); // CutomerRepo instantieres
+                customerRepo.UpdateCustomer(updatedCustomer);     // Repo opdaterer Customer                              
 
-                cuvm.SelectedCustomer.FirstName = null;
-                cuvm.SelectedCustomer.LastName = null;
-                cuvm.SelectedCustomer.Address = null;
-                cuvm.SelectedCustomer.Phone = null;
-                cuvm.SelectedCustomer.Email = null;
-
+                cuvm.SelectedCustomer = null; // Tekstboksenes indhold nulstilles
                 cuvm.FirstName = null;
                 cuvm.LastName = null;
                 MessageBox.Show("Kunde opdateret");

@@ -11,9 +11,17 @@
     <Grid Background="White">
         <Label Content="Annebet" HorizontalAlignment="Center" Margin="0,43,0,0" Height="62" Width="146" FontSize="36" VerticalAlignment="Top"/>
         <Label Content="Kunder" HorizontalAlignment="Left" Margin="133,123,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <Button x:Name="Bt_OpretKunde" Content="Opret Kunde" HorizontalAlignment="Left" Margin="116,178,0,0" VerticalAlignment="Top" Height="39" Width="108" Click="Button_Click_3"/>
+        <Button x:Name="Bt_OpretKunde" Content="Opret Kunde" HorizontalAlignment="Left" Margin="116,178,0,0" VerticalAlignment="Top" Height="39" Width="108" Click="Bt_OpretKunde_Click"/>
         <Button x:Name="Bt_OpdaterKunde" Content="Opdater Kunde" HorizontalAlignment="Left" Margin="116,242,0,0" VerticalAlignment="Top" Height="39" Width="108" Click="Bt_OpdaterKunde_Click"/>
         <Button x:Name="Bt_SletKunde" Content="SletKunde" HorizontalAlignment="Left" Margin="116,307,0,0" VerticalAlignment="Top" Height="39" Width="108" Click="Bt_SletKunde_Click"/>
+        <Label Content="Produkter" HorizontalAlignment="Left" Margin="294,123,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <Button x:Name="Bt_OpretProdukt" Content="Opret &#xA;Produkt " HorizontalAlignment="Left" Margin="279,178,0,0" VerticalAlignment="Top" Height="39" Width="154" Click="Bt_OpretProduct_Click"/>
+        <Button x:Name="Bt_SletProdukt" Content="Slet &#xA;Produkt " HorizontalAlignment="Left" Margin="279,307,0,0" VerticalAlignment="Top" Height="39" Width="154" Click="Bt_SletProdukt_Click"/>
+        <Button x:Name="Bt_OpdaterProdukt" Content="Opdater &#xA;Produkt " HorizontalAlignment="Left" Margin="279,242,0,0" VerticalAlignment="Top" Height="39" Width="154" Click="Bt_OpdaterProdukt_Click"/>
+        <Label Content="behandlinger" HorizontalAlignment="Left" Margin="490,123,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <Button x:Name="Bt_OpretBehandling" Content="Opret &#xA;Behandling" HorizontalAlignment="Left" Margin="477,178,0,0" VerticalAlignment="Top" Height="39" Width="154" Click="Bt_OpretBehandling_Click"/>
+        <Button x:Name="Bt_OpdaterBehandling" Content="Opdater  Behandling" HorizontalAlignment="Left" Margin="477,242,0,0" VerticalAlignment="Top" Height="39" Width="154" Click="Bt_OpdaterBehandling_Click"/>
+        <Button x:Name="Bt_SletBehandling" Content="Slet &#xA;Behandling" HorizontalAlignment="Left" Margin="477,307,0,0" VerticalAlignment="Top" Height="39" Width="154" Click="Bt_SletBehandling_Click"/>
 
     </Grid>
 </Page>

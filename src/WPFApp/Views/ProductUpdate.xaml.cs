@@ -17,15 +17,20 @@ using WPFApp.ViewModels;
 namespace WPFApp.Views
 {
     /// <summary>
-    /// Interaction logic for CustomerDelete.xaml
+    /// Interaction logic for ProductUpdate.xaml
     /// </summary>
-    public partial class CustomerDelete : Page
-    {
-        CustomerDeleteViewModel cdvm = new CustomerDeleteViewModel();
-        public CustomerDelete()
+    public partial class ProductUpdate : Page
+    {   
+        ProductUpdateViewModel puvm = new ProductUpdateViewModel();
+        public ProductUpdate()
         {
             InitializeComponent();
-            DataContext = cdvm;
+            DataContext = puvm;
+        }
+
+        private void Tb_Navn_Copy2_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
