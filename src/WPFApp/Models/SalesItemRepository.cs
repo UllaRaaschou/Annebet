@@ -8,19 +8,21 @@ using System.Threading.Tasks;
 
 namespace WPFApp.Models
 {
-    public abstract class SalesItemRepository // Abstrakt Parent-Repo med SQL-kode til brug for children (Product/treatment) repos
+    public abstract class SalesItemRepository : IDisposable // Abstrakt Parent-Repo med SQL-kode til brug for children (Product/treatment) repos
+                                                            // Implementerer IDisposable for at kunne genbruge Repositoriets connection til Db i hele
+                                                            // Repo'ets levetid.
     {
-        private string connectionString = "Server=10.56.8.36;Database=DB_F23_TEAM_04;User Id=DB_F23_TEAM_04;Password=TEAMDB_DB_04; TrustServerCertificate=True";
-
+        private const string connectionString = "Server=10.56.8.36;Database=DB_F23_TEAM_04;User Id=DB_F23_TEAM_04;Password=TEAMDB_DB_04; TrustServerCertificate=True";
+        // sættes til en konstant for at kunne genbruges
         protected int AddSalesItem(SalesItem salesItem, EnumCategory category) // Add-metode, der tager et salesItem og bruger category til differentiator
                                                                                 // mellem children Product og Treatment.
                                                                                 //Metoden er protected og nedarves til children
         {
             int newId; // Simpel variabel-deklaration uden værdi-tildeling
 
-            using (SqlConnection con = new SqlConnection(connectionString)) // Skaber forb til db med klassen SqlConnection
-            {
-                con.Open(); // Åbner den skabte connection
+            SqlConnection con = GetOpenSqlConnection(); // Skaber forb til db med klassen SqlConnection  ***********************************
+            
+                //con.Open();  Åbner den skabte connection  ***********************************
                 using (SqlCommand cmd = new SqlCommand("dbo.sp_AddSalesItem", con)) // Anvender vores stored procedure, der ligger i db
                 {
                     cmd.CommandType = CommandType.StoredProcedure; // Anvender kommandotypen til stored procedures (både INSERT INTO og SELECT SCOPE_IDENTITY as NewId)
@@ -54,7 +56,7 @@ namespace WPFApp.Models
                         return -1;
                     }
                 }
-            }
+            
 
         }
 
@@ -136,6 +138,24 @@ namespace WPFApp.Models
             return cmd.ExecuteReader();  // Metoden ExecuteReader køres på SQLDataReader objektet og repræsenterer den datastrøm, der er resultatet af database-forespørgslen
             // Ingen brug af using, da de lukker readeren ned, hvorved children ikke kan bruge reader-metoden
               
+        }
+
+
+        private SqlConnection sqlConnection = new SqlConnection(connectionString);
+        public void Dispose()
+        {
+            sqlConnection.Dispose();
+        }
+
+        private SqlConnection GetOpenSqlConnection() 
+        {
+            if(sqlConnection.State == ConnectionState.Open) 
+            {
+                return sqlConnection;   
+            }
+
+            sqlConnection.Open();
+            return sqlConnection;
         }
     }
     

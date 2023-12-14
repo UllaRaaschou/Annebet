@@ -12,9 +12,10 @@ using WPFApp.Views;
 
 namespace WPFApp.Commands
 {
-    class CustomerCreateCommand : ICommand  // Nedarvning fra interfacet ICommand
+    public class CustomerCreateCommand : ICommand  // Nedarvning fra interfacet ICommand
     {
-       
+        private ICustomerRepository repository; // simpel deklarering af repo. Dette kan skiftes afhængigt af den anvendte konstructor
+
         /// <summary>
         /// CanExecuteChanged-eventet har fået add'et et RequerySuggested-event. 
         /// Requery udløses så snart WPF mener, at command properties skal re-evalueres - ofte sfa bruger-acts.
@@ -26,6 +27,22 @@ namespace WPFApp.Commands
             add {CommandManager.RequerySuggested += value; }
             remove { CommandManager.RequerySuggested -= value;}
         }
+
+
+
+
+        public CustomerCreateCommand()  // Constructor, der som default vil blive aktiveret og som sætter repo-feltet til det almindelige CustomerReposity
+        {
+            this.repository = new CustomerRepository();
+        }
+        public CustomerCreateCommand(ICustomerRepository repository)  // Constuctor, der kan bruges, når vi i unit-test bruger Test-repo som parameter,
+                                                                      // og vi dermed sætter repo-feltet til test-Repo
+        {
+            this.repository = repository;
+        }  
+
+
+
 
 
         /// <summary>
@@ -61,8 +78,9 @@ namespace WPFApp.Commands
         {
             if (parameter is CustomerCreateViewModel ccvm)  // parameter tjekkes
             {
-                CustomerRepository customerRepo = new CustomerRepository();  // CustomerRepo instantieres
-                customerRepo.AddCustomer(Customer.CreateCustomerFromUI(ccvm.FirstName, ccvm.LastName, ccvm.Address, ccvm.Phone, ccvm.Email)); // Repo add'er Customer til db
+                //CustomerRepository customerRepo = new CustomerRepository();  // CustomerRepo instantieres
+                //customerRepo.AddCustomer(Customer.CreateCustomerFromUI(ccvm.FirstName, ccvm.LastName, ccvm.Address, ccvm.Phone, ccvm.Email)); // Repo add'er Customer til db
+                repository.AddCustomer(Customer.CreateCustomerFromUI(ccvm.FirstName, ccvm.LastName, ccvm.Address, ccvm.Phone, ccvm.Email)); // Repo add'er Customer til db
                 ccvm.FirstName = null; // Tekstboksenes indhold nulstilles
                 ccvm.LastName = null;
                 ccvm.Address = null;

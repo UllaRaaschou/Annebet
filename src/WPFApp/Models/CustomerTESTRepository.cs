@@ -8,7 +8,7 @@ namespace WPFApp.Models
 {
     public class CustomerTESTRepository : ICustomerRepository
     {
-        List<Customer> customers = new List<Customer>();
+        public List<Customer> customers { get; } = new List<Customer>();
         
         public int AddCustomer(Customer customer)
         {
