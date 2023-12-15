@@ -25,6 +25,17 @@ namespace WPFApp.Commands
         }
 
 
+        private ICustomerRepository repository; // simpel deklarering af repo. Dette kan skiftes afhængigt af den anvendte konstructor
+        public CustomerDeleteCommand()  // Constructor, der som default vil blive aktiveret og som sætter repo-feltet til det almindelige CustomerReposity
+        {
+            this.repository = new CustomerRepository();
+        }
+        public CustomerDeleteCommand(ICustomerRepository repository)  // Constuctor, der kan bruges, når vi i unit-test bruger Test-repo som parameter,
+                                                                      // og vi dermed sætter repo-feltet til test-Repo
+        {
+            this.repository = repository;
+        }
+
 
         /// <summary>
         /// Metode, der undersøger, om Execute skal afvikles.
@@ -57,8 +68,8 @@ namespace WPFApp.Commands
             if (parameter is CustomerDeleteViewModel cdvm) //det tjekkes, om datakontekst er kommet med som paramter                                                           // som parameter
             {
                 int id = cdvm.SelectedCustomer.Id;  // en variabel sættes til selected customers id
-                CustomerRepository customerRepo = new CustomerRepository(); // ny instans af CustomerRepository
-                customerRepo.DeleteCustomerById(id); //customerRepo sletter selected Customer
+
+                repository.DeleteCustomerById(id); //customerRepo sletter selected Customer
 
                 cdvm.SelectedCustomer = null;  //Tekstboksenes værdier nulstilles
 

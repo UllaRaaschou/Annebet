@@ -1,114 +1,128 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
-//using WPFApp.Commands;
-//using WPFApp.Models;
-//using WPFApp.ViewModels;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using WPFApp.Commands;
+using WPFApp.Models;
+using WPFApp.ViewModels;
 
-//namespace WPFApp.Tests
-//{
-//    [TestClass]
-//    public class CustomerDeleteCommandTests
-//    {
-//        [TestMethod]
-//        public void TestExecute()
-//        {
-//            // Arrange
-//            CustomerTESTRepository repository = new CustomerTESTRepository(); // Instantiereing af Test-repo
-//                                                                              // Test-repo bruges som parameter i vores Command-Construcor, hvorved vi skifter fra brug
-//                                                                              // af løsningens normale repo til vores testRepo.
+namespace WPFApp.Tests
+{
+    [TestClass]
+    public class CustomerDeleteCommandTests
+    {
+        [TestMethod]
+        public void TestExecute()
+        {
+            // Arrange
+            CustomerTESTRepository repository = new CustomerTESTRepository();   // Instantiereing af Test-repo
+                                                                                //Test - repo bruges som parameter i vores Command-Construcor, hvorved vi skifter fra brug
+                                                                                // af løsningens normale repo til vores testRepo.
 
-//            CustomerDeleteCommand cdc = new CustomerDeleteCommand(repository);
-//            CustomerDeleteViewModel viewModel = new CustomerDeleteViewModel();
-//            viewModel.FirstName = "Karen";
-//            viewModel.LastName = "Kost";
-//            viewModel.Address = "Kirkevej 4, 4000 Roskilde";
-//            viewModel.Phone = "1234567";
-//            viewModel.Email = "Karen@gmail.com";
+            Customer customer = Customer.CreateCustomerFromDb(3, "Minna", "Olsen", "Minnavej 3", "52627", "Minna@gmail.com");
+            repository.customers.Add(customer);
 
-//            // Act
-//            ccc.Execute(viewModel);
+            CustomerDeleteCommand cdc = new CustomerDeleteCommand(repository);
+            CustomerDeleteViewModel viewModel = new CustomerDeleteViewModel();
+            
+            CustomerToViewModel viewModelCustomer = new CustomerToViewModel();
+            viewModel.SelectedCustomer = viewModelCustomer.CustomerToViewModelConvert(customer);
 
-
-//            // assert
-//            Assert.AreEqual(repository.customers[0].FirstName, "Karen");
-//            Assert.AreEqual(repository.customers[0].LastName, "Kost");
-//            Assert.AreEqual(repository.customers[0].Address, "Kirkevej 4, 4000 Roskilde");
-//            Assert.AreEqual(repository.customers[0].Phone, "1234567");
-//            Assert.AreEqual(repository.customers[0].Email, "Karen@gmail.com");
-//        }
+                      
+           
+           
+            // Act
+            cdc.Execute(viewModel);
 
 
 
-
-//        [TestMethod]
-//        public void TestViewModelValuesToNullAfterExecute()
-//        {
-//            CustomerTESTRepository repository = new CustomerTESTRepository(); // TestRepo instantieres
-//            CustomerCreateCommand ccc = new CustomerCreateCommand(repository);
-//            CustomerCreateViewModel viewModel = new CustomerCreateViewModel();
-//            viewModel.FirstName = "Karen";
-//            viewModel.LastName = "Kost";
-//            viewModel.Address = "Kirkevej 4, 4000 Roskilde";
-//            viewModel.Phone = "1234567";
-//            viewModel.Email = "karen@gmail.com";
-
-//            // Act
-//            ccc.Execute(viewModel);
-
-//            // Assert
-//            Assert.IsNull(viewModel.FirstName);
-//            Assert.IsNull(viewModel.LastName);
-//            Assert.IsNull(viewModel.Address);
-//            Assert.IsNull(viewModel.Phone);
-//            Assert.IsNull(viewModel.Email);
-//        }
+            // assert
+            Assert.IsTrue(repository.customers.Count() == 0);
+            
+        }
 
 
 
 
-//        [TestMethod]
-//        public void TestCanExecuteWithoutNullValuesInViewModelProperties()
-//        {
-//            // Arrange
-//            CustomerTESTRepository repository = new CustomerTESTRepository();
-//            CustomerCreateCommand ccc = new CustomerCreateCommand(repository);
-//            CustomerCreateViewModel viewModel = new CustomerCreateViewModel();
-//            viewModel.FirstName = "Karen";
-//            viewModel.LastName = "Kost";
-//            viewModel.Address = "Kirkevej 4, 4000 Roskilde";
-//            viewModel.Phone = "1234567";
-//            viewModel.Email = "karen@gmail.com";
+        [TestMethod]
+        public void TestViewModelValuesToNullAfterExecute()
+        {
+            CustomerTESTRepository repository = new CustomerTESTRepository();
 
-//            // Act
-//            bool result = ccc.CanExecute(viewModel);
+            Customer customer = Customer.CreateCustomerFromDb(3, "Minna", "Olsen", "Minnavej 3", "52627", "Minna@gmail.com");
+            repository.customers.Add(customer);
 
-//            // Assert
-//            Assert.IsTrue(result);  // Hvis ViewModelProperties er udfyldt, skal execute returnere True
+            CustomerDeleteCommand cdc = new CustomerDeleteCommand(repository);
+            CustomerDeleteViewModel viewModel = new CustomerDeleteViewModel();
 
-//        }
+            CustomerToViewModel viewModelCustomer = new CustomerToViewModel();
+            viewModel.SelectedCustomer = viewModelCustomer.CustomerToViewModelConvert(customer);
 
-//        public void TestCanExecuteWithNullValueInViewModelProperties()
-//        {
-//            // Arrange
-//            CustomerTESTRepository repository = new CustomerTESTRepository();
-//            CustomerCreateCommand ccc = new CustomerCreateCommand(repository);
-//            CustomerCreateViewModel viewModel = new CustomerCreateViewModel();
-//            viewModel.FirstName = null;
-//            viewModel.LastName = "Kost";
-//            viewModel.Address = "Kirkevej 4, 4000 Roskilde";
-//            viewModel.Phone = "1234567";
-//            viewModel.Email = "karen@gmail.com";
 
-//            // Act
-//            bool result = ccc.CanExecute(viewModel);
+            // Act
+            cdc.Execute(viewModel);
 
-//            // Assert
-//            Assert.IsFalse(result);
 
-//        }
+            // Assert
+            Assert.IsNull(viewModel.FirstName);
+            Assert.IsNull(viewModel.LastName);
+            Assert.IsNull(viewModel.SelectedCustomer);
+        }
 
-//    }
-//}
+
+
+        
+        [TestMethod]
+        public void TestCanExecuteWithoutNullValuesInViewModelProperties()
+        {
+            // Arrange
+            CustomerTESTRepository repository = new CustomerTESTRepository();
+            CustomerDeleteCommand cdc = new CustomerDeleteCommand(repository);
+            CustomerDeleteViewModel viewModel = new CustomerDeleteViewModel();
+            Customer customer = Customer.CreateCustomerFromUI("Minna", "Olsen", "Minnavej 3", "52627", "Minna@gmail.com");
+            CustomerToViewModel customerToViewModel = new CustomerToViewModel();
+            CustomerToViewModel viewModelCustomer = new CustomerToViewModel ();
+            
+            viewModel.SelectedCustomer = viewModelCustomer.CustomerToViewModelConvert(customer);
+            viewModel.SelectedCustomer.FirstName = "Minna";
+            viewModel.SelectedCustomer.LastName = "Olsen";
+            viewModel.SelectedCustomer.Address = "Minnavej 3";
+            viewModel.SelectedCustomer.Phone = "52627";
+            viewModel.SelectedCustomer.Email = "Minna@gmail.com";
+
+            // Act
+            bool result = cdc.CanExecute(viewModel);
+
+            // Assert
+            Assert.IsTrue(result);  // Hvis ViewModelProperties er udfyldt, skal execute returnere True
+
+        }
+
+        public void TestCanExecuteWithNullValueInViewModelProperties()
+        {
+            // Arrange
+            CustomerTESTRepository repository = new CustomerTESTRepository();
+            CustomerDeleteCommand cdc = new CustomerDeleteCommand(repository);
+            CustomerDeleteViewModel viewModel = new CustomerDeleteViewModel();
+            Customer customer = Customer.CreateCustomerFromUI("Minna", "Olsen", "Minnavej 3", "52627", "Minna@gmail.com");
+            CustomerToViewModel customerToViewModel = new CustomerToViewModel();
+            CustomerToViewModel viewModelCustomer = new CustomerToViewModel();
+
+            viewModel.SelectedCustomer = null;
+            viewModel.SelectedCustomer.FirstName = "Minna";
+            viewModel.SelectedCustomer.LastName = "Olsen";
+            viewModel.SelectedCustomer.Address = "Minnavej 3";
+            viewModel.SelectedCustomer.Phone = "52627";
+            viewModel.SelectedCustomer.Email = "Minna@gmail.com";
+
+            // Act
+            bool result = cdc.CanExecute(viewModel);
+
+            // Assert
+            Assert.IsFalse(result);
+
+        }
+
+    }
+}

@@ -19,27 +19,45 @@ namespace WPFApp.Models
         }
         public void UpdateCustomer(Customer customerWithUpdatedValues)
         {
+            Customer customer2 = null;
+
             foreach (Customer customer in customers)
             {
                 if (customer.Id == customerWithUpdatedValues.Id)
                 {
-                    customers.Remove(customer);
-                    customers.Add(Customer.CreateCustomerFromDb(customerWithUpdatedValues.Id, customerWithUpdatedValues.FirstName,
-                        customerWithUpdatedValues.LastName, customerWithUpdatedValues.Address, customerWithUpdatedValues.Phone,
-                        customerWithUpdatedValues.Email));
+                    customer2 = customer;
+                    break;
+                    
                 }
+                
+            }
+            if (customer2 != null)
+            {
+                customers.Remove(customer2);
+                customers.Add(Customer.CreateCustomerFromDb(customerWithUpdatedValues.Id, customerWithUpdatedValues.FirstName,
+                    customerWithUpdatedValues.LastName, customerWithUpdatedValues.Address, customerWithUpdatedValues.Phone,
+                    customerWithUpdatedValues.Email));
+
             }
         }
         public void DeleteCustomerById(int id)
         {
+            Customer customer2 = null; 
             foreach (Customer customer in customers)
             {
                 if (customer.Id == id)
                 {
-                    customers.Remove(customer);
+                    customer2 = customer;
+                    break;
                 }
             }
+            if (customer2 != null)
+            {
+                customers.Remove(customer2);
+            }
         }
+
+
         public List<Customer> GetAllCustomers(string firstName, string lastName)
         {
             List <Customer> wantedCustomers = new List<Customer>(); 
