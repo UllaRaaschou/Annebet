@@ -23,6 +23,19 @@ namespace WPFApp.Commands
             remove { CommandManager.RequerySuggested -= value; }
         }
 
+        private IProductRepository repository;
+        public ProductSearchCommand() 
+        {
+            this.repository = new ProductRepository();  
+        }
+
+        public ProductSearchCommand(IProductRepository repository) 
+        {
+            this.repository = repository;
+        }
+
+
+
         public bool CanExecute(object? parameter)
         {
             bool result = false;  // result sættes til false fra start
@@ -52,7 +65,7 @@ namespace WPFApp.Commands
             if(parameter is ProductUpdateViewModel puvm) // tjek af parameter og datacontext
             {
                 ProductToViewModel ptvm = new ProductToViewModel(); // Procuct-to-Viewodel-Converter instantieres
-                List <Product> trueProducts = ptvm.productRepo.GetAllProducts(puvm.Type, puvm.Name); // Dens repo henter ønskede produkter
+                List <Product> trueProducts = repository.GetAllProducts(puvm.Type, puvm.Name); // Dens repo henter ønskede produkter
                 foreach (Product p in trueProducts) 
                 {
                     ProductToViewModel productViewModel = ptvm.ProductToViewModelConvert(p); // de hentede producter omdannes til ViewModels
@@ -62,7 +75,7 @@ namespace WPFApp.Commands
             else if (parameter is ProductDeleteViewModel pdvm)
             {
                 ProductToViewModel ptvm = new ProductToViewModel(); // Procuct-to-Viewodel-Converter instantieres
-                List<Product> trueProducts = ptvm.productRepo.GetAllProducts(pdvm.Type, pdvm.Name); // Dens repo henter ønskede produkter
+                List<Product> trueProducts = repository.GetAllProducts(pdvm.Type, pdvm.Name); // Dens repo henter ønskede produkter
                 foreach (Product p in trueProducts)
                 {
                     ProductToViewModel productViewModel = ptvm.ProductToViewModelConvert(p); // de hentede producter omdannes til ViewModels

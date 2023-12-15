@@ -11,9 +11,7 @@ namespace WPFApp.ViewModels
 {
     public class CustomerToViewModel
     {
-        // ustomerRepo deklareres
-        public CustomerRepository customerRepo;
-
+        
 
         public int Id { get; set; }
         public string FirstName { get; set; }
@@ -26,7 +24,7 @@ namespace WPFApp.ViewModels
         // parameterløs constructor, der instantierer customerRepo
         public CustomerToViewModel()  
         {
-            customerRepo = new CustomerRepository();
+            
         }
 
 
@@ -57,12 +55,7 @@ namespace WPFApp.ViewModels
         }
 
     
-       /// Metode, der via repo henter ønskede customers i db
-       public List<Customer> SearchForCustomers(string firstName, string lastName)
-        {
-            List<Customer> customers = customerRepo.GetAllCustomers(FirstName, LastName);
-            return customers;
-        }
+      
     }
 }
 

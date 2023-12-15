@@ -23,6 +23,19 @@ namespace WPFApp.Commands
             remove { CommandManager.RequerySuggested -= value; }
         }
 
+        private ICustomerRepository repository;  // simpel deklarering af repo. Dette kan skiftes afhængigt af den anvendte konstructor
+
+        public CustomerSearchCommand() // Constructor, der som default vil blive aktiveret og som sætter repo-feltet til det almindelige CustomerReposity
+        {
+            this.repository = new CustomerRepository();
+        }
+
+        public CustomerSearchCommand(ICustomerRepository repository) // Constuctor, der kan bruges, når vi i unit-test bruger Test-repo som parameter,
+                                                                     // og vi dermed sætter repo-feltet til test-Repo
+        {
+            this.repository = repository;
+        }   
+
         public bool CanExecute(object? parameter)
         {
             bool result = false;  // result sættes til false fra start
@@ -52,7 +65,7 @@ namespace WPFApp.Commands
             if (parameter is CustomerUpdateViewModel cuvm) // Hvis datekontekst er cuvm
             {
                 CustomerToViewModel ctvm = new CustomerToViewModel(); // Customer-til-ViemModel-Converter instantieres
-                List<Customer> trueCustomers = ctvm.customerRepo.GetAllCustomers(cuvm.FirstName, cuvm.LastName); // Dens CustomerRepo henter Customers ud fra kriterier
+                List<Customer> trueCustomers = repository.GetAllCustomers(cuvm.FirstName, cuvm.LastName); // Dens CustomerRepo henter Customers ud fra kriterier
                 foreach (Customer c in trueCustomers)
                 {
                     CustomerToViewModel customerViewModel = ctvm.CustomerToViewModelConvert(c); // De hentede Customers converteres til ViewModels
@@ -63,7 +76,7 @@ namespace WPFApp.Commands
             if (parameter is CustomerDeleteViewModel cdvm) // Hvis datekontekst er cdvm
             {
                 CustomerToViewModel ctvm = new CustomerToViewModel(); // Customer-til-ViemModel-Converter instantieres
-                List<Customer> trueCustomers = ctvm.customerRepo.GetAllCustomers(cdvm.FirstName, cdvm.LastName); // CustomerRepo henter Customers ud fra kriterier
+                List<Customer> trueCustomers = repository.GetAllCustomers(cdvm.FirstName, cdvm.LastName); // CustomerRepo henter Customers ud fra kriterier
                 foreach (Customer c in trueCustomers)
                 {
                     CustomerToViewModel customerViewModel = ctvm.CustomerToViewModelConvert(c);// De hentede Customers converteres til ViewModels

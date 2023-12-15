@@ -10,9 +10,7 @@ namespace WPFApp.ViewModels
 {
     public class TreatmentToViewModel
     {
-        // treatmentRepo deklareres
-        public TreatmentRepository treatmentRepo;
-
+        
 
         public int Id { get; set; }
         public string Type { get; set; }
@@ -21,11 +19,9 @@ namespace WPFApp.ViewModels
         public decimal Price { get; set; }
 
 
-        // parameterløs constructor, der instantierer productRepo
-        public TreatmentToViewModel()
-        {
-            treatmentRepo = new TreatmentRepository();
-        }
+        // parameterløs constructor
+        public TreatmentToViewModel() { }
+       
 
         // constructor, der tager Treatment som parameter
         public TreatmentToViewModel(Treatment treatment)
@@ -52,11 +48,5 @@ namespace WPFApp.ViewModels
         }
 
 
-        /// Metode, der via repo henter ønskede treatments i db
-        public List<Treatment> SearchForTreatment(string type, string name)
-        {
-            List<Treatment> treatments = treatmentRepo.GetAllTreatments(type, name);
-            return treatments;
-        }
     }
 }

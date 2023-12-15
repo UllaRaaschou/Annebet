@@ -24,6 +24,20 @@ namespace WPFApp.Commands
             remove { CommandManager.RequerySuggested -= value; }
         }
 
+        private ITreatmentRepository repository;
+
+        public TreatmentSearchCommand() 
+        {
+            this.repository = new TreatmentRepository();
+        }
+
+        public TreatmentSearchCommand(ITreatmentRepository repository)
+        {
+            this.repository = repository;
+        }
+
+    
+
 
         /// <summary>
         /// Metode, der undersøger, om Execute skal afvikles.
@@ -75,7 +89,7 @@ namespace WPFApp.Commands
                 var ttvm = new TreatmentToViewModel();
 
                 // Dens repo henter ønskede produkter
-                List<Treatment> trueTreatments = ttvm.treatmentRepo.GetAllTreatments(tuvm.Type, tuvm.Name);
+                List<Treatment> trueTreatments = repository.GetAllTreatments(tuvm.Type, tuvm.Name);
                 
                 foreach (Treatment t in trueTreatments)
                 {
@@ -93,7 +107,7 @@ namespace WPFApp.Commands
                 TreatmentToViewModel ttvm = new TreatmentToViewModel();
 
                 // Dens repo henter ønskede treatments
-                List<Treatment> trueTreatments = ttvm.treatmentRepo.GetAllTreatments(tdvm.Type, tdvm.Name);
+                List<Treatment> trueTreatments = repository.GetAllTreatments(tdvm.Type, tdvm.Name);
                
                 foreach (Treatment t in trueTreatments)
                 {

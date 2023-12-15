@@ -99,6 +99,7 @@ namespace WPFApp.Tests
 
         }
 
+        [TestMethod]
         public void TestCanExecuteWithNullValueInViewModelProperties()
         {
             // Arrange
@@ -109,8 +110,8 @@ namespace WPFApp.Tests
             CustomerToViewModel customerToViewModel = new CustomerToViewModel();
             CustomerToViewModel viewModelCustomer = new CustomerToViewModel();
 
-            viewModel.SelectedCustomer = null;
-            viewModel.SelectedCustomer.FirstName = "Minna";
+            viewModel.SelectedCustomer = viewModelCustomer.CustomerToViewModelConvert(customer);
+            viewModel.SelectedCustomer.FirstName = null;
             viewModel.SelectedCustomer.LastName = "Olsen";
             viewModel.SelectedCustomer.Address = "Minnavej 3";
             viewModel.SelectedCustomer.Phone = "52627";

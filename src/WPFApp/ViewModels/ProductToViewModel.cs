@@ -11,12 +11,10 @@ namespace WPFApp.ViewModels
 {
     public class ProductToViewModel
     {
-        public ProductRepository productRepo; // Deklarering af productRepo
+       
 
-        public ProductToViewModel() // parameterløs constructor, der instantierer productRepo
-        {
-            productRepo = new ProductRepository();
-        }
+        public ProductToViewModel() { }// parameterløs constructor
+       
         public ProductToViewModel(Product product)  // constructor, der tager Product som parameter
         {
             Id = product.Id;
@@ -49,13 +47,6 @@ namespace WPFApp.ViewModels
         public string Description { get; set; }
         public decimal Price { get; set; }
 
-        /// <summary>
-        /// Metode, der via repo henter ønskede products i db
-        /// </summary>
-        public List<Product> SearchForProducts(string type, string name) 
-        {
-            List<Product> products = productRepo.GetAllProducts(type, name);
-            return products;
-        }  
+        
     }
 }
