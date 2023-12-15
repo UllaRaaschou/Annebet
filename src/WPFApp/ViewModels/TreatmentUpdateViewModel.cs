@@ -29,18 +29,20 @@ namespace WPFApp.ViewModels
             }
         }
 
+
+        // Property til Search command sættes til instans af klassen
         public ICommand TreatmentSearchCommand { get; } = new TreatmentSearchCommand();
+        // Property til Update command sættes til instans af klassen
         public ICommand TreatmentUpdateCommand { get; } = new TreatmentUpdateCommand();
 
+
+        // Observable Collection laves til property
         public ObservableCollection<TreatmentToViewModel> TreatmentsToView { get; }
 
-        public TreatmentUpdateViewModel()
-        {
-            TreatmentsToView = new ObservableCollection<TreatmentToViewModel>();
-        }
 
+        // Metoden kaldes, fordi type ændres.
+        // Det udløser PropertyChanged-eventet og abonnenter informeres
         private string type;
-
         public string Type
         {
             get { return type; }
@@ -50,7 +52,6 @@ namespace WPFApp.ViewModels
         }
 
         private string name;
-
         public string Name
         {
             get { return name; }
@@ -59,8 +60,8 @@ namespace WPFApp.ViewModels
             }
         }
 
+        // Property til listbox's selected item
         private TreatmentToViewModel selectedTreatment;
-
         public TreatmentToViewModel SelectedTreatment
         {
             get { return selectedTreatment; }
@@ -69,5 +70,11 @@ namespace WPFApp.ViewModels
             }
         }
 
+
+        // Instansierer  Observable Collection til fremsøgte TreatmentToViewModel
+        public TreatmentUpdateViewModel()
+        {
+            TreatmentsToView = new ObservableCollection<TreatmentToViewModel>();
+        }
     }
 }

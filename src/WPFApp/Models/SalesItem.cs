@@ -6,16 +6,18 @@ using System.Threading.Tasks;
 
 namespace WPFApp.Models
 {
-    public abstract class SalesItem // Abstrakt parent-class med Product og Treatment som children
+    // Abstrakt parent-class med Product og Treatment som children
+    public abstract class SalesItem 
     {             
-
         public int Id{ get;  }
         public string Type { get; }
         public string Name { get; }
         public string Description { get; }
         public decimal Price { get; }
 
-        protected SalesItem(int id, string type, string name, string description, decimal price)  // protected konstructør, der bruges i de to create-metoder
+
+        // Protected constructor, der bruges i de to create-metoder
+        protected SalesItem(int id, string type, string name, string description, decimal price) 
         {
             Id = id;
             Type = type;
@@ -24,14 +26,17 @@ namespace WPFApp.Models
             Description = description;
         }
 
+
         public static SalesItem CreateSalesItemFromDb(int id, EnumCategory category, string type, string name, string description, decimal price) // salesItemværdier hentet fra db
         {
-            if(category == EnumCategory.Product) // Hvis category er et product, anvendes et product's create-metode
+            // Hvis category er et product, anvendes et product's create-metode
+            if (category == EnumCategory.Product)
             {
                 Product product = Product.CreateProductFromDb(id, type, name, description, price);
                 return product;
             }
-            else if (category == EnumCategory.Treatment) // hvis category er en treatment, anvendes et treatment's create-metode
+            // Hvis category er en treatment, anvendes et treatment's create-metode
+            else if (category == EnumCategory.Treatment)
             {
                 Treatment treatment = Treatment.CreateTreatmentFromDb(id, type, name, description, price);
                 return treatment;
@@ -40,17 +45,19 @@ namespace WPFApp.Models
             {
                 throw new Exception("Fejl i category");
             }
-
         }
+
 
         public static SalesItem CreateSalesItemFromUI(EnumCategory category, string type, string name, string description, decimal price) // salesItemværdier fra UI
         {
-            if (category == EnumCategory.Product) // Hvis category er et product, anvendes et product's create-metode
+            // Hvis category er et product, anvendes et product's create-metode
+            if (category == EnumCategory.Product)
             {
                 Product product = Product.CreateProductFromDb(0, type, name, description, price);
                 return product;
             }
-            else if (category == EnumCategory.Treatment) // hvis category er en treatment, anvendes et treatment's create-metode
+            // Hvis category er en treatment, anvendes et treatment's create-metode
+            else if (category == EnumCategory.Treatment)
             {
                 Treatment treatment = Treatment.CreateTreatmentFromDb(0, type, name, description, price);
                 return treatment;
@@ -59,7 +66,6 @@ namespace WPFApp.Models
             {
                 throw new Exception("Fejl i category");
             }
-
         }
     }
 }

@@ -11,6 +11,7 @@ using WPFApp.ViewModels;
 
 namespace WPFApp.Commands
 {
+    // Nedarvning fra interfacet ICommand
     internal class TreatmentCreateCommand : ICommand
     {
         /// <summary>
@@ -25,20 +26,47 @@ namespace WPFApp.Commands
             remove { CommandManager.RequerySuggested -= value; }
         }
 
+
+        /// <summary>
+        /// Metode, der undersøger, om Execute skal afvikles.
+        /// Parameteren er i xaml-koden sat som "CommandParameter = Binding", og datakontekst er i code behind sat til tcvm.
+        /// </summary>
         public bool CanExecute(object? parameter)
         {
-            return true;
+            // Variablen sættes i første omgang til false
+            bool result = false;
+
+            // Parameter tjekkes
+            if (parameter is TreatmentCreateViewModel tcvm)
+            {
+                // Det tjekkes, om alle nødvendige tekstbokse er udfyldt
+                if (tcvm.Type != null && tcvm.Name != null && tcvm.Description != null
+                    && tcvm.Price != null)
+                {
+                    // Så sættes variblen til true;
+                    result = true;
+                }
+                // Variablen returneres
+                return result;
+
+            }
+            // Hvis datacontext ikke er sat korrekt, returneres false
+            return false;
         }
 
         /// <summary>
         /// Metoden, der udfører opret_behandling_funktionen og får den add'et til repository.
-        /// Parameteren er i xaml-koden sat som "CommandParameter = Binding", og datakontekst er i code behind sat til pcvm.
+        /// Parameteren er i xaml-koden sat som "CommandParameter = Binding", og datakontekst er i code behind sat til tcvm.
         /// </summary>
         public void Execute(object? parameter)
         {
+            // Parameter tjekkes
             if (parameter is TreatmentCreateViewModel tcvm)
             {
-                var treatmentRepo = new TreatmentRepository();
+                // TreatmentRepo instantiers
+                TreatmentRepository treatmentRepo = new TreatmentRepository();
+
+                // Repo add'er product i db
                 treatmentRepo.AddTreatment(Treatment.CreateTreatmentFromUI(tcvm.Type, tcvm.Name, tcvm.Description, tcvm.Price));
                 MessageBox.Show("Behandling oprettet");           
             }

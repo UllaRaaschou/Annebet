@@ -10,9 +10,12 @@ using WPFApp.Commands;
 
 namespace WPFApp.ViewModels
 {
+    // Interface-nedarves 
     public class ProductDeleteViewModel : INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged; // Interface implementeres som event
+        // Interface implementeres som event
+        public event PropertyChangedEventHandler PropertyChanged;
+
 
         /// <summary>
         /// Metode, der kan bruges i klasser, der implementerer INotifyPropertyChanged-interfacet.
@@ -30,19 +33,19 @@ namespace WPFApp.ViewModels
         }
 
 
+        // Property til Search command sættes til instans af klassen
+        public ICommand ProductSearchCommand { get; } = new ProductSearchCommand();
+        // Property til Delete command sættes til instans af klassen
+        public ICommand ProductDeleteCommand { get; } = new ProductDeleteCommand();
 
 
-        public ProductDeleteViewModel()
-        {
-            ProductsToView = new ObservableCollection<ProductToViewModel>(); // instantierer Observable Collection til fremsøgte products
-        }
-        public ObservableCollection<ProductToViewModel> ProductsToView { get; } // Collection sættes til property
+        // Observable Collection laves til property
+        public ObservableCollection<ProductToViewModel> ProductsToView { get; }
 
 
-
-
+        // Metoden kaldes, fordi type ændres.
+        // Det udløser PropertyChanged-eventet og abonnenter informeres
         private string type;
-
         public string Type
         {
             get { return type; }
@@ -52,7 +55,6 @@ namespace WPFApp.ViewModels
                 OnPropertyChanged(nameof(Type));
             }
         }
-
 
         private string name;
         public string Name
@@ -65,12 +67,9 @@ namespace WPFApp.ViewModels
             }
         }
 
-        public ICommand ProductSearchCommand { get; } = new ProductSearchCommand(); // Ny instans af Command-klassen, der implementerer Icommand-interfacet
-        public ICommand ProductDeleteCommand { get; } = new ProductDeleteCommand();
 
-
-
-        private ProductToViewModel selectedProduct; // Property til selected item fra listbox
+        // Property til selected item fra listbox
+        private ProductToViewModel selectedProduct; 
         public ProductToViewModel SelectedProduct
         {
             get { return selectedProduct; }
@@ -79,6 +78,13 @@ namespace WPFApp.ViewModels
                 selectedProduct = value;
                 OnPropertyChanged(nameof(selectedProduct));
             }
+        }
+
+
+        // Instansierer  Observable Collection til fremsøgte products
+        public ProductDeleteViewModel()
+        {
+            ProductsToView = new ObservableCollection<ProductToViewModel>();
         }
     }
 }

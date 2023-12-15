@@ -10,7 +10,8 @@ using WPFApp.ViewModels;
 
 namespace WPFApp.Commands
 {
-    public class CustomerDeleteCommand : ICommand // Nedarvning fra interfacet ICommand
+    // Nedarvning fra interfacet ICommand
+    public class CustomerDeleteCommand : ICommand
     {
         /// <summary>
         /// CanExecuteChanged-eventet har fået add'et et RequerySuggested-event. 
@@ -25,51 +26,56 @@ namespace WPFApp.Commands
         }
 
 
-
         /// <summary>
         /// Metode, der undersøger, om Execute skal afvikles.
         /// Parameteren er i xaml-koden sat som "CommandParameter = Binding", og datakontekst er i code behind sat til cdvm.
         /// </summary>
         public bool CanExecute(object? parameter)
         {
-            bool result = false; // variablen sættes i første omgang til false
+            // Variablen sættes i første omgang til false
+            bool result = false;
 
-            if (parameter is CustomerDeleteViewModel cdvm) // tjek af, om datakontekst er den rette
+            // Tjek af, om datakontekst er den rette
+            if (parameter is CustomerDeleteViewModel cdvm) 
             {
-                if (cdvm.SelectedCustomer != null) // tjek af, at der er valgt en customer i listbox
+                // Tjek af, at der er valgt en customer i listbox
+                if (cdvm.SelectedCustomer != null) 
                 {
-                    if (cdvm.SelectedCustomer.FirstName != null && cdvm.SelectedCustomer.LastName != null && // tjek af, at alle selected Customers properties er udfyldt
+                    // Tjek af, at alle selected Customers properties er udfyldt
+                    if (cdvm.SelectedCustomer.FirstName != null && cdvm.SelectedCustomer.LastName != null &&
                         cdvm.SelectedCustomer.Address != null && cdvm.SelectedCustomer.Phone != null && cdvm.SelectedCustomer.Email != null)
                     {
-                        result = true; // hvis ok, sættes variabel til  true
+                        // Hvis ok, sættes variabel til  true
+                        result = true; 
                     }
                 }
-                return result; //variabel returneres
-            }   
-            return false; // hvis parameter test fejler, returenes false
+                //Variabel returneres
+                return result; 
+            }
+            // Hvis parameter test fejler, returenes false
+            return false; 
         }
+
 
         /// <summary>
         /// Selve commandens "execute-metode".
         /// </summary>
         public void Execute(object? parameter)
         {
-            if (parameter is CustomerDeleteViewModel cdvm) //det tjekkes, om datakontekst er kommet med som paramter                                                           // som parameter
+            // Det tjekkes, om datakontekst er kommet med som paramter 
+            if (parameter is CustomerDeleteViewModel cdvm)                                                     
             {
-                int id = cdvm.SelectedCustomer.Id;  // en variabel sættes til selected customers id
-                CustomerRepository customerRepo = new CustomerRepository(); // ny instans af CustomerRepository
-                customerRepo.DeleteCustomerById(id); //customerRepo sletter selected Customer
+                // En variabel sættes til selected customers id
+                int id = cdvm.SelectedCustomer.Id;
 
-                cdvm.SelectedCustomer = null;  //Tekstboksenes værdier nulstilles
+                // Ny instans af CustomerRepository
+                CustomerRepository customerRepo = new CustomerRepository();
 
-                cdvm.FirstName = null;
-                cdvm.LastName = null;
-
+                // CustomerRepo sletter selected Customer
+                customerRepo.DeleteCustomerById(id);
                 MessageBox.Show("Kunde slettet");
             }
-
             else throw new Exception("Wrong type of parameter");
-
         }
     }
 }

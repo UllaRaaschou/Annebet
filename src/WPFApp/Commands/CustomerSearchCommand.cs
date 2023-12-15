@@ -35,7 +35,7 @@ namespace WPFApp.Commands
                 }
                 return result; // true result returneres
             }
-            
+
             if (parameter is CustomerDeleteViewModel cdvm) // Hvis datecontext er cdvm
             {
                 if (cdvm.FirstName != null && cdvm.LastName != null) // kontrol for, om tekstbokse til søgning er udfyldt
@@ -70,7 +70,7 @@ namespace WPFApp.Commands
                     cdvm.CustomersToView.Add(customerViewModel); // viewModels lægges i Observable Collection i dataontexten
                 }
             }
-            
+
         }
     }
 }

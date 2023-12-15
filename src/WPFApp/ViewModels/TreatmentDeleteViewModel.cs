@@ -10,9 +10,12 @@ using WPFApp.Commands;
 
 namespace WPFApp.ViewModels
 {
+    // Interface-nedarves 
     public class TreatmentDeleteViewModel : INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged; // Interface implementeres som event
+        // Interface implementeres som event
+        public event PropertyChangedEventHandler PropertyChanged;
+
 
         /// <summary>
         /// Metode, der kan bruges i klasser, der implementerer INotifyPropertyChanged-interfacet.
@@ -29,18 +32,20 @@ namespace WPFApp.ViewModels
             }
         }
 
+
+        // Property til Search command sættes til instans af klassen
         public ICommand TreatmentSearchCommand { get; } = new TreatmentSearchCommand();
+        // Property til Delete command sættes til instans af klassen
         public ICommand TreatmentDeleteCommand { get; } = new TreatmentDeleteCommand();
 
+
+        // Observable Collection laves til property
         public ObservableCollection<TreatmentToViewModel> TreatmentsToView { get; }
 
-        public TreatmentDeleteViewModel()
-        {
-            TreatmentsToView = new ObservableCollection<TreatmentToViewModel>();
-        }
-
+ 
+        // Metoden kaldes, fordi type ændres.
+        // Det udløser PropertyChanged-eventet og abonnenter informeres
         private string type;
-
         public string Type
         {
             get { return type; }
@@ -52,7 +57,6 @@ namespace WPFApp.ViewModels
         }
 
         private string name;
-
         public string Name
         {
             get { return name; }
@@ -63,8 +67,9 @@ namespace WPFApp.ViewModels
             }
         }
 
-        private TreatmentToViewModel selectedTreatment;
 
+        // Property til selected item fra listbox
+        private TreatmentToViewModel selectedTreatment;
         public TreatmentToViewModel SelectedTreatment
         {
             get { return selectedTreatment; }
@@ -73,6 +78,13 @@ namespace WPFApp.ViewModels
                 selectedTreatment = value;
                 OnPropertyChanged(nameof(selectedTreatment));
             }
+        }
+
+
+        // Instansierer  Observable Collection til fremsøgte treatments
+        public TreatmentDeleteViewModel()
+        {
+            TreatmentsToView = new ObservableCollection<TreatmentToViewModel>();
         }
     }
 }

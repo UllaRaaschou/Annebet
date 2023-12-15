@@ -10,6 +10,7 @@ using WPFApp.ViewModels;
 
 namespace WPFApp.Commands
 {
+    // Nedarvning fra interfacet ICommand
     public class CustomerUpdateCommand : ICommand
     {
         /// <summary>
@@ -24,43 +25,60 @@ namespace WPFApp.Commands
             remove { CommandManager.RequerySuggested -= value; }
         }
 
+
+        /// <summary>
+        /// Metode, der undersøger, om Execute skal afvikles.
+        /// Parameteren er i xaml-koden sat som "CommandParameter = Binding", og datakontekst er i code behind sat til ccvm.
+        /// </summary>
         public bool CanExecute(object? parameter)
         {
-            bool result = false;  // parameteren sættes i første omgang til false
+            // Variablen sættes i første omgang til false
+            bool result = false;
 
-            if (parameter is CustomerUpdateViewModel cuvm) // tjek af parameter som datekontext
+            // Parameter tjekkes
+            if (parameter is CustomerUpdateViewModel cuvm) 
             {
-                if (cuvm.SelectedCustomer != null) // tjek af, at der er valgt et selected item
+                // Tjek af, at der er valgt et selected item
+                if (cuvm.SelectedCustomer != null) 
                 {
-                    if (cuvm.SelectedCustomer.FirstName != null && cuvm.SelectedCustomer.LastName != null // tjek af, om selected items properties alle er sat
+                    // Det tjekkes, om alle nødvendige tekstbokse er udfyldt
+                    if (cuvm.SelectedCustomer.FirstName != null && cuvm.SelectedCustomer.LastName != null
                         && cuvm.SelectedCustomer.Address != null && cuvm.SelectedCustomer.Phone != null && cuvm.SelectedCustomer.Email != null)
                     {
-                        result = true; // hvis ja, sættes parameter til true
+                        // Så sættes variblen til true;
+                        result = true;
                     }
                 }
-                return result; // parameter returneres
+                // Variablen returneres
+                return result;
             }
-            return false; // hvis parametertjek fejler, returneres false
+            // Hvis datacontext ikke er sat korrekt, returneres false
+            return false;
         }
 
+
+        /// <summary>
+        /// Metoden, der udfører opdater_kunde_funktionen og får den add'et til database.
+        /// Parameteren er i xaml-koden sat som "CommandParameter = Binding", og datakontekst er i code behind sat til cuvm.
+        /// </summary>
         public void Execute(object? parameter)
         {
-            if(parameter is CustomerUpdateViewModel cuvm)  // kontrol af, om datakonteksten er cuvm                                                            // og om datakontekten er kommet med som parameter
-            {              
-                
-                Customer updatedCustomer = Customer.CreateCustomerFromDb(cuvm.SelectedCustomer.Id, // Den statiske Customer-metode laver en updated Customer
+            // Parameter tjekkes
+            if (parameter is CustomerUpdateViewModel cuvm)                                                            // og om datakontekten er kommet med som parameter
+            {
+                // Den statiske Customer-metode laver en updated Customer
+                Customer updatedCustomer = Customer.CreateCustomerFromDb(cuvm.SelectedCustomer.Id,
                     cuvm.SelectedCustomer.FirstName, cuvm.SelectedCustomer.LastName,
                     cuvm.SelectedCustomer.Address, cuvm.SelectedCustomer.Phone, cuvm.SelectedCustomer.Email);
-                CustomerRepository customerRepo = new CustomerRepository(); // CutomerRepo instantieres
-                customerRepo.UpdateCustomer(updatedCustomer);     // Repo opdaterer Customer                              
 
-                cuvm.SelectedCustomer = null; // Tekstboksenes indhold nulstilles
-                cuvm.FirstName = null;
-                cuvm.LastName = null;
+                // CutomerRepo instantieres
+                CustomerRepository customerRepo = new CustomerRepository();
+
+                // Repo opdaterer Customer 
+                customerRepo.UpdateCustomer(updatedCustomer);                                  
                 MessageBox.Show("Kunde opdateret");
-
-
             }
+            else throw new Exception("Error");
         }
     }
 }

@@ -5,9 +5,11 @@ using WPFApp.Commands;
 
 namespace WPFApp.ViewModels
 {
-    public class ProductCreateViewModel : INotifyPropertyChanged  // Nedarvning fra interface
+    // Interface-nedarves 
+    public class ProductCreateViewModel : INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged; // Interface implementeres som event
+        // Interface implementeres som event
+        public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>
         /// Metode, der kan bruges i klasser, der implementerer INotifyPropertyChanged-interfacet.
@@ -25,15 +27,23 @@ namespace WPFApp.ViewModels
         }
 
 
+        // Property til Create command sættes til instans af klassen
+        public ICommand ProductCreateCommand { get; } = new ProductCreateCommand();
+
+
+        // Metoden kaldes, fordi type ændres.
+        // Det udløser PropertyChanged-eventet og abonnenter informeres
         private string type;
         public string Type
         {
             get { return type; }
             set
-            {   type = value;
+            { 
+                type = value;
                 OnPropertyChanged(nameof(type));
-             }
+            }
         }
+
         private string name;
         public string Name
         {
@@ -66,18 +76,5 @@ namespace WPFApp.ViewModels
                 OnPropertyChanged(nameof(price));
             }
         }
-
-        public ICommand ProductCreateCommand { get; } = new ProductCreateCommand();  // Property til Create command sættes til instans af klassen
-
-        
-
-        
-
-
-
-
     }
-
-    
-
 }

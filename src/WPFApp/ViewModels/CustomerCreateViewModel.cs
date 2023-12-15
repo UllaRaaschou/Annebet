@@ -12,9 +12,12 @@ using WPFApp.Models;
 
 namespace WPFApp.ViewModels
 {
-    public class CustomerCreateViewModel : INotifyPropertyChanged  // Interface-nedarves 
+    // Interface-nedarves 
+    public class CustomerCreateViewModel : INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged; // Interface implementeres som event
+        // Interface implementeres som event
+        public event PropertyChangedEventHandler PropertyChanged;
+ 
         
         /// <summary>
         /// Metode, der kan bruges i klasser, der implementerer INotifyPropertyChanged-interfacet.
@@ -31,48 +34,55 @@ namespace WPFApp.ViewModels
             }
         }
 
-            
 
-        /// <summary>
-        /// Property af typen "interfacet ICommand", instantieres til ConstructCustomer-kommandoen. 
-        /// </summary>
+        // Property til Create command sættes til instans af klassen
         public ICommand CustomerCreateCommand { get; } = new CustomerCreateCommand();
 
-        
 
+        // Metoden kaldes, fordi FirstName ændres.
+        // Det udløser PropertyChanged-eventet og abonnenter informeres
         private string firstName;
         public string FirstName
         {
             get { return firstName; }
-            set { 
+            set
+            { 
                 firstName = value;
-                OnPropertyChanged(nameof(firstName)); // Metoden kaldes, fordi FirstName ændres.
-                                                      // Det udløser PropertyChanged-eventet og abonnenter informeres
-               }
+                OnPropertyChanged(nameof(firstName));                                                    
+            }
         }
 
         private string lastName;
         public string LastName
         {
             get { return lastName; }
-            set { lastName = value;
-                OnPropertyChanged(nameof(lastName)); }
+            set 
+            {
+                lastName = value;
+                OnPropertyChanged(nameof(lastName)); 
+            }
         }
 
         private string address;
         public string Address
         {
             get { return address; }
-            set { address = value;
-                OnPropertyChanged(nameof(address)); }
+            set 
+            { 
+                address = value;
+                OnPropertyChanged(nameof(address));
+            }
         }
 
         private string phone;
         public string Phone
         {
             get { return phone; }
-            set { phone = value;
-                OnPropertyChanged(nameof(phone)); }
+            set 
+            { 
+                phone = value;
+                OnPropertyChanged(nameof(phone));
+            }
         }
 
         private string email;
@@ -80,15 +90,11 @@ namespace WPFApp.ViewModels
         public string Email
         {
             get { return email; }
-            set { email = value;
-                OnPropertyChanged(nameof(email)); }
+            set 
+            { 
+                email = value;
+                OnPropertyChanged(nameof(email)); 
+            }
         }
-
-       
-
-        
-       
-
-
     }   
 }

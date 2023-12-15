@@ -10,6 +10,7 @@ using WPFApp.ViewModels;
 
 namespace WPFApp.Commands
 {
+    // Nedarvning fra interfacet ICommand
     public class ProductDeleteCommand : ICommand
     {
         /// <summary>
@@ -24,36 +25,55 @@ namespace WPFApp.Commands
             remove { CommandManager.RequerySuggested -= value; }
         }
 
+
+        /// <summary>
+        /// Metode, der undersøger, om Execute skal afvikles.
+        /// Parameteren er i xaml-koden sat som "CommandParameter = Binding", og datakontekst er i code behind sat til pdvm.
+        /// </summary>
         public bool CanExecute(object? parameter)
         {
-            bool result = false; // variablen sættes i første omgang til false
+            // Variablen sættes i første omgang til false
+            bool result = false;
 
-            if (parameter is ProductDeleteViewModel pdvm) // tjek af, om datakontekst er den rette
+            // Tjek af, om datakontekst er den rette
+            if (parameter is ProductDeleteViewModel pdvm) 
             {
-                if (pdvm.SelectedProduct != null) // tjek af, at der er valgt en customer i listbox
+                // Tjek af, at der er valgt en customer i listbox
+                if (pdvm.SelectedProduct != null)
                 {
-                    if (pdvm.SelectedProduct.Type != null && pdvm.SelectedProduct.Name != null && // tjek af, at alle selected Customers properties er udfyldt
+                    // Tjek af, at alle selected Customers properties er udfyldt
+                    if (pdvm.SelectedProduct.Type != null && pdvm.SelectedProduct.Name != null &&
                         pdvm.SelectedProduct.Description != null && pdvm.SelectedProduct.Price != null)
                     {
-                        result = true; // hvis ok, sættes variabel til  true
+                        // Hvis ok, sættes variabel til  true
+                        result = true; 
                     }
                 }
-                return result; //variabel returneres
+                //Variabel returneres
+                return result; 
             }
-            return false; // hvis parameter test fejler, returenes false
+            // Hvis parameter test fejler, returenes false
+            return false;
         }
 
+
+        /// <summary>
+        /// Metoden, der udfører slet_produkt_funktionen og får den add'et til database.
+        /// Parameteren er i xaml-koden sat som "CommandParameter = Binding", og datakontekst er i code behind sat til pdvm.
+        /// </summary>
         public void Execute(object? parameter)
         {
-            if (parameter is ProductDeleteViewModel pdvm) // tjek af parameter
+            // Tjek af parameter
+            if (parameter is ProductDeleteViewModel pdvm)
             {
-                ProductRepository productRepo = new ProductRepository();  // Instantiering af ProductRepo
-                productRepo.DeleteProductById(pdvm.SelectedProduct.Id); // Repo deleter selected Product fra db
+                // Instantiering af ProductRepo
+                ProductRepository productRepo = new ProductRepository();
+
+                // Repo deleter selected Product fra db
+                productRepo.DeleteProductById(pdvm.SelectedProduct.Id);
                 MessageBox.Show("Produkt slettet");
-                pdvm.SelectedProduct = null;// Tekstbokse nulstilles
-                pdvm.Type = null;
-                pdvm.Name = null;
             }
+            else throw new Exception("Wrong type of parameter");
         }
     }
 }

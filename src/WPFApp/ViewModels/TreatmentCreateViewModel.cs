@@ -5,9 +5,12 @@ using WPFApp.Models;
 
 namespace WPFApp.ViewModels
 {
+    // Interface-nedarves 
     public class TreatmentCreateViewModel : INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged; // Interface implementeres som event
+        // Interface implementeres som event
+        public event PropertyChangedEventHandler PropertyChanged;
+
 
         /// <summary>
         /// Metode, der kan bruges i klasser, der implementerer INotifyPropertyChanged-interfacet.
@@ -24,10 +27,14 @@ namespace WPFApp.ViewModels
             }
         }
 
+
+        // Property til Create command sættes til instans af klassen
         public ICommand TreatmentCreateCommand { get; } = new TreatmentCreateCommand();
 
-        private string type;
 
+        // Metoden kaldes, fordi type ændres.
+        // Det udløser PropertyChanged-eventet og abonnenter informeres
+        private string type;
         public string Type
         {
             get { return type; }
@@ -55,7 +62,9 @@ namespace WPFApp.ViewModels
         public string Description
         {
             get { return description; }
-            set { description = value;
+            set 
+            { 
+                description = value;
                 OnPropertyChanged(nameof(description));
             }
         }
@@ -65,12 +74,11 @@ namespace WPFApp.ViewModels
         public decimal Price
         {
             get { return price; }
-            set { price = value;
+            set 
+            { 
+                price = value;
                 OnPropertyChanged(nameof(price));
             }
         }
-
-
-
-    }
+   }
 }

@@ -11,6 +11,7 @@ using WPFApp.ViewModels;
 
 namespace WPFApp.Commands
 {
+    // Nedarvning fra interfacet ICommand
     public class ProductCreateCommand : ICommand
     {
         /// <summary>
@@ -25,21 +26,28 @@ namespace WPFApp.Commands
             remove { CommandManager.RequerySuggested -= value; }
         }
 
+
         public bool CanExecute(object? parameter)
         {
-            bool result = false;  // variablen sættes i første omgang til false
+            // Variablen sættes i første omgang til false
+            bool result = false; 
 
-            if (parameter is ProductCreateViewModel pcvm) // parameter tjekkes 
+            // Parameter tjekkes
+            if (parameter is ProductCreateViewModel pcvm)  
             {
-                if (pcvm.Type != null && pcvm.Name != null && pcvm.Description != null // Det tjekkes, om alle nødvendige tekstbokse er udfyldt
+                // Det tjekkes, om alle nødvendige tekstbokse er udfyldt
+                if (pcvm.Type != null && pcvm.Name != null && pcvm.Description != null
                     && pcvm.Price != null)
                 {
-                    result = true; // så sættes variblen til true;
+                    // Så sættes variblen til true;
+                    result = true; 
                 }
-                return result; // variablen returneres
+                // Variablen returneres
+                return result;
 
             }
-            return false; // hvis datacontext ikke er sat korrekt, returneres false
+            // Hvis datacontext ikke er sat korrekt, returneres false
+            return false; 
         }
 
 
@@ -49,21 +57,17 @@ namespace WPFApp.Commands
         /// </summary>
         public void Execute(object? parameter) 
         {
-            if (parameter is ProductCreateViewModel pcvm) // parameter tjekkes
+            // Parameter tjekkes
+            if (parameter is ProductCreateViewModel pcvm) 
             {
-                ProductRepository productRepo = new ProductRepository(); // productRepo instantiers
-                productRepo.AddProduct(Product.CreateProductFromUI(pcvm.Type, pcvm.Name, pcvm.Description, pcvm.Price)); // repo add'er product i db
-                pcvm.Type = null; // Tekstboksene nulstilles
-                pcvm.Name = null;
-                pcvm.Description = null;
-                pcvm.Price = 0;
+                // ProductRepo instantiers
+                ProductRepository productRepo = new ProductRepository();
+
+                // Repo add'er product i db
+                productRepo.AddProduct(Product.CreateProductFromUI(pcvm.Type, pcvm.Name, pcvm.Description, pcvm.Price));
                 MessageBox.Show("Produkt oprettet");
             }
-            else 
-            {
-                throw new NotImplementedException();
-            }
-
+            else throw new Exception("Wrong type of paratemer");
         }
     }
 }

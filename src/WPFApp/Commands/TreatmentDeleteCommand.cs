@@ -10,6 +10,7 @@ using WPFApp.ViewModels;
 
 namespace WPFApp.Commands
 {
+    // Nedarvning fra interfacet ICommand
     public class TreatmentDeleteCommand : ICommand
     {
         /// <summary>
@@ -24,20 +25,54 @@ namespace WPFApp.Commands
             remove { CommandManager.RequerySuggested -= value; }
         }
 
+        /// <summary>
+        /// Metode, der undersøger, om Execute skal afvikles.
+        /// Parameteren er i xaml-koden sat som "CommandParameter = Binding", og datakontekst er i code behind sat til tdvm.
+        /// </summary>
         public bool CanExecute(object? parameter)
         {
-            return true;
-        }
+            // Variablen sættes i første omgang til false
+            bool result = false;
 
-        public void Execute(object? parameter)
-        {
+            // Tjek af, om datakontekst er den rette
             if (parameter is TreatmentDeleteViewModel tdvm)
             {
-                var treatmentRepo = new TreatmentRepository();
+                // Tjek af, at der er valgt en customer i listbox
+                if (tdvm.SelectedTreatment != null)
+                {
+                    // Tjek af, at alle selected Customers properties er udfyldt
+                    if (tdvm.SelectedTreatment.Type != null && tdvm.SelectedTreatment.Name != null &&
+                        tdvm.SelectedTreatment.Description != null && tdvm.SelectedTreatment.Price != null)
+                    {
+                        // Hvis ok, sættes variabel til  true
+                        result = true;
+                    }
+                }
+                //Variabel returneres
+                return result;
+            }
+            // Hvis parameter test fejler, returenes false
+            return false;
+        }
+
+
+        /// <summary>
+        /// Metoden, der udfører slet_behandling_funktionen og får den add'et til database.
+        /// Parameteren er i xaml-koden sat som "CommandParameter = Binding", og datakontekst er i code behind sat til tdvm.
+        /// </summary>
+        public void Execute(object? parameter)
+        {
+            // Tjek af parameter
+            if (parameter is TreatmentDeleteViewModel tdvm)
+            {
+                // Instantiering af ProductRepo
+                TreatmentRepository treatmentRepo = new TreatmentRepository();
+
+                // Repo deleter selected Product fra db
                 treatmentRepo.DeleteTreatmentById(tdvm.SelectedTreatment.Id);                
                 MessageBox.Show("Behandling slettet");
             }
-            else throw new Exception("Error");
+            else throw new Exception("Wrong type of parameter");
         }
     }
 }
