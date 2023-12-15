@@ -9,8 +9,7 @@ using WPFApp.ViewModels;
 
 namespace WPFApp.Commands
 {
-    // Nedarvning fra interfacet ICommand
-    public class ProductSearchCommand : ICommand
+    public class ProductSearchCommand : ICommand // Nedarvning fra interfacet ICommand
     {
         /// <summary>
         /// CanExecuteChanged-eventet har fået add'et et RequerySuggested-event. 
@@ -24,87 +23,53 @@ namespace WPFApp.Commands
             remove { CommandManager.RequerySuggested -= value; }
         }
 
-
-        /// <summary>
-        /// Metode, der undersøger, om Execute skal afvikles.
-        /// Parameteren er i xaml-koden sat som "CommandParameter = Binding", og datakontekst er i code behind sat til puvm.
-        /// </summary>
         public bool CanExecute(object? parameter)
         {
-            // Variablen sættes i første omgang til false
-            bool result = false;
+            bool result = false;  // result sættes til false fra start
 
-            // Parameter tjekkes
-            if (parameter is ProductUpdateViewModel puvm)
+            if (parameter is ProductUpdateViewModel puvm) // Hvis datacontekst er puvm
             {
-                // Det tjekkes, om alle nødvendige tekstbokse er udfyldt
                 if (puvm.Type != null && puvm.Name != null) // kontrol for, om tekstbokse til søgning er udfyldt
                 {
-                    // Så sættes variblen til true;
                     result = true;
                 }
-                // Variablen returneres
-                return result; 
+                return result; // true result returneres
             }
 
             if (parameter is ProductDeleteViewModel pdvm) // Hvis datecontext er pdvm
             {
-                // Parameter tjekkes
-                if (pdvm.Type != null && pdvm.Name != null) 
+                if (pdvm.Type != null && pdvm.Name != null) // kontrol for, om tekstbokse til søgning er udfyldt
                 {
-                    // Så sættes variblen til true;
                     result = true;
                 }
-                // Variablen returneres
-                return result;
+                return result; // true result returneres
             }
             return false;
         }
 
-
-        /// <summary>
-        /// Metoden, der udfører opdater_kunde_funktionen og får den add'et til database.
-        /// Parameteren er i xaml-koden sat som "CommandParameter = Binding", og datakontekst er i code behind sat til cuvm.
-        /// </summary>
         public void Execute(object? parameter)
         {
-            // Parameter tjekkes
-            if (parameter is ProductUpdateViewModel puvm)
+            if(parameter is ProductUpdateViewModel puvm) // tjek af parameter og datacontext
             {
-                // Procuct-to-Viewodel-Converter instantieres
-                ProductToViewModel ptvm = new ProductToViewModel();
-
-                // Dens repo henter ønskede produkter
-                List<Product> trueProducts = ptvm.productRepo.GetAllProducts(puvm.Type, puvm.Name);
-               
+                ProductToViewModel ptvm = new ProductToViewModel(); // Procuct-to-Viewodel-Converter instantieres
+                List <Product> trueProducts = ptvm.productRepo.GetAllProducts(puvm.Type, puvm.Name); // Dens repo henter ønskede produkter
                 foreach (Product p in trueProducts) 
                 {
-                    // De hentede Products converteres til ViewModels
-                    ProductToViewModel productViewModel = ptvm.ProductToViewModelConvert(p);
-
-                    // ViewModels lægger i Observable Collection i puvm
-                    puvm.ProductsToView.Add(productViewModel); 
+                    ProductToViewModel productViewModel = ptvm.ProductToViewModelConvert(p); // de hentede producter omdannes til ViewModels
+                    puvm.ProductsToView.Add(productViewModel); // ViewModels lægger i Observable Collection i puvm
                 }
             }
-            // Parameter tjekkes
             else if (parameter is ProductDeleteViewModel pdvm)
             {
-                // Procuct-to-Viewodel-Converter instantieres
-                ProductToViewModel ptvm = new ProductToViewModel();
-
-                // Dens repo henter ønskede produkter
-                List<Product> trueProducts = ptvm.productRepo.GetAllProducts(pdvm.Type, pdvm.Name);
-                
+                ProductToViewModel ptvm = new ProductToViewModel(); // Procuct-to-Viewodel-Converter instantieres
+                List<Product> trueProducts = ptvm.productRepo.GetAllProducts(pdvm.Type, pdvm.Name); // Dens repo henter ønskede produkter
                 foreach (Product p in trueProducts)
                 {
-                    // De hentede producter omdannes til ViewModels
-                    ProductToViewModel productViewModel = ptvm.ProductToViewModelConvert(p);
-
-                    // ViewModels lægger i Observable Collection i pdvm
-                    pdvm.ProductsToView.Add(productViewModel); 
+                    ProductToViewModel productViewModel = ptvm.ProductToViewModelConvert(p); // de hentede producter omdannes til ViewModels
+                    pdvm.ProductsToView.Add(productViewModel); // ViewModels lægger i Observable Collection i pdvm
                 }
             }
-            else throw new Exception("Wrong type of paratemer");
+            else { throw new NotImplementedException(); }
         }
     }
 }

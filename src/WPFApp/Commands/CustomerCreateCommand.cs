@@ -12,9 +12,9 @@ using WPFApp.Views;
 
 namespace WPFApp.Commands
 {
-    // Nedarvning fra interfacet ICommand
-    class CustomerCreateCommand : ICommand  
-    {      
+    class CustomerCreateCommand : ICommand  // Nedarvning fra interfacet ICommand
+    {
+       
         /// <summary>
         /// CanExecuteChanged-eventet har fået add'et et RequerySuggested-event. 
         /// Requery udløses så snart WPF mener, at command properties skal re-evalueres - ofte sfa bruger-acts.
@@ -34,44 +34,52 @@ namespace WPFApp.Commands
         /// </summary>
         public bool CanExecute(object? parameter)
         {
-            // Variablen sættes i første omgang til false
-            bool result = false;
+            bool result = false;  // variablen sættes i første omgang til false
 
-            // Parameter tjekkes
-            if (parameter is CustomerCreateViewModel ccvm)  
+            if (parameter is CustomerCreateViewModel ccvm) // parameter tjekkes 
             {
-                // Det tjekkes, om alle nødvendige tekstbokse er udfyldt
-                if (ccvm.FirstName != null && ccvm.LastName != null && ccvm.Address != null 
+                if (ccvm.FirstName != null && ccvm.LastName != null && ccvm.Address != null // Det tjekkes, om alle nødvendige tekstbokse er udfyldt
                     && ccvm.Phone != null && ccvm.Email != null)
                 {
-                    // Så sættes variblen til true;
-                    result = true; 
+                    result = true; // så sættes variblen til true;
                 }
-                // Variablen returneres
-                return result; 
+                return result; // variablen returneres
+
             }
-            // Hvis datacontext ikke er sat korrekt, returneres false
-            return false;             
+
+            return false; // hvis datacontext ikke er sat korrekt, returneres false
+            
         }
 
        
+
         /// <summary>
         /// Metoden, der udfører opret_kunde_funktionen og får den add'et til database.
         /// Parameteren er i xaml-koden sat som "CommandParameter = Binding", og datakontekst er i code behind sat til ccvm.
         /// </summary>
         public void Execute(object? parameter)
         {
-            // Parameter tjekkes
-            if (parameter is CustomerCreateViewModel ccvm) 
+            if (parameter is CustomerCreateViewModel ccvm)  // parameter tjekkes
             {
-                // CustomerRepo instantieres
-                CustomerRepository customerRepo = new CustomerRepository();
+                CustomerRepository customerRepo = new CustomerRepository();  // CustomerRepo instantieres
+                customerRepo.AddCustomer(Customer.CreateCustomerFromUI(ccvm.FirstName, ccvm.LastName, ccvm.Address, ccvm.Phone, ccvm.Email)); // Repo add'er Customer til db
+                ccvm.FirstName = null; // Tekstboksenes indhold nulstilles
+                ccvm.LastName = null;
+                ccvm.Address = null;
+                ccvm.Phone = null;
+                ccvm.Email = null;
 
-                // Repo add'er Customer til db
-                customerRepo.AddCustomer(Customer.CreateCustomerFromUI(ccvm.FirstName, ccvm.LastName, ccvm.Address, ccvm.Phone, ccvm.Email));
+                ccvm.FirstName = null;
+                ccvm.LastName = null;
+
                 MessageBox.Show("Kunde oprettet");
+                
             }
-            else throw new Exception("Wrong type of paratemer");           
+            else throw new Exception("Wrong type of paratemer");
+
+            
+
+
         }
     }
 }

@@ -61,17 +61,12 @@ namespace WPFApp.Views
 
         private void Bt_OpretBehandling_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new TreatmentCreate());
+
         }
 
         private void Bt_OpdaterBehandling_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new TreatmentUpdate());
-        }
 
-        private void Bt_SletBehandling_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new TreatmentDelete());
         }
     }
 }

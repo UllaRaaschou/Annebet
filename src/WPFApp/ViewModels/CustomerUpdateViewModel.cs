@@ -29,20 +29,23 @@ namespace WPFApp.ViewModels
                 propertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
+               
 
 
-        // Property til Search command sættes til instans af klassen
-        public ICommand CustomerSearchCommand { get; } = new CustomerSearchCommand();
-        // Property til Update command sættes til instans af klassen
+        public CustomerUpdateViewModel() 
+        {
+            CustomersToView = new ObservableCollection<CustomerToViewModel>(); // instansierer  Observable collection til fremsøgte customer's ToViewModels
+                      
+        }
+        public ObservableCollection<CustomerToViewModel> CustomersToView { get; } // Collection sættes som property
+
+
+       
+        public ICommand CustomerSearchCommand { get; } = new CustomerSearchCommand(); // Ny instans af Command-klassen, der implementerer Icommand-interfacet
         public ICommand CustomerUpdateCommand { get; } = new CustomerUpdateCommand();
 
 
-        // Observable Collection laves til property
-        public ObservableCollection<CustomerToViewModel> CustomersToView { get; }
 
-
-        // Metoden kaldes, fordi FirstName ændres.
-        // Det udløser PropertyChanged-eventet og abonnenter informeres
         private string firstName;
         public string FirstName
         {
@@ -50,7 +53,8 @@ namespace WPFApp.ViewModels
             set
             {
                 firstName = value;
-                OnPropertyChanged(nameof(firstName));                                                      
+                OnPropertyChanged(nameof(firstName)); // Metoden kaldes, fordi FirstName ændres.
+                                                      // Det udløser PropertyChanged-eventet og abonnenter informeres
             }
         }
 
@@ -65,8 +69,7 @@ namespace WPFApp.ViewModels
             }
         }
 
-        // Property til listbox's selected item
-        private CustomerToViewModel selectedCustomer;
+        private CustomerToViewModel selectedCustomer; // Property til listbox's selected item
         public CustomerToViewModel SelectedCustomer
         {
             get { return selectedCustomer; }
@@ -76,10 +79,6 @@ namespace WPFApp.ViewModels
         }
 
 
-        // Instansierer  Observable Collection til fremsøgte CustomerToViewModel
-        public CustomerUpdateViewModel()
-        {
-            CustomersToView = new ObservableCollection<CustomerToViewModel>();                    
-        }
+        
     }
 }

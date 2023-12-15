@@ -10,7 +10,6 @@ using WPFApp.ViewModels;
 
 namespace WPFApp.Commands
 {
-    // Nedarvning fra interfacet ICommand
     public class ProductUpdateCommand : ICommand
     {
         /// <summary>
@@ -25,58 +24,21 @@ namespace WPFApp.Commands
             remove { CommandManager.RequerySuggested -= value; }
         }
 
-        /// <summary>
-        /// Metode, der undersøger, om Execute skal afvikles.
-        /// Parameteren er i xaml-koden sat som "CommandParameter = Binding", og datakontekst er i code behind sat til puvm.
-        /// </summary>
         public bool CanExecute(object? parameter)
         {
-            // Variablen sættes i første omgang til false
-            bool result = false;
-
-            // Parameter tjekkes
-            if (parameter is ProductUpdateViewModel puvm)
-            {
-                // Tjek af, at der er valgt et selected item
-                if (puvm.SelectedProduct != null)
-                {
-                    // Det tjekkes, om alle nødvendige tekstbokse er udfyldt
-                    if (puvm.SelectedProduct.Type != null && puvm.SelectedProduct.Name != null
-                        && puvm.SelectedProduct.Description != null && puvm.SelectedProduct.Price != null)
-                    {
-                        // Så sættes variblen til true;
-                        result = true;
-                    }
-                }
-                // Variablen returneres
-                return result;
-            }
-            // Hvis datacontext ikke er sat korrekt, returneres false
-            return false;
+            return true;
         }
 
-
-        /// <summary>
-        /// Metoden, der udfører opdater_produkt_funktionen og får den add'et til database.
-        /// Parameteren er i xaml-koden sat som "CommandParameter = Binding", og datakontekst er i code behind sat til puvm.
-        /// </summary>
         public void Execute(object? parameter)
         {
-            // Parameter tjekkes
-            if (parameter is ProductUpdateViewModel puvm) 
+            if(parameter is ProductUpdateViewModel puvm) 
             {
-                // Den statiske Product-metode laver en updated Product
                 Product updatedProduct = Product.CreateProductFromDb(puvm.SelectedProduct.Id, puvm.SelectedProduct.Type, puvm.SelectedProduct.Name,
                     puvm.SelectedProduct.Description, puvm.SelectedProduct.Price);
-
-                // ProductRepo instantieres
                 ProductRepository productRepo = new ProductRepository();
-
-                // Repo opdaterer Product 
                 productRepo.UpdateProduct(updatedProduct);
                 MessageBox.Show("Produkt er opdateret");
             }
-            else throw new Exception("Error");
         }
     }
 }

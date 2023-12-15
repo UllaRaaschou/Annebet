@@ -30,18 +30,16 @@ namespace WPFApp.ViewModels
         }
 
 
-        // Property til Search command sættes til instans af klassen
-        public ICommand ProductSearchCommand { get; } = new ProductSearchCommand();
-        // Property til Update command sættes til instans af klassen
-        public ICommand ProductUpdateCommand { get; } = new ProductUpdateCommand();
 
 
-        // Observable Collection laves til property
-        public ObservableCollection<ProductToViewModel> ProductsToView { get; }
+        public ProductUpdateViewModel()  // constructoer instantierer Observable Collections af fremsøgte Products's ToViewModels
+        {
+            ProductsToView = new ObservableCollection<ProductToViewModel>();
+        }
 
+        public ObservableCollection<ProductToViewModel> ProductsToView { get; } //ObservableCollection sættes som property
 
-        // Metoden kaldes, fordi type ændres.
-        // Det udløser PropertyChanged-eventet og abonnenter informeres
+		
         private string type;
         public string Type
 		{
@@ -63,9 +61,12 @@ namespace WPFApp.ViewModels
             }
         }
 
-        
-        // Property til listbox's selected item
-        private ProductToViewModel selectedProduct;
+        public ICommand ProductSearchCommand { get; } = new ProductSearchCommand(); // Ny instans af Command-klassen, der implementerer Icommand-interfacet
+        public ICommand ProductUpdateCommand { get; } = new ProductUpdateCommand();
+
+
+
+        private ProductToViewModel selectedProduct;  // property til brug for selected item
         public ProductToViewModel SelectedProduct
         {
             get { return selectedProduct; }
@@ -74,11 +75,5 @@ namespace WPFApp.ViewModels
             }
         }
 
-
-        // Instansierer  Observable Collection til fremsøgte ProductToViewModel
-        public ProductUpdateViewModel() 
-        {
-            ProductsToView = new ObservableCollection<ProductToViewModel>();
-        }
     }
 }

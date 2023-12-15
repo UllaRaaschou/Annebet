@@ -10,12 +10,9 @@ using WPFApp.Commands;
 
 namespace WPFApp.ViewModels
 {
-    // Interface-nedarves 
-    public class CustomerDeleteViewModel: INotifyPropertyChanged
+    public class CustomerDeleteViewModel: INotifyPropertyChanged  // Interface nedarves
     {
-        // Interface implementeres som event
-        public event PropertyChangedEventHandler PropertyChanged;
-
+        public event PropertyChangedEventHandler PropertyChanged; // Interface implementeres som event
 
         /// <summary>
         /// Metode, der kan bruges i klasser, der implementerer INotifyPropertyChanged-interfacet.
@@ -33,18 +30,22 @@ namespace WPFApp.ViewModels
         }
 
 
-        // Property til Search command sættes til instans af klassen
-        public ICommand CustomerSearchCommand { get; } = new CustomerSearchCommand();
-        // Property til Delete command sættes til instans af klassen
+
+        public CustomerDeleteViewModel()
+        {
+            CustomersToView = new ObservableCollection<CustomerToViewModel>(); // instansierer  Observable Collection til fremsøgte customers
+
+        }
+        public ObservableCollection<CustomerToViewModel> CustomersToView { get; }  // Observable Collection laves til property
+
+
+       
+        public ICommand CustomerSearchCommand { get; } = new CustomerSearchCommand(); // Ny instans af Command-klassen, der implementerer Icommand-interfacet
         public ICommand CustomerDeleteCommand { get; } = new CustomerDeleteCommand();
 
-
-        // Observable Collection laves til property
-        public ObservableCollection<CustomerToViewModel> CustomersToView { get; }
-
-
-        // Metoden kaldes, fordi FirstName ændres.
-        // Det udløser PropertyChanged-eventet og abonnenter informeres
+        
+        
+        
         private string firstName;
         public string FirstName
         {
@@ -52,7 +53,8 @@ namespace WPFApp.ViewModels
             set
             {
                 firstName = value;
-                OnPropertyChanged(nameof(firstName));                                                      
+                OnPropertyChanged(nameof(firstName)); // Metoden kaldes, fordi FirstName ændres.
+                                                      // Det udløser PropertyChanged-eventet og abonnenter informeres
             }
         }
 
@@ -67,8 +69,9 @@ namespace WPFApp.ViewModels
             }
         }
 
-        // Property til listbox's selected item
-        private CustomerToViewModel selectedCustomer;
+        
+        
+        private CustomerToViewModel selectedCustomer; // Property til listbox's selected item
         public CustomerToViewModel SelectedCustomer
         {
             get { return selectedCustomer; }
@@ -80,10 +83,6 @@ namespace WPFApp.ViewModels
         }
 
 
-        // Instansierer  Observable Collection til fremsøgte customers
-        public CustomerDeleteViewModel()
-        {
-            CustomersToView = new ObservableCollection<CustomerToViewModel>();
-        }
+
     }
 }
