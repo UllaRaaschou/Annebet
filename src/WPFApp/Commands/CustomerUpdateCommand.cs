@@ -24,6 +24,20 @@ namespace WPFApp.Commands
             remove { CommandManager.RequerySuggested -= value; }
         }
 
+        private ICustomerRepository repository;
+
+        public CustomerUpdateCommand() 
+        {
+            this.repository = new CustomerRepository();
+        }
+
+        public CustomerUpdateCommand(ICustomerRepository repository) 
+        {
+            this.repository = repository;
+        }
+
+
+
         public bool CanExecute(object? parameter)
         {
             bool result = false;  // parameteren sættes i første omgang til false
@@ -51,8 +65,7 @@ namespace WPFApp.Commands
                 Customer updatedCustomer = Customer.CreateCustomerFromDb(cuvm.SelectedCustomer.Id, // Den statiske Customer-metode laver en updated Customer
                     cuvm.SelectedCustomer.FirstName, cuvm.SelectedCustomer.LastName,
                     cuvm.SelectedCustomer.Address, cuvm.SelectedCustomer.Phone, cuvm.SelectedCustomer.Email);
-                CustomerRepository customerRepo = new CustomerRepository(); // CutomerRepo instantieres
-                customerRepo.UpdateCustomer(updatedCustomer);     // Repo opdaterer Customer                              
+                repository.UpdateCustomer(updatedCustomer);     // Repo opdaterer Customer                              
 
                 cuvm.SelectedCustomer = null; // Tekstboksenes indhold nulstilles
                 cuvm.FirstName = null;
