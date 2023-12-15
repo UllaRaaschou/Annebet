@@ -18,9 +18,27 @@ namespace WPFApp.Tests
         }
 
 
+        /// <summary>
+        /// Guid-metoden genbruges, med id fra første Guid som parameter, for at skabe en unit, opdateret version.
+        /// </summary
+        private Treatment CreateUniqueTreatment2(int id)
+        {
+            Guid guid = Guid.NewGuid();
+            return Treatment.CreateTreatmentFromDb(id, "uniqueType" + guid, "Ankelmassage", "Blid ankelmasage", 700.00m);
+        }
+
+
+
+
         [TestMethod]
         public void TestTreatmentRepositoryAddAndUpdate()
-        {         
+        {
+            // "TranscationScope": Laver testen til et scope, hvor alle operationer udføres i een transaktion
+            //                     Enten udføres alle - eller også rulles alle tilbage. Vi ruller alle tilbage.
+            // "TransactionScopeOption.Required": Hvis der ikke allerede ER et scope, oprettes der ét.
+            // "new TransactionOptions(){}": Instantiering af klasse, der angiver flere detaljer for transaktionen
+            // "Isolationlevel.ReadUncommitted": Giver mulighed for at læse un-committet data
+            // "Scope.Complete(): Hvis vi havde kaldt denne metode, ville transaktion blive comittet. Vi comitter ikke!
 
             using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Required, new TransactionOptions() { IsolationLevel = IsolationLevel.ReadUncommitted }))
             {
@@ -32,7 +50,7 @@ namespace WPFApp.Tests
 
                 int id = treatmentRepo.AddTreatment(uniqueTreatment);
                 List<Treatment> newList = treatmentRepo.GetAllTreatments(uniqueTreatment.Type, uniqueTreatment.Name);
-                Treatment uniqueUpdatedValues = CreateUniqueTreatment();
+                Treatment uniqueUpdatedValues = CreateUniqueTreatment2(id);
                
 
                 // Act

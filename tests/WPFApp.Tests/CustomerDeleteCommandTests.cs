@@ -3,16 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
+using WPFApp.Commands;
 using WPFApp.Models;
 using WPFApp.ViewModels;
-using WPFApp.Commands;
-
 
 namespace WPFApp.Tests
 {
     [TestClass]
-    public class CustomerCreateCommandTests
+    public class CustomerDeleteCommandTests
     {
         [TestMethod]
         public void TestExecute()
@@ -22,8 +20,8 @@ namespace WPFApp.Tests
                                                                               // Test-repo bruges som parameter i vores Command-Construcor, hvorved vi skifter fra brug
                                                                               // af løsningens normale repo til vores testRepo.
 
-            CustomerCreateCommand ccc = new CustomerCreateCommand(repository);  
-            CustomerCreateViewModel viewModel = new CustomerCreateViewModel();
+            CustomerDeleteCommand cdc = new CustomerDeleteCommand(repository);
+            CustomerDeleteViewModel viewModel = new CustomerDeleteViewModel();
             viewModel.FirstName = "Karen";
             viewModel.LastName = "Kost";
             viewModel.Address = "Kirkevej 4, 4000 Roskilde";
@@ -46,7 +44,7 @@ namespace WPFApp.Tests
 
 
         [TestMethod]
-        public void TestViewModelValuesToNullAfterExecute() 
+        public void TestViewModelValuesToNullAfterExecute()
         {
             CustomerTESTRepository repository = new CustomerTESTRepository(); // TestRepo instantieres
             CustomerCreateCommand ccc = new CustomerCreateCommand(repository);
@@ -72,7 +70,7 @@ namespace WPFApp.Tests
 
 
         [TestMethod]
-        public void TestCanExecuteWithoutNullValuesInViewModelProperties() 
+        public void TestCanExecuteWithoutNullValuesInViewModelProperties()
         {
             // Arrange
             CustomerTESTRepository repository = new CustomerTESTRepository();
