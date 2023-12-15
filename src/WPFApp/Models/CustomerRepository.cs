@@ -59,7 +59,6 @@ namespace WPFApp.Models
             }
 
         }
-
         public void UpdateCustomer(Customer customerWithUpdatedValues)
         {
             using (SqlConnection con = new SqlConnection(connectionString)) // skaber forbindelse til vores db med vores connectionstring
@@ -88,7 +87,29 @@ namespace WPFApp.Models
                 }
             }
         }
+        public void DeleteCustomerById(int id)
+        {
+            using (SqlConnection con = new SqlConnection(connectionString)) // skaber forbindelse til vores db med vores connectionstring
+            {
+                con.Open(); // Den skabte forbindelse åbnes
 
+                using (SqlCommand cmd = new SqlCommand("dbo.sp_DeleteCustomerById", con)) // Anvender vores stored procedure, der ligger i db, via SQLCommand-klassen
+                {
+                    cmd.CommandType = CommandType.StoredProcedure; // Anvender kommandotypen til stored procedures
+
+                    cmd.Parameters.AddWithValue("@customerId", id); // Indsætter værdier i parametre fra den stored procedure
+
+                    try // forsøger at køre ovenstående kode uden returværdi
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch (Exception ex) // evt fejl udstilles
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                }
+            }
+        }
         public List<Customer> GetAllCustomers(string firstName, string lastName)
         {
             List<Customer> allSpecifiedCustomer = new List<Customer>(); // instantiering af tom Customerliste
@@ -132,33 +153,8 @@ namespace WPFApp.Models
             return allSpecifiedCustomer; // listen returneres
         }
 
-        public void DeleteCustomerById(int id)
-        {
-            using (SqlConnection con = new SqlConnection(connectionString)) // skaber forbindelse til vores db med vores connectionstring
-            {
-                con.Open(); // Den skabte forbindelse åbnes
+       
 
-                using (SqlCommand cmd = new SqlCommand("dbo.sp_DeleteCustomerById", con)) // Anvender vores stored procedure, der ligger i db, via SQLCommand-klassen
-                {
-                    cmd.CommandType = CommandType.StoredProcedure; // Anvender kommandotypen til stored procedures
-
-                    cmd.Parameters.AddWithValue("@customerId", id); // Indsætter værdier i parametre fra den stored procedure
-
-                    try // forsøger at køre ovenstående kode uden returværdi
-                    {
-                        cmd.ExecuteNonQuery();
-                    }
-                    catch (Exception ex) // evt fejl udstilles
-                    {
-                        Console.WriteLine(ex.Message);
-                    }
-                }
-            }
-        }
-
-        public void UpdateCustomer(Customer customerWithUpdatedValues, int id)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }

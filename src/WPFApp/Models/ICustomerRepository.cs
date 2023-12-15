@@ -6,9 +6,10 @@ namespace WPFApp.Models
     {
        
         int AddCustomer(Customer customer);
-        List<Customer> GetAllCustomers(string firstName, string lastName);
-        void UpdateCustomer(Customer customerWithUpdatedValues, int id);
-
+        void UpdateCustomer(Customer customerWithUpdatedValues);
         void DeleteCustomerById(int id);
+        List<Customer> GetAllCustomers(string firstName, string lastName);
+        
+       
     }
 }
