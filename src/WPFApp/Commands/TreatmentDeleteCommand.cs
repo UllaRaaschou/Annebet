@@ -25,7 +25,8 @@ namespace WPFApp.Commands
             remove { CommandManager.RequerySuggested -= value; }
         }
 
-        private ITreatmentRepository repository; // simpel deklarering af repo. Dette kan skiftes afhængigt af den anvendte konstructor
+
+        private ITreatmentRepository repository; // Simpel deklarering af repo. Dette kan skiftes afhængigt af den anvendte konstructor
 
         public TreatmentDeleteCommand()  // Constructor, der som default vil blive aktiveret og som sætter repo-feltet til det almindelige CustomerReposity
         {

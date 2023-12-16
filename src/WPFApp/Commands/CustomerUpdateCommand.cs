@@ -10,7 +10,7 @@ using WPFApp.ViewModels;
 
 namespace WPFApp.Commands
 {
-    public class CustomerUpdateCommand : ICommand
+    public class CustomerUpdateCommand : ICommand // Nedarvning fra interfacet ICommand
     {
         /// <summary>
         /// CanExecuteChanged-eventet har fået add'et et RequerySuggested-event. 
@@ -26,20 +26,23 @@ namespace WPFApp.Commands
 
 
 
-        private ICustomerRepository repository;
+        private ICustomerRepository repository; // simpel deklarering af repo. Dette kan skiftes afhængigt af den anvendte konstructor
 
-        public CustomerUpdateCommand() 
+        public CustomerUpdateCommand()  // Constructor, der som default vil blive aktiveret og som sætter repo-feltet til det almindelige CustomerReposity
         {
             this.repository = new CustomerRepository();
         }
 
-        public CustomerUpdateCommand(ICustomerRepository repository) 
-        {
+        public CustomerUpdateCommand(ICustomerRepository repository)   // Constuctor, der kan bruges, når vi i unit-test bruger Test-repo som parameter,
+        {                                                              // og vi dermed sætter repo-feltet til test-Repo
             this.repository = repository;
         }
 
 
-
+        /// <summary>
+        /// Metode, der undersøger, om Execute skal afvikles.
+        /// Parameteren er i xaml-koden sat som "CommandParameter = Binding", og datakontekst er i code behind sat til cuvm.
+        /// </summary>
         public bool CanExecute(object? parameter)
         {
             bool result = false;  // parameteren sættes i første omgang til false
@@ -60,7 +63,10 @@ namespace WPFApp.Commands
         }
 
 
-
+        /// <summary>
+        /// Metoden, der udfører opdater_kunde_funktionen og får den add'et til database.
+        /// Parameteren er i xaml-koden sat som "CommandParameter = Binding", og datakontekst er i code behind sat til cuvm.
+        /// </summary>
         public void Execute(object? parameter)
         {
             if(parameter is CustomerUpdateViewModel cuvm)  // kontrol af, om datakonteksten er cuvm                                                            // og om datakontekten er kommet med som parameter

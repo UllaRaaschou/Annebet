@@ -14,8 +14,6 @@ namespace WPFApp.Commands
     // Nedarvning fra interfacet ICommand
     public class TreatmentCreateCommand : ICommand
     {
-        private ITreatmentRepository repository; // simpel deklarering af repo. Dette kan skiftes afhængigt af den anvendte konstructor
-
         /// <summary>
         /// CanExecuteChanged-eventet har fået add'et et RequerySuggested-event. 
         /// Requery udløses så snart WPF mener, at command properties skal re-evalueres - ofte sfa bruger-acts.
@@ -29,6 +27,8 @@ namespace WPFApp.Commands
         }
 
 
+        private ITreatmentRepository repository; // simpel deklarering af repo. Dette kan skiftes afhængigt af den anvendte konstructor
+        
         public TreatmentCreateCommand()  // Constructor, der som default vil blive aktiveret og som sætter repo-feltet til det almindelige CustomerReposity
         {
             this.repository = new TreatmentRepository();

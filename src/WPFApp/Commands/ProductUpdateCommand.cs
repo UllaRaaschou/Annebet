@@ -10,7 +10,7 @@ using WPFApp.ViewModels;
 
 namespace WPFApp.Commands
 {
-    public class ProductUpdateCommand : ICommand
+    public class ProductUpdateCommand : ICommand // Nedarvning fra interfacet ICommand
     {
         /// <summary>
         /// CanExecuteChanged-eventet har fået add'et et RequerySuggested-event. 
@@ -24,19 +24,23 @@ namespace WPFApp.Commands
             remove { CommandManager.RequerySuggested -= value; }
         }
 
-        private IProductRepository repository;
+        private IProductRepository repository;  // simpel deklarering af repo. Dette kan skiftes afhængigt af den anvendte konstructor
 
-        public ProductUpdateCommand()
+        public ProductUpdateCommand()  // Constructor, der som default vil blive aktiveret og som sætter repo-feltet til det almindelige CustomerReposity
         {
             this.repository = new ProductRepository();
         }
 
-        public ProductUpdateCommand(IProductRepository repository)
-        {
+        public ProductUpdateCommand(IProductRepository repository)   // Constuctor, der kan bruges, når vi i unit-test bruger Test-repo som parameter,
+        {                                                            // og vi dermed sætter repo-feltet til test-Repo
             this.repository = new ProductTESTRepository();
         }
 
 
+        /// <summary>
+        /// Metode, der undersøger, om Execute skal afvikles.
+        /// Parameteren er i xaml-koden sat som "CommandParameter = Binding", og datakontekst er i code behind sat til puvm.
+        /// </summary>
         public bool CanExecute(object? parameter)
         {
             bool result = false;  // parameteren sættes i første omgang til false
@@ -56,6 +60,11 @@ namespace WPFApp.Commands
             return false; // hvis parametertjek fejler, returneres false
         }
 
+
+        /// <summary>
+        /// Metoden, der udfører opdater_produkt_funktionen og får den add'et til database.
+        /// Parameteren er i xaml-koden sat som "CommandParameter = Binding", og datakontekst er i code behind sat til puvm.
+        /// </summary>
         public void Execute(object? parameter)
         {
             if(parameter is ProductUpdateViewModel puvm) 

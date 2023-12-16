@@ -23,19 +23,22 @@ namespace WPFApp.Commands
             remove { CommandManager.RequerySuggested -= value; }
         }
 
-        private IProductRepository repository;
-        public ProductSearchCommand() 
+        private IProductRepository repository;  // simpel deklarering af repo. Dette kan skiftes afhængigt af den anvendte konstructor
+        public ProductSearchCommand()  // Constructor, der som default vil blive aktiveret og som sætter repo-feltet til det almindelige CustomerReposity
         {
             this.repository = new ProductRepository();  
         }
 
-        public ProductSearchCommand(IProductRepository repository) 
-        {
+        public ProductSearchCommand(IProductRepository repository)    // Constuctor, der kan bruges, når vi i unit-test bruger Test-repo som parameter,
+        {                                                             // og vi dermed sætter repo-feltet til test-Repo
             this.repository = repository;
         }
 
 
-
+        /// <summary>
+        /// Metode, der undersøger, om Execute skal afvikles.
+        /// Parameteren er i xaml-koden sat som "CommandParameter = Binding", og datakontekst er i code behind sat til psvm.
+        /// </summary>
         public bool CanExecute(object? parameter)
         {
             bool result = false;  // result sættes til false fra start
@@ -60,6 +63,11 @@ namespace WPFApp.Commands
             return false;
         }
 
+
+        /// <summary>
+        /// Metoden, der udfører søg_produkt_funktionen og får den add'et til database.
+        /// Parameteren er i xaml-koden sat som "CommandParameter = Binding", og datakontekst er i code behind sat til psvm.
+        /// </summary>
         public void Execute(object? parameter)
         {
             if(parameter is ProductUpdateViewModel puvm) // tjek af parameter og datacontext

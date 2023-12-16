@@ -10,7 +10,7 @@ using WPFApp.ViewModels;
 
 namespace WPFApp.Commands
 {
-    public class ProductDeleteCommand : ICommand
+    public class ProductDeleteCommand : ICommand // Nedarvning fra interfacet ICommand
     {
         /// <summary>
         /// CanExecuteChanged-eventet har fået add'et et RequerySuggested-event. 
@@ -35,6 +35,11 @@ namespace WPFApp.Commands
             this.repository = repository;
         }
 
+
+        /// <summary>
+        /// Metode, der undersøger, om Execute skal afvikles.
+        /// Parameteren er i xaml-koden sat som "CommandParameter = Binding", og datakontekst er i code behind sat til pdvm.
+        /// </summary>
         public bool CanExecute(object? parameter)
         {
             bool result = false; // variablen sættes i første omgang til false
@@ -54,6 +59,11 @@ namespace WPFApp.Commands
             return false; // hvis parameter test fejler, returenes false
         }
 
+
+        /// <summary>
+        /// Metoden, der udfører slet_produkt_funktionen og får den add'et til database.
+        /// Parameteren er i xaml-koden sat som "CommandParameter = Binding", og datakontekst er i code behind sat til pdvm.
+        /// </summary>
         public void Execute(object? parameter)
         {
             if (parameter is ProductDeleteViewModel pdvm) // tjek af parameter

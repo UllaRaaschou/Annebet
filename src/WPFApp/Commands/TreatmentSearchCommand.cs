@@ -24,15 +24,16 @@ namespace WPFApp.Commands
             remove { CommandManager.RequerySuggested -= value; }
         }
 
-        private ITreatmentRepository repository;
 
-        public TreatmentSearchCommand()
+        private ITreatmentRepository repository; // Simpel deklarering af repo. Dette kan skiftes afhængigt af den anvendte konstructor
+
+        public TreatmentSearchCommand() // Constructor, der som default vil blive aktiveret og som sætter repo-feltet til det almindelige TreatmentReposity
         {
             this.repository = new TreatmentRepository();
         }
 
-        public TreatmentSearchCommand(ITreatmentRepository repository)
-        {
+        public TreatmentSearchCommand(ITreatmentRepository repository) // Constuctor, der kan bruges, når vi i unit-test bruger Test-repo som parameter,
+        {                                                              // og vi dermed sætter repo-feltet til test-Repo
             this.repository = repository;
         }
 
@@ -41,7 +42,7 @@ namespace WPFApp.Commands
 
         /// <summary>
         /// Metode, der undersøger, om Execute skal afvikles.
-        /// Parameteren er i xaml-koden sat som "CommandParameter = Binding", og datakontekst er i code behind sat til tuvm.
+        /// Parameteren er i xaml-koden sat som "CommandParameter = Binding", og datakontekst er i code behind sat til tsvm.
         /// </summary>
         public bool CanExecute(object? parameter)
         {
@@ -77,8 +78,8 @@ namespace WPFApp.Commands
 
 
         /// <summary>
-        /// Metoden, der udfører opdater_produkt_funktionen og får den add'et til database.
-        /// Parameteren er i xaml-koden sat som "CommandParameter = Binding", og datakontekst er i code behind sat til puvm.
+        /// Metoden, der udfører søg_behandling_funktionen og får den add'et til database.
+        /// Parameteren er i xaml-koden sat som "CommandParameter = Binding", og datakontekst er i code behind sat til tsvm.
         /// </summary>
         public void Execute(object? parameter)
         {

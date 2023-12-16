@@ -69,6 +69,10 @@ namespace WPFApp.Commands
         }
 
 
+        /// <summary>
+        /// Metoden, der udfører søg_kunde_funktionen og får den add'et til database.
+        /// Parameteren er i xaml-koden sat som "CommandParameter = Binding", og datakontekst er i code behind sat til csvm.
+        /// </summary>
         public void Execute(object? parameter)
         {
             if (parameter is CustomerUpdateViewModel cuvm) // Hvis datekontekst er cuvm

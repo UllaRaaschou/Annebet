@@ -38,6 +38,10 @@ namespace WPFApp.Commands
         }
 
 
+        /// <summary>
+        /// Metode, der undersøger, om Execute skal afvikles.
+        /// Parameteren er i xaml-koden sat som "CommandParameter = Binding", og datakontekst er i code behind sat til tuvm.
+        /// </summary>
         public bool CanExecute(object? parameter)
         {
             bool result = false;  // parameteren sættes i første omgang til false

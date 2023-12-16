@@ -11,7 +11,7 @@ using WPFApp.ViewModels;
 
 namespace WPFApp.Commands
 {
-    public class ProductCreateCommand : ICommand
+    public class ProductCreateCommand : ICommand // Nedarvning fra interfacet ICommand
     {
         /// <summary>
         /// CanExecuteChanged-eventet har fået add'et et RequerySuggested-event. 
@@ -36,6 +36,11 @@ namespace WPFApp.Commands
             this.repository = repository;
         }
 
+
+        /// <summary>
+        /// Metode, der undersøger, om Execute skal afvikles.
+        /// Parameteren er i xaml-koden sat som "CommandParameter = Binding", og datakontekst er i code behind sat til pcvm.
+        /// </summary>
         public bool CanExecute(object? parameter)
         {
             bool result = false;  // variablen sættes i første omgang til false
