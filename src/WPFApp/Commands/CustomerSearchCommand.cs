@@ -92,7 +92,7 @@ namespace WPFApp.Commands
                     cdvm.CustomersToView.Add(customerViewModel); // viewModels lægges i Observable Collection i dataontexten
                 }
             }
-            else throw new Exception("Wrong type of parameter");
+           
         }
     }
 }

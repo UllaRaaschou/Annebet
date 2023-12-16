@@ -69,7 +69,7 @@ BEGIN
         IF EXISTS (
             SELECT 1
             FROM INSERTED
-            WHERE Type NOT IN ('EnumCategory.Product', 'EnumCategory.Treatment')
+            WHERE Category NOT IN ('Product', 'Treatment')
         )
         BEGIN
             DECLARE @ErrorMessageType NVARCHAR(1000);
