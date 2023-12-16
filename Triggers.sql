@@ -63,29 +63,20 @@ BEGIN
         SET @ErrorMessageExists = 'Fejl: Duplicate product og treatment found. INSERT operation aborted.';
         THROW 50000, @ErrorMessageExists, 1;
     END
-
-    ELSE
+    
+    IF EXISTS (
+        SELECT 1
+        FROM INSERTED
+        WHERE Category NOT IN ('Product', 'Treatment')
+    )
     BEGIN
-        IF EXISTS (
-            SELECT 1
-            FROM INSERTED
-            WHERE Category NOT IN ('Product', 'Treatment')
-        )
-        BEGIN
-            DECLARE @ErrorMessageType NVARCHAR(1000);
-            SET @ErrorMessageType = 'Fejl: Type skal være enten ''EnumCategory.product'' eller ''EnumCategory.Treatment''. INSERT operationen blev afbrudt.';
-            THROW 50000, @ErrorMessageType, 1;
-
-		END
-        
-	ELSE
-
-        BEGIN
-            INSERT INTO dbo.SALESITEM_PRODUCT_TREATMENT (Category, [Type], [Name], [Description], Price)
-            SELECT Category, [Type], [Name], [Description], Price
-            FROM INSERTED;
-        END
-    END
+        DECLARE @ErrorMessageType NVARCHAR(1000);
+        SET @ErrorMessageType = 'Fejl: Category skal være enten ''Product'' eller ''Treatment''. INSERT operationen blev afbrudt.';
+        THROW 50000, @ErrorMessageType, 1;
+	END
+	
+    INSERT INTO dbo.SALESITEM_PRODUCT_TREATMENT (Category, [Type], [Name], [Description], Price)
+    SELECT Category, [Type], [Name], [Description], Price
+    FROM INSERTED;
+    
 END;
-
-

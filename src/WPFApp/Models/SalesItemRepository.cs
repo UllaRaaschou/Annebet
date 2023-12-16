@@ -26,7 +26,7 @@ namespace WPFApp.Models
             {
                 cmd.CommandType = CommandType.StoredProcedure; // Anvender kommandotypen til stored procedures (både INSERT INTO og SELECT SCOPE_IDENTITY as NewId)
 
-                cmd.Parameters.AddWithValue("@category", category); //Indsætter værdier i parametrene fra SQL-statement
+                cmd.Parameters.AddWithValue("@category", Enum.GetName(category)); //Indsætter værdier i parametrene fra SQL-statement
                 cmd.Parameters.AddWithValue("@type", salesItem.Type);
                 cmd.Parameters.AddWithValue("@name", salesItem.Name);
                 cmd.Parameters.AddWithValue("@description", salesItem.Description);
@@ -68,7 +68,7 @@ namespace WPFApp.Models
 
                 cmd.Parameters.AddWithValue("@salesItemId", salesItemWithUpdatedValues.Id);  // Indsætter den opdaterede parameter-kundens
                                                                                                 // properties som værdier i SQL-queryens parametre 
-                cmd.Parameters.AddWithValue("@category", category);
+                cmd.Parameters.AddWithValue("@category", Enum.GetName(category));
                 cmd.Parameters.AddWithValue("@type", salesItemWithUpdatedValues.Type);
                 cmd.Parameters.AddWithValue("@name", salesItemWithUpdatedValues.Name);
                 cmd.Parameters.AddWithValue("@description", salesItemWithUpdatedValues.Description);
@@ -119,7 +119,7 @@ namespace WPFApp.Models
             {
                 cmd.CommandType = CommandType.StoredProcedure; // Anvender kommandotypen til stored procedures
 
-                cmd.Parameters.AddWithValue("@category", category);  // Indsætter vores parametre
+                cmd.Parameters.AddWithValue("@category", Enum.GetName(category));  // Indsætter vores parametre
                 cmd.Parameters.AddWithValue("@type", type);
                 cmd.Parameters.AddWithValue("@name", name);
 
