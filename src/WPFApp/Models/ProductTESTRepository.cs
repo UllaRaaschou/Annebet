@@ -27,23 +27,30 @@ namespace WPFApp.Models
                 if (product.Type == type && product.Name == name) 
                 {
                     wantedProducts.Add(product);
-                }
-                
+                }                
             }
             return wantedProducts;
         }
 
         public void UpdateProduct(Product productWithUpdatedValues)
         {
-            foreach (Product product in products) 
+            Product product2 = null;
+
+            foreach (Product product in products)
             {
-                if(product.Id == productWithUpdatedValues.Id) 
+                if (product.Id == productWithUpdatedValues.Id)
                 {
-                    products.Remove(product);
-                    products.Add(Product.CreateProductFromDb(productWithUpdatedValues.Id, productWithUpdatedValues.Type,
-                        productWithUpdatedValues.Name, productWithUpdatedValues.Description, productWithUpdatedValues.Price));
+                    product2 = product;
+                    break;
 
                 }
+            }
+            if (product2 != null)
+            {
+                products.Remove(product2);
+                products.Add(Product.CreateProductFromDb(productWithUpdatedValues.Id, productWithUpdatedValues.Type,
+                    productWithUpdatedValues.Name, productWithUpdatedValues.Description, productWithUpdatedValues.Price
+                    ));
             }
         }
 
