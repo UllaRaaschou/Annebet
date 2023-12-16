@@ -23,6 +23,8 @@ namespace WPFApp.Commands
             remove { CommandManager.RequerySuggested -= value; }
         }
 
+
+
         private ICustomerRepository repository;  // simpel deklarering af repo. Dette kan skiftes afhængigt af den anvendte konstructor
 
         public CustomerSearchCommand() // Constructor, der som default vil blive aktiveret og som sætter repo-feltet til det almindelige CustomerReposity
@@ -35,6 +37,8 @@ namespace WPFApp.Commands
         {
             this.repository = repository;
         }   
+
+
 
         public bool CanExecute(object? parameter)
         {
@@ -60,6 +64,7 @@ namespace WPFApp.Commands
             return false;
         }
 
+
         public void Execute(object? parameter)
         {
             if (parameter is CustomerUpdateViewModel cuvm) // Hvis datekontekst er cuvm
@@ -84,7 +89,6 @@ namespace WPFApp.Commands
                 }
             }
             else throw new Exception("Wrong type of parameter");
-
         }
     }
 }

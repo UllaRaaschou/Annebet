@@ -24,6 +24,8 @@ namespace WPFApp.Commands
             remove { CommandManager.RequerySuggested -= value; }
         }
 
+
+
         private ICustomerRepository repository;
 
         public CustomerUpdateCommand() 
@@ -57,11 +59,12 @@ namespace WPFApp.Commands
             return false; // hvis parametertjek fejler, returneres false
         }
 
+
+
         public void Execute(object? parameter)
         {
             if(parameter is CustomerUpdateViewModel cuvm)  // kontrol af, om datakonteksten er cuvm                                                            // og om datakontekten er kommet med som parameter
-            {              
-                
+            {                              
                 Customer updatedCustomer = Customer.CreateCustomerFromDb(cuvm.SelectedCustomer.Id, // Den statiske Customer-metode laver en updated Customer
                     cuvm.SelectedCustomer.FirstName, cuvm.SelectedCustomer.LastName,
                     cuvm.SelectedCustomer.Address, cuvm.SelectedCustomer.Phone, cuvm.SelectedCustomer.Email);
@@ -74,7 +77,6 @@ namespace WPFApp.Commands
                 {
                     MessageBox.Show("Kunde opdateret");
                 }
-
 
             }
             else throw new Exception("Wrong type of parameter");

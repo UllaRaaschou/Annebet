@@ -42,8 +42,6 @@ namespace WPFApp.Commands
 
 
 
-
-
         /// <summary>
         /// Metode, der undersøger, om Execute skal afvikles.
         /// Parameteren er i xaml-koden sat som "CommandParameter = Binding", og datakontekst er i code behind sat til ccvm.
@@ -60,11 +58,8 @@ namespace WPFApp.Commands
                     result = true; // så sættes variblen til true;
                 }
                 return result; // variablen returneres
-
             }
-
-            return false; // hvis datacontext ikke er sat korrekt, returneres false
-            
+            return false; // hvis datacontext ikke er sat korrekt, returneres false            
         }
 
        
@@ -76,8 +71,7 @@ namespace WPFApp.Commands
         public void Execute(object? parameter)
         {
             if (parameter is CustomerCreateViewModel ccvm)  // parameter tjekkes
-            {
-                
+            {               
                 repository.AddCustomer(Customer.CreateCustomerFromUI(ccvm.FirstName, ccvm.LastName, ccvm.Address, ccvm.Phone, ccvm.Email)); // Repo add'er Customer til db
                 ccvm.FirstName = null; // Tekstboksenes indhold nulstilles
                 ccvm.LastName = null;
@@ -91,15 +85,9 @@ namespace WPFApp.Commands
                 if(repository is CustomerRepository)
                 {
                     MessageBox.Show("Kunde oprettet");
-                }
-                
-                
+                }                               
             }
             else throw new Exception("Wrong type of paratemer");
-
-            
-
-
-        }
+       }
     }
 }

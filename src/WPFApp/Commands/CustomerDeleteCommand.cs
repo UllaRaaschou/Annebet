@@ -25,16 +25,20 @@ namespace WPFApp.Commands
         }
 
 
+
         private ICustomerRepository repository; // simpel deklarering af repo. Dette kan skiftes afhængigt af den anvendte konstructor
+       
         public CustomerDeleteCommand()  // Constructor, der som default vil blive aktiveret og som sætter repo-feltet til det almindelige CustomerReposity
         {
             this.repository = new CustomerRepository();
         }
+
         public CustomerDeleteCommand(ICustomerRepository repository)  // Constuctor, der kan bruges, når vi i unit-test bruger Test-repo som parameter,
                                                                       // og vi dermed sætter repo-feltet til test-Repo
         {
             this.repository = repository;
         }
+
 
 
         /// <summary>
@@ -60,8 +64,11 @@ namespace WPFApp.Commands
             return false; // hvis parameter test fejler, returenes false
         }
 
+
+
         /// <summary>
-        /// Selve commandens "execute-metode".
+        /// Metoden, der udfører slet_kunde_funktionen og får den add'et til database.
+        /// Parameteren er i xaml-koden sat som "CommandParameter = Binding", og datakontekst er i code behind sat til cdvm.
         /// </summary>
         public void Execute(object? parameter)
         {
@@ -81,9 +88,7 @@ namespace WPFApp.Commands
                     MessageBox.Show("Kunde slettet");
                 }
             }
-
             else throw new Exception("Wrong type of parameter");
-
         }
     }
 }
