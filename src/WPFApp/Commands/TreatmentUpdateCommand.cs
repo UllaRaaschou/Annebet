@@ -84,7 +84,7 @@ namespace WPFApp.Commands
                     MessageBox.Show("Behandling oprettet");
                 }
             }
-            else throw new Exception("Error");
+            else throw new Exception("Wrong type of parameter");
         }
     }
 }

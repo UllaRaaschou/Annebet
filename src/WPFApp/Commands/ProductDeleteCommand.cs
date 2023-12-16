@@ -67,6 +67,7 @@ namespace WPFApp.Commands
                 pdvm.Type = null;
                 pdvm.Name = null;
             }
+            else throw new Exception("Wrong type of parameter");
         }
     }
 }

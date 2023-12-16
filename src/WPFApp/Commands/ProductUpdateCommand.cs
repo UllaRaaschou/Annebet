@@ -70,6 +70,7 @@ namespace WPFApp.Commands
                 }
                     
             }
+            else throw new Exception("Wrong type of parameter");
         }
     }
 }
