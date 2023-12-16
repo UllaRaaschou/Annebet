@@ -1,5 +1,5 @@
 ﻿
-CREATE TRIGGER TRG_CheckForDuplicatesANDPhoneLength1
+CREATE TRIGGER TRG_CheckForDuplicatesANDPhoneLength
 ON CUSTOMER
 INSTEAD OF INSERT
 AS
@@ -29,7 +29,7 @@ BEGIN
         )
         BEGIN
 			DECLARE @ErrorMessagePhoneLength NVARCHAR(1000);
-			SET @ErrorMessagePhoneLength = 'Telefonnummer skal være præcis 8 karakterer langt og må ikke være NULL. INSERT operation aborted';
+			SET @ErrorMessagePhoneLength = 'Phone Number must be 8 characters and not Null. INSERT operation aborted';
             THROW 50000, @ErrorMessagePhoneLength, 1;
         END
 	
@@ -42,7 +42,7 @@ BEGIN
     END
 END;
 
-
+GO
 
 CREATE TRIGGER TRG_CheckForDuplicatesAndTypeOfSalesItem
 ON dbo.SALESITEM_PRODUCT_TREATMENT
