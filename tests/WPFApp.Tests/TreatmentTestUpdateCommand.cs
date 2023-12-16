@@ -26,10 +26,8 @@ namespace WPFApp.Tests
             TreatmentToViewModel updatedViewModelTreatment = viewModelTreatment.TreatmentToViewModelConvert(updatedTreatment);
             tuviewModel.SelectedTreatment = updatedViewModelTreatment;
 
-
             // Act
             tuc.Execute(tuviewModel);
-
 
             //Assert
             Assert.AreEqual(repository.treatments[0].Id, 2);
@@ -37,7 +35,6 @@ namespace WPFApp.Tests
             Assert.AreEqual(repository.treatments[0].Name, "RygMassage");
             Assert.AreEqual(repository.treatments[0].Description, "MassageAfRyggen");
             Assert.AreEqual(repository.treatments[0].Price, 25m);
-
         }
 
         [TestMethod]
@@ -54,7 +51,6 @@ namespace WPFApp.Tests
             TreatmentToViewModel updatedViewModelTreatment = viewModelTreatment.TreatmentToViewModelConvert(updatedTreatment);
             tuviewModel.SelectedTreatment = updatedViewModelTreatment;
 
-
             // Act
             tuc.Execute(tuviewModel);
 
@@ -62,7 +58,6 @@ namespace WPFApp.Tests
             Assert.IsNull(tuviewModel.SelectedTreatment);
             Assert.IsNull(tuviewModel.Type);
             Assert.IsNull(tuviewModel.Name);
-
         }
 
         [TestMethod]
@@ -76,13 +71,11 @@ namespace WPFApp.Tests
             tuviewModel.SelectedTreatment = updatedViewModelTreatment;
             TreatmentUpdateCommand tuc = new TreatmentUpdateCommand();
 
-
             // Act
             bool result = tuc.CanExecute(tuviewModel);
 
             //Assert
             Assert.IsTrue(result);
-
         }
 
         [TestMethod]
@@ -93,16 +86,11 @@ namespace WPFApp.Tests
             tuviewModel.SelectedTreatment = null;
             TreatmentUpdateCommand tuc = new TreatmentUpdateCommand();
 
-
             // Act
             bool result = tuc.CanExecute(tuviewModel);
 
             //Assert
             Assert.IsFalse(result);
-
         }
-
-
-
-    }
+   }
 }

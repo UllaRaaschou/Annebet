@@ -8,7 +8,7 @@ namespace WPFApp.Models
 {
     public class TreatmentTESTRepository : ITreatmentRepository
     {
-        List<Treatment> treatments = new List<Treatment>();
+        public List<Treatment> treatments = new List<Treatment>();
         public int AddTreatment(Treatment treatment)
         {
             int idValue = (treatments.Count + 1);
