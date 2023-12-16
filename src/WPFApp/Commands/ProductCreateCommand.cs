@@ -69,7 +69,7 @@ namespace WPFApp.Commands
                 pcvm.Price = 0;
                 if (repository is ProductRepository)
                 {
-                    MessageBox.Show("Kunde oprettet");
+                    MessageBox.Show("Produkt oprettet");
                 }
             }
             else 

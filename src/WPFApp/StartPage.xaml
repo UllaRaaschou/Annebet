@@ -21,7 +21,7 @@
         <Label Content="behandlinger" HorizontalAlignment="Left" Margin="490,123,0,0" VerticalAlignment="Top" FontSize="20"/>
         <Button x:Name="Bt_OpretBehandling" Content="Opret &#xA;Behandling" HorizontalAlignment="Left" Margin="477,178,0,0" VerticalAlignment="Top" Height="39" Width="154" Click="Bt_OpretBehandling_Click"/>
         <Button x:Name="Bt_OpdaterBehandling" Content="Opdater  Behandling" HorizontalAlignment="Left" Margin="477,242,0,0" VerticalAlignment="Top" Height="39" Width="154" Click="Bt_OpdaterBehandling_Click"/>
-        <Button x:Name="Bt_SletBehandling" Content="Slet &#xA;Behandling" HorizontalAlignment="Left" Margin="477,307,0,0" VerticalAlignment="Top" Height="39" Width="154" Click="Bt_SletKunde_Click"/>
+        <Button x:Name="Bt_SletBehandling" Content="Slet &#xA;Behandling" HorizontalAlignment="Left" Margin="477,307,0,0" VerticalAlignment="Top" Height="39" Width="154" Click="Bt_SletBehandling_Click"/>
 
     </Grid>
 </Page>
