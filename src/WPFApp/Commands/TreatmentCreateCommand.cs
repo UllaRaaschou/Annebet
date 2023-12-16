@@ -86,7 +86,10 @@ namespace WPFApp.Commands
                 tcvm.Description = null;
                 tcvm.Price = 0;
 
-                MessageBox.Show("Behandling oprettet");           
+                if (repository is TreatmentRepository)
+                {
+                    MessageBox.Show("Behandling oprettet");
+                }
             }
             else throw new Exception("Wrong type of paratemer");
         }       

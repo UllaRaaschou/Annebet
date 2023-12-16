@@ -83,7 +83,10 @@ namespace WPFApp.Commands
                 tdvm.Type = null;
                 tdvm.Name = null;
 
-                MessageBox.Show("Behandling slettet");
+                if (repository is TreatmentRepository)
+                {
+                    MessageBox.Show("Behandling oprettet");
+                }
             }
             else throw new Exception("Wrong type of parameter");
         }

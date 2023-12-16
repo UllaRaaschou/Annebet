@@ -79,7 +79,10 @@ namespace WPFApp.Commands
                 tuvm.SelectedTreatment.Description = null!;
                 tuvm.SelectedTreatment.Price = 0m;
 
-                MessageBox.Show("Behandling er opdateret");
+                if (repository is TreatmentRepository)
+                {
+                    MessageBox.Show("Behandling oprettet");
+                }
             }
             else throw new Exception("Error");
         }
