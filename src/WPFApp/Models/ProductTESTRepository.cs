@@ -49,7 +49,19 @@ namespace WPFApp.Models
 
         public void DeleteProductById(int id)
         {
-            throw new NotImplementedException();
+            Product product2 = null;
+            foreach (Product product in products)
+            {
+                if (product.Id == id)
+                {
+                    product2 = product;
+                    break;
+                }
+            }
+            if (product2 != null)
+            {
+                products.Remove(product2);
+            }
         }
     }
 }

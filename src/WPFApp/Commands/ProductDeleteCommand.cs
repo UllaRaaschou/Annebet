@@ -24,16 +24,15 @@ namespace WPFApp.Commands
             remove { CommandManager.RequerySuggested -= value; }
         }
 
-        private IProductRepository repository;
-
-        public ProductDeleteCommand()
+        private IProductRepository repository; // simpel deklarering af repo. Dette kan skiftes afhængigt af den anvendte konstructor
+        public ProductDeleteCommand()  // Constructor, der som default vil blive aktiveret og som sætter repo-feltet til det almindelige CustomerReposity
         {
             this.repository = new ProductRepository();
         }
-
-        public ProductDeleteCommand(IProductRepository repository)
+        public ProductDeleteCommand(IProductRepository repository)  // Constuctor, der kan bruges, når vi i unit-test bruger Test-repo som parameter,
+                                                                    // og vi dermed sætter repo-feltet til test-Repo
         {
-            this.repository = new ProductTESTRepository();
+            this.repository = repository;
         }
 
         public bool CanExecute(object? parameter)
