@@ -39,7 +39,21 @@ namespace WPFApp.Commands
 
         public bool CanExecute(object? parameter)
         {
-            return true;
+            bool result = false;  // parameteren sættes i første omgang til false
+
+            if (parameter is ProductUpdateViewModel tuvm) // tjek af parameter som datekontext
+            {
+                if (tuvm.SelectedProduct != null) // tjek af, at der er valgt et selected item
+                {
+                    if (tuvm.SelectedProduct.Type != null && tuvm.SelectedProduct.Name != null // tjek af, om selected items properties alle er sat
+                        && tuvm.SelectedProduct.Description != null && tuvm.SelectedProduct.Price != null)
+                    {
+                        result = true; // hvis ja, sættes parameter til true
+                    }
+                }
+                return result; // parameter returneres
+            }
+            return false; // hvis parametertjek fejler, returneres false
         }
 
         public void Execute(object? parameter)

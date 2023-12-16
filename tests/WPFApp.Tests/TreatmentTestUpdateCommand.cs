@@ -10,7 +10,7 @@ using WPFApp.ViewModels;
 namespace WPFApp.Tests
 {
     [TestClass]
-    public class CustomerUpdateCommandTests
+    public class TreatmentUpdateCommandTests
     {
         [TestMethod]
         public void TestExecute()
