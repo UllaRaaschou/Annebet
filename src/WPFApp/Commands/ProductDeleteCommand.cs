@@ -24,6 +24,18 @@ namespace WPFApp.Commands
             remove { CommandManager.RequerySuggested -= value; }
         }
 
+        private IProductRepository repository;
+
+        public ProductDeleteCommand()
+        {
+            this.repository = new ProductRepository();
+        }
+
+        public ProductDeleteCommand(IProductRepository repository)
+        {
+            this.repository = new ProductTESTRepository();
+        }
+
         public bool CanExecute(object? parameter)
         {
             bool result = false; // variablen sættes i første omgang til false
@@ -47,9 +59,11 @@ namespace WPFApp.Commands
         {
             if (parameter is ProductDeleteViewModel pdvm) // tjek af parameter
             {
-                ProductRepository productRepo = new ProductRepository();  // Instantiering af ProductRepo
-                productRepo.DeleteProductById(pdvm.SelectedProduct.Id); // Repo deleter selected Product fra db
-                MessageBox.Show("Produkt slettet");
+                repository.DeleteProductById(pdvm.SelectedProduct.Id); // Repo deleter selected Product fra db
+                if (repository is ProductRepository)
+                {
+                    MessageBox.Show("Produkt slettet");
+                }
                 pdvm.SelectedProduct = null;// Tekstbokse nulstilles
                 pdvm.Type = null;
                 pdvm.Name = null;

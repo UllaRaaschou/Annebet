@@ -26,6 +26,9 @@ namespace WPFApp.Commands
             remove { CommandManager.RequerySuggested -= value; }
         }
 
+       
+
+
 
         /// <summary>
         /// Metode, der undersøger, om Execute skal afvikles.

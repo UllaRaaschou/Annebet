@@ -76,7 +76,10 @@ namespace WPFApp.Commands
                 cdvm.FirstName = null;
                 cdvm.LastName = null;
 
-                MessageBox.Show("Kunde slettet");
+                if (repository is CustomerRepository)
+                {
+                    MessageBox.Show("Kunde slettet");
+                }
             }
 
             else throw new Exception("Wrong type of parameter");

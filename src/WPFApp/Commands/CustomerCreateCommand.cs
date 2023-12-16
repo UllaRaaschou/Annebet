@@ -88,7 +88,11 @@ namespace WPFApp.Commands
                 ccvm.FirstName = null;
                 ccvm.LastName = null;
 
-                MessageBox.Show("Kunde oprettet");
+                if(repository is CustomerRepository)
+                {
+                    MessageBox.Show("Kunde oprettet");
+                }
+                
                 
             }
             else throw new Exception("Wrong type of paratemer");

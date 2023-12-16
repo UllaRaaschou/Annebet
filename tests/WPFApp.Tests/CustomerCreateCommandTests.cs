@@ -92,6 +92,7 @@ namespace WPFApp.Tests
 
         }
 
+        [TestMethod]
         public void TestCanExecuteWithNullValueInViewModelProperties()
         {
             // Arrange

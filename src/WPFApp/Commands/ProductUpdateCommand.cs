@@ -24,6 +24,19 @@ namespace WPFApp.Commands
             remove { CommandManager.RequerySuggested -= value; }
         }
 
+        private IProductRepository repository;
+
+        public ProductUpdateCommand()
+        {
+            this.repository = new ProductRepository();
+        }
+
+        public ProductUpdateCommand(IProductRepository repository)
+        {
+            this.repository = new ProductTESTRepository();
+        }
+
+
         public bool CanExecute(object? parameter)
         {
             return true;
@@ -35,9 +48,13 @@ namespace WPFApp.Commands
             {
                 Product updatedProduct = Product.CreateProductFromDb(puvm.SelectedProduct.Id, puvm.SelectedProduct.Type, puvm.SelectedProduct.Name,
                     puvm.SelectedProduct.Description, puvm.SelectedProduct.Price);
-                ProductRepository productRepo = new ProductRepository();
-                productRepo.UpdateProduct(updatedProduct);
-                MessageBox.Show("Produkt er opdateret");
+                
+                repository.UpdateProduct(updatedProduct);
+                if(repository is ProductRepository) 
+                {
+                    MessageBox.Show("Produkt er opdateret");
+                }
+                    
             }
         }
     }

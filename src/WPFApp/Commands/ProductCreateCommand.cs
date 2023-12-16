@@ -25,6 +25,18 @@ namespace WPFApp.Commands
             remove { CommandManager.RequerySuggested -= value; }
         }
 
+        private IProductRepository repository;
+
+        public ProductCreateCommand() 
+        {
+            this.repository = new ProductRepository();
+        }
+
+        public ProductCreateCommand(IProductRepository repository)
+        {
+            this.repository = new ProductTESTRepository();
+        }
+
         public bool CanExecute(object? parameter)
         {
             bool result = false;  // variablen sættes i første omgang til false
@@ -57,7 +69,10 @@ namespace WPFApp.Commands
                 pcvm.Name = null;
                 pcvm.Description = null;
                 pcvm.Price = 0;
-                MessageBox.Show("Produkt oprettet");
+                if (repository is ProductRepository)
+                {
+                    MessageBox.Show("Kunde oprettet");
+                }
             }
             else 
             {

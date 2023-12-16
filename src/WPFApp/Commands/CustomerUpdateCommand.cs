@@ -70,7 +70,10 @@ namespace WPFApp.Commands
                 cuvm.SelectedCustomer = null; // Tekstboksenes indhold nulstilles
                 cuvm.FirstName = null;
                 cuvm.LastName = null;
-                MessageBox.Show("Kunde opdateret");
+                if (repository is CustomerRepository)
+                {
+                    MessageBox.Show("Kunde opdateret");
+                }
 
 
             }
