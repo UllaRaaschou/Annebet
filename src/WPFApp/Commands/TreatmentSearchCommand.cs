@@ -26,7 +26,7 @@ namespace WPFApp.Commands
 
         private ITreatmentRepository repository;
 
-        public TreatmentSearchCommand() 
+        public TreatmentSearchCommand()
         {
             this.repository = new TreatmentRepository();
         }
@@ -36,7 +36,7 @@ namespace WPFApp.Commands
             this.repository = repository;
         }
 
-    
+
 
 
         /// <summary>
@@ -90,7 +90,7 @@ namespace WPFApp.Commands
 
                 // Dens repo henter ønskede produkter
                 List<Treatment> trueTreatments = repository.GetAllTreatments(tuvm.Type, tuvm.Name);
-                
+
                 foreach (Treatment t in trueTreatments)
                 {
                     // De hentede Treatments converteres til ViewModels
@@ -108,7 +108,7 @@ namespace WPFApp.Commands
 
                 // Dens repo henter ønskede treatments
                 List<Treatment> trueTreatments = repository.GetAllTreatments(tdvm.Type, tdvm.Name);
-               
+
                 foreach (Treatment t in trueTreatments)
                 {
                     // De hentede treatments omdannes til ViewModels
