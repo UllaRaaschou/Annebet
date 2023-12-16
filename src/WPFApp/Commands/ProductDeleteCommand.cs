@@ -24,6 +24,17 @@ namespace WPFApp.Commands
             remove { CommandManager.RequerySuggested -= value; }
         }
 
+        private IProductRepository repository; // simpel deklarering af repo. Dette kan skiftes afhængigt af den anvendte konstructor
+        public ProductDeleteCommand()  // Constructor, der som default vil blive aktiveret og som sætter repo-feltet til det almindelige CustomerReposity
+        {
+            this.repository = new ProductRepository();
+        }
+        public ProductDeleteCommand(IProductRepository repository)  // Constuctor, der kan bruges, når vi i unit-test bruger Test-repo som parameter,
+                                                                    // og vi dermed sætter repo-feltet til test-Repo
+        {
+            this.repository = repository;
+        }
+
         public bool CanExecute(object? parameter)
         {
             bool result = false; // variablen sættes i første omgang til false
@@ -47,8 +58,7 @@ namespace WPFApp.Commands
         {
             if (parameter is ProductDeleteViewModel pdvm) // tjek af parameter
             {
-                ProductRepository productRepo = new ProductRepository();  // Instantiering af ProductRepo
-                productRepo.DeleteProductById(pdvm.SelectedProduct.Id); // Repo deleter selected Product fra db
+                repository.DeleteProductById(pdvm.SelectedProduct.Id); // Repo deleter selected Product fra db
                 MessageBox.Show("Produkt slettet");
                 pdvm.SelectedProduct = null;// Tekstbokse nulstilles
                 pdvm.Type = null;
