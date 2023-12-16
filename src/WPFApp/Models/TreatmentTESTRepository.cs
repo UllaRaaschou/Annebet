@@ -12,8 +12,8 @@ namespace WPFApp.Models
         public int AddTreatment(Treatment treatment)
         {
             int idValue = (treatments.Count + 1);
-            Treatment treatmentWithId = Treatment.CreateTreatmentFromDb(idValue, treatment.Type, treatment.Name, 
-                treatment.Description, treatment.Price);              
+            Treatment treatmentWithId = Treatment.CreateTreatmentFromDb(idValue, treatment.Type, treatment.Name,
+                treatment.Description, treatment.Price);
             treatments.Add(treatmentWithId);
             return idValue;
         }
@@ -35,29 +35,42 @@ namespace WPFApp.Models
 
         public void UpdateTreatment(Treatment treatmentWithUpdatedValues)
         {
+            Treatment treatment2 = null;
+
             foreach (Treatment treatment in treatments)
             {
                 if (treatment.Id == treatmentWithUpdatedValues.Id)
                 {
-                    treatments.Remove(treatment);
-                    treatments.Add(Treatment.CreateTreatmentFromDb(treatmentWithUpdatedValues.Id, treatmentWithUpdatedValues.Type,
-                        treatmentWithUpdatedValues.Name, treatmentWithUpdatedValues.Description, treatmentWithUpdatedValues.Price));
+                    treatment2 = treatment;
+                    break;
 
                 }
+
+            }
+            if (treatment2 != null)
+            {
+                treatments.Remove(treatment2);
+                treatments.Add(Treatment.CreateTreatmentFromDb(treatmentWithUpdatedValues.Id, treatmentWithUpdatedValues.Type,
+                    treatmentWithUpdatedValues.Name, treatmentWithUpdatedValues.Description, treatmentWithUpdatedValues.Price
+                    ));
+
             }
         }
-
         public void DeleteTreatmentById(int id)
         {
+            Treatment treatment2 = null;
             foreach (Treatment treatment in treatments)
             {
                 if (treatment.Id == id)
                 {
-                    treatments.Remove(treatment);
-                    
+                    treatment2 = treatment;
+                    break;
                 }
             }
-
+            if (treatment2 != null)
+            {
+                treatments.Remove(treatment2);
+            }
         }
     }
 }

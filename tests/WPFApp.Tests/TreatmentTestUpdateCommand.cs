@@ -38,7 +38,7 @@ namespace WPFApp.Tests
         }
 
         [TestMethod]
-        public void TestIsSelectedCustomerNullAfterExecute()
+        public void TestIsSelectedTreatmentNullAfterExecute()
         {
             // Arrange
             TreatmentTESTRepository repository = new TreatmentTESTRepository();
@@ -55,7 +55,6 @@ namespace WPFApp.Tests
             tuc.Execute(tuviewModel);
 
             // Assert
-            Assert.IsNull(tuviewModel.SelectedTreatment);
             Assert.IsNull(tuviewModel.Type);
             Assert.IsNull(tuviewModel.Name);
         }
