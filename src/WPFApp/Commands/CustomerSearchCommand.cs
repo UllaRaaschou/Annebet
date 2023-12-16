@@ -36,10 +36,14 @@ namespace WPFApp.Commands
                                                                      // og vi dermed sætter repo-feltet til test-Repo
         {
             this.repository = repository;
-        }   
+        }
 
 
 
+        /// <summary>
+        /// Metode, der undersøger, om Execute skal afvikles.
+        /// Parameteren er i xaml-koden sat som "CommandParameter = Binding", og datakontekst er i code behind sat til cdvm.
+        /// </summary>
         public bool CanExecute(object? parameter)
         {
             bool result = false;  // result sættes til false fra start

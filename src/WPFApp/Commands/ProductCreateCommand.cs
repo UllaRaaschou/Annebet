@@ -76,7 +76,8 @@ namespace WPFApp.Commands
             {
                 throw new NotImplementedException();
             }
-            else throw new Exception("Wrong type of parameter");
+            
         }
+        
     }
 }
