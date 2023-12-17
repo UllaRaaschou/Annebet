@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -30,8 +31,9 @@ namespace WPFApp.Models
         /// </summary>    
         public static Product CreateProductFromDb(int id, string type, string name, string description, decimal price)
         {
-            Product product = new Product(id, type, name, description, price);
-            return product;
+            return new Product(id, type, name, description, price);
+            //Product product = new Product(id, type, name, description, price);
+            //return product;
         }
 
 

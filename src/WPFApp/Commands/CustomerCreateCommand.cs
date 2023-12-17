@@ -15,6 +15,7 @@ namespace WPFApp.Commands
     public class CustomerCreateCommand : ICommand  // Nedarvning fra interfacet ICommand
     {
         
+
         /// <summary>
         /// CanExecuteChanged-eventet har fået add'et et RequerySuggested-event. 
         /// Requery udløses så snart WPF mener, at command properties skal re-evalueres - ofte sfa bruger-acts.
@@ -38,9 +39,9 @@ namespace WPFApp.Commands
                                                                       // og vi dermed sætter repo-feltet til test-Repo
         {
             this.repository = repository;
-        }  
+        }
 
-
+        
 
         /// <summary>
         /// Metode, der undersøger, om Execute skal afvikles.
