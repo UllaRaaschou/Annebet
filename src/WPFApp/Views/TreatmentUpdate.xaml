@@ -9,7 +9,7 @@
       Title="TreatmentUpdate">
 
     <Grid Background="White">
-        <Label Content="Slet behandling" HorizontalAlignment="Left" Margin="350,20,0,0" VerticalAlignment="Top" Height="37" Width="108"/>
+        <Label Content="Opdater behandling" HorizontalAlignment="Left" Margin="350,20,0,0" VerticalAlignment="Top" Height="37" Width="140"/>
         <Label Content="Type" HorizontalAlignment="Left" Margin="249,79,0,0" VerticalAlignment="Top" Height="26" Width="49"/>
         <TextBox x:Name="Tb_Type" HorizontalAlignment="Left" Margin="338,83,0,0" TextWrapping="Wrap" Text="{Binding Type, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="Tb_Navn" HorizontalAlignment="Left" Margin="338,127,0,0" TextWrapping="Wrap" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>

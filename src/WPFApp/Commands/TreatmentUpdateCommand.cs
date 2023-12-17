@@ -77,18 +77,18 @@ namespace WPFApp.Commands
 
                 // Repo opdaterer Treatment
                 repository.UpdateTreatment(updatedTreatment);
-                tuvm.SelectedTreatment.Id = 0;
-                tuvm.SelectedTreatment.Type = null!;
-                tuvm.SelectedTreatment.Name = null!;
-                tuvm.SelectedTreatment.Description = null!;
-                tuvm.SelectedTreatment.Price = 0m;
+                tuvm.Type = null;
+                tuvm.Name = null;
+                tuvm.SelectedTreatment = null;
+                tuvm.TreatmentsToView.Clear();
+                
 
                 if (repository is TreatmentRepository)
                 {
-                    MessageBox.Show("Behandling oprettet");
+                    MessageBox.Show("Behandling opdateret");
                 }
             }
-            else throw new Exception("Wrong type of parameter");
+           
         }
     }
 }

@@ -72,6 +72,7 @@ namespace WPFApp.Commands
         {
             if(parameter is ProductUpdateViewModel puvm) // tjek af parameter og datacontext
             {
+                puvm.ProductsToView.Clear(); //  Observable collection tømmes for eventuelle items
                 ProductToViewModel ptvm = new ProductToViewModel(); // Procuct-to-Viewodel-Converter instantieres
                 List <Product> trueProducts = repository.GetAllProducts(puvm.Type, puvm.Name); // Dens repo henter ønskede produkter
                 foreach (Product p in trueProducts) 
@@ -82,6 +83,7 @@ namespace WPFApp.Commands
             }
             else if (parameter is ProductDeleteViewModel pdvm)
             {
+                pdvm.ProductsToView.Clear(); //  Observable collection tømmes for eventuelle items
                 ProductToViewModel ptvm = new ProductToViewModel(); // Procuct-to-Viewodel-Converter instantieres
                 List<Product> trueProducts = repository.GetAllProducts(pdvm.Type, pdvm.Name); // Dens repo henter ønskede produkter
                 foreach (Product p in trueProducts)

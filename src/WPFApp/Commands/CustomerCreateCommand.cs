@@ -88,7 +88,6 @@ namespace WPFApp.Commands
                     MessageBox.Show("Kunde oprettet");
                 }                               
             }
-            else throw new Exception("Wrong type of paratemer");
-       }
+        }
     }
 }

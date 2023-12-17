@@ -86,6 +86,8 @@ namespace WPFApp.Commands
             // Parameter tjekkes
             if (parameter is TreatmentUpdateViewModel tuvm)
             {
+                tuvm.TreatmentsToView.Clear(); // Observable Collection tømmes for eventuelle items
+
                 // Treatment-to-Viewodel-Converter instantieres
                 var ttvm = new TreatmentToViewModel();
 
@@ -104,6 +106,8 @@ namespace WPFApp.Commands
             // Parameter tjekkes
             else if (parameter is TreatmentDeleteViewModel tdvm)
             {
+                tdvm.TreatmentsToView.Clear(); // Observable Collection tømmes for eventuelle items
+
                 // Treatment-to-Viewodel-Converter instantieres
                 TreatmentToViewModel ttvm = new TreatmentToViewModel();
 

@@ -82,6 +82,7 @@ namespace WPFApp.Commands
 
                 cdvm.FirstName = null;
                 cdvm.LastName = null;
+                cdvm.CustomersToView.Clear();
 
                 if (repository is CustomerRepository)
                 {

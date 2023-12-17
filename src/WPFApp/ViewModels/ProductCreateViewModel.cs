@@ -52,7 +52,7 @@ namespace WPFApp.ViewModels
             set
             {
                 description = value;
-                OnPropertyChanged(nameof(name));
+                OnPropertyChanged(nameof(description));
             }
         }
 

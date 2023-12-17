@@ -77,6 +77,7 @@ namespace WPFApp.Commands
         {
             if (parameter is CustomerUpdateViewModel cuvm) // Hvis datekontekst er cuvm
             {
+                cuvm.CustomersToView.Clear(); //  Observable collection tømmes for eventuelle items
                 CustomerToViewModel ctvm = new CustomerToViewModel(); // Customer-til-ViemModel-Converter instantieres
                 List<Customer> trueCustomers = repository.GetAllCustomers(cuvm.FirstName, cuvm.LastName); // Dens CustomerRepo henter Customers ud fra kriterier
                 foreach (Customer c in trueCustomers)
@@ -88,6 +89,7 @@ namespace WPFApp.Commands
 
             if (parameter is CustomerDeleteViewModel cdvm) // Hvis datekontekst er cdvm
             {
+                cdvm.CustomersToView.Clear(); //  Observable collection tømmes for eventuelle items
                 CustomerToViewModel ctvm = new CustomerToViewModel(); // Customer-til-ViemModel-Converter instantieres
                 List<Customer> trueCustomers = repository.GetAllCustomers(cdvm.FirstName, cdvm.LastName); // CustomerRepo henter Customers ud fra kriterier
                 foreach (Customer c in trueCustomers)

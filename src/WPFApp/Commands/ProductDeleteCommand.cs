@@ -76,6 +76,8 @@ namespace WPFApp.Commands
                 pdvm.SelectedProduct = null;// Tekstbokse nulstilles
                 pdvm.Type = null;
                 pdvm.Name = null;
+
+                pdvm.ProductsToView.Clear();
             }
             else throw new Exception("Wrong type of parameter");
         }

@@ -49,7 +49,7 @@ namespace WPFApp.ViewModels
             set
             {
                 type = value;
-                OnPropertyChanged(nameof(Type));
+                OnPropertyChanged(nameof(type));
             }
         }
 
@@ -61,7 +61,7 @@ namespace WPFApp.ViewModels
             set
             {
                 name = value;
-                OnPropertyChanged(nameof(Type));
+                OnPropertyChanged(nameof(name));
             }
         }
 

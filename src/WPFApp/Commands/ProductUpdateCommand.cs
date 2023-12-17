@@ -75,6 +75,9 @@ namespace WPFApp.Commands
                 puvm.SelectedProduct = null; // Tekstboksenes indhold nulstilles
                 puvm.Type = null;
                 puvm.Name = null;
+
+                puvm.ProductsToView.Clear();
+
                 repository.UpdateProduct(updatedProduct);
                 if(repository is ProductRepository) 
                 {

@@ -84,6 +84,8 @@ namespace WPFApp.Commands
                 tdvm.Type = null;
                 tdvm.Name = null;
 
+                tdvm.TreatmentsToView.Clear();
+
                 if (repository is TreatmentRepository)
                 {
                     MessageBox.Show("Behandling oprettet");

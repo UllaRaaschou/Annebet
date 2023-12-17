@@ -55,7 +55,7 @@ namespace WPFApp.Commands
             {
                 // Det tjekkes, om alle nødvendige tekstbokse er udfyldt
                 if (tcvm.Type != null && tcvm.Name != null && tcvm.Description != null
-                    && tcvm.Price != 0)
+                    && tcvm.Price > 0)
                 {
                     // Så sættes variblen til true;
                     result = true;
@@ -91,7 +91,6 @@ namespace WPFApp.Commands
                     MessageBox.Show("Behandling oprettet");
                 }
             }
-            else throw new Exception("Wrong type of paratemer");
         }       
     }
 }

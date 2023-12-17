@@ -48,7 +48,7 @@ namespace WPFApp.Commands
             if (parameter is ProductCreateViewModel pcvm) // parameter tjekkes 
             {
                 if (pcvm.Type != null && pcvm.Name != null && pcvm.Description != null // Det tjekkes, om alle nødvendige tekstbokse er udfyldt
-                    && pcvm.Price != null)
+                    && pcvm.Price > 0)
                 {
                     result = true; // så sættes variblen til true;
                 }
@@ -72,16 +72,13 @@ namespace WPFApp.Commands
                 pcvm.Name = null;
                 pcvm.Description = null;
                 pcvm.Price = 0;
+
                 if (repository is ProductRepository)
                 {
                     MessageBox.Show("Produkt oprettet");
                 }
             }
-            else 
-            {
-                throw new NotImplementedException();
-            }
-            
+                        
         }
         
     }
