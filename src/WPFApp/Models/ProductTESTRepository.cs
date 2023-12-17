@@ -53,7 +53,7 @@ namespace WPFApp.Models
                     ));
             }
         }
-
+        adsadsdsa
         public void DeleteProductById(int id)
         {
             Product product2 = null;
