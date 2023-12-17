@@ -38,9 +38,9 @@ namespace WPFApp.Commands
                                                                       // og vi dermed sætter repo-feltet til test-Repo
         {
             this.repository = repository;
-        }  
+        }
 
-
+        
 
         /// <summary>
         /// Metode, der undersøger, om Execute skal afvikles.
