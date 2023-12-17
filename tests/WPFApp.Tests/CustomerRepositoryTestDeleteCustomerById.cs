@@ -20,7 +20,7 @@ namespace WPFApp.Tests
             {
                 // Arrange
                 CustomerRepository customerRepo = new CustomerRepository();
-                int newId = customerRepo.AddCustomer(Customer.CreateCustomerFromUI("Ninna", "Nielsen", "Bogensevej 20, 8600 Bogense", "33333333", "NinnaNielsen@gmail.com"));
+                int newId = customerRepo.AddCustomer(Customer.CreateCustomerFromUI("Ninna", "Nielsen", "Bogensevej 20, 8600 Bogense", "33334444", "NinnaNielsen@gmail.com"));
                 List<Customer> listOfNinnaNielsen = customerRepo.GetAllCustomers("Ninna", "Nielsen");
                 int count1 = listOfNinnaNielsen.Count();
                 

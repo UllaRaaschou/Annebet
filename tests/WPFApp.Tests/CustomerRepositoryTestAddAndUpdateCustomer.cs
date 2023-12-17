@@ -15,7 +15,7 @@ namespace WPFApp.Tests
         private Customer CreateUniqueCustomer()
         {
             Guid guid = Guid.NewGuid();
-            return Customer.CreateCustomerFromUI("uniqueName" + guid, "Petersen", "Granvej 5, 3000 Gryse", "789849302", "AnnaPetersen@gmail.com");
+            return Customer.CreateCustomerFromUI("uniqueName" + guid, "Petersen", "Granvej 5, 3000 Gryse", "98765432", "AnnaPetersen@gmail.com");
         }
 
         /// <summary>
@@ -25,7 +25,7 @@ namespace WPFApp.Tests
         private Customer CreateUniqueCustomer2(int id)
         {
             Guid guid = Guid.NewGuid();
-            return Customer.CreateCustomerFromDb(id, "uniqueName" + guid, "Petersen", "Granvej 5, 3000 Gryse", "789849302", "AnnaPetersen@gmail.com");
+            return Customer.CreateCustomerFromDb(id, "uniqueName" + guid, "Petersen", "Granvej 5, 3000 Gryse", "98765466", "AnnaPetersen@gmail.com");
         }
 
 

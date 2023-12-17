@@ -1,4 +1,6 @@
-﻿
+﻿DROP PROC sp_AddCustomer
+GO
+
 CREATE PROC sp_AddCustomer
 @firstName Nvarchar(50),
 @lastName Nvarchar(50),
@@ -13,6 +15,9 @@ VALUES(@firstName, @lastName, @address, @phone, @email);
 SELECT SCOPE_IDENTITY() AS NewId;
 END;
 
+GO
+
+DROP PROC sp_UpdateCustomer
 GO
 
 CREATE PROC sp_UpdateCustomer
@@ -35,32 +40,9 @@ END;
 
 GO
 
-CREATE PROC sp_GetCustomerById
-@customerId Int
-AS
-BEGIN
-SELECT FirstName, LastName, [Address], Phone, Email, PK_CustomerId from dbo.Customer WHERE PK_CustomerId = @customerId
-END;
 
+DROP PROC sp_GetAllCustomers
 GO
-
-
-CREATE PROC sp_GetCustomerById
-@customerId Int
-AS
-BEGIN
-SELECT PK_CustomerId, FirstName, LastName, [Address], Phone, Email from dbo.Customer WHERE PK_CustomerId = @customerId
-END;
-
-GO
-
-CREATE PROC sp_GetAllCustomers
-AS
-BEGIN
-SELECT * FROM dbo.CUSTOMER 
-END;
-
-GO 
 
 CREATE PROC sp_GetAllCustomers
 @firstName Nvarchar(50),
@@ -72,6 +54,9 @@ END;
 
 GO 
 
+DROP PROC sp_DeleteCustomerById
+GO
+
 CREATE PROC sp_DeleteCustomerById
 @customerId Int
 AS
@@ -79,6 +64,10 @@ BEGIN
 Delete FROM dbo.CUSTOMER WHERE PK_CustomerId = @customerId
 END;
 
+GO
+
+
+DROP PROC sp_AddSalesItem
 GO
 
 CREATE PROC sp_AddSalesItem
@@ -97,7 +86,10 @@ END;
 
 GO
 
-CREATE PROC sp_GetAllSalesItemsFromCategoryAndTypeAndName
+DROP PROC sp_GetAllSalesItems
+GO
+
+CREATE PROC sp_GetAllSalesItems
 @category Nvarchar(50),
 @type Nvarchar(50),
 @name Nvarchar(100)
@@ -109,12 +101,7 @@ END;
 
 GO
 
-CREATE PROC sp_GetAllSalesItems
-AS
-BEGIN
-SELECT * FROM dbo.SALESITEM_PRODUCT_TREATMENT
-END;
-
+DROP PROC sp_UpdateSalesItem
 GO
 
 CREATE PROC sp_UpdateSalesItem
@@ -137,14 +124,7 @@ END;
 
 GO
 
-CREATE PROC sp_GetSalesItemFromId
-@id int
-AS
-BEGIN
-SELECT Category, [Type], [Name], [Description], Price FROM dbo.SALESITEM_PRODUCT_TREATMENT
-WHERE PK_SalesItemId_Product_Treatment = @id
-END;
-
+DROP PROC sp_DeleteSalesItemById
 GO
 
 CREATE PROC sp_DeleteSalesItemById

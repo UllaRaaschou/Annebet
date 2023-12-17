@@ -21,7 +21,7 @@ namespace WPFApp.Tests
             CustomerUpdateViewModel viewModel = new CustomerUpdateViewModel();
             Customer startCustomer = Customer.CreateCustomerFromDb(2, "", "", "", "", "");
             repository.customers.Add(startCustomer);
-            Customer updatedCustomer = Customer.CreateCustomerFromDb(2, "Mikkel", "Madsen", "Munkevej 3", "67789", "munk@gmail.com");
+            Customer updatedCustomer = Customer.CreateCustomerFromDb(2, "Mikkel", "Madsen", "Munkevej 3", "67781111", "munk@gmail.com");
             CustomerToViewModel viewModelCustomer = new CustomerToViewModel();
             CustomerToViewModel updatedViewModelCustomer = viewModelCustomer.CustomerToViewModelConvert(updatedCustomer);
             viewModel.SelectedCustomer = updatedViewModelCustomer;
@@ -35,7 +35,7 @@ namespace WPFApp.Tests
             Assert.AreEqual(repository.customers[0].FirstName, "Mikkel");
             Assert.AreEqual(repository.customers[0].LastName, "Madsen");
             Assert.AreEqual(repository.customers[0].Address, "Munkevej 3");
-            Assert.AreEqual(repository.customers[0].Phone, "67789");
+            Assert.AreEqual(repository.customers[0].Phone, "67781111");
             Assert.AreEqual(repository.customers[0].Email, "munk@gmail.com");
 
         }

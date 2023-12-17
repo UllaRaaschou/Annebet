@@ -15,7 +15,7 @@ namespace WPFApp.Tests
         private Customer CreateUniqueCustomer() 
         {
             Guid guid = Guid.NewGuid();
-            return Customer.CreateCustomerFromUI("uniqueName" + guid, "Petersen", "Granvej 5, 3000 Gryse", "789849302", "AnnaPetersen@gmail.com");
+            return Customer.CreateCustomerFromUI("uniqueName" + guid, "Petersen", "Granvej 5, 3000 Gryse", "74765432", "AnnaPetersen@gmail.com");
         }
 
 
@@ -47,7 +47,7 @@ namespace WPFApp.Tests
                 Assert.AreEqual(listOfuniqueCustomer[0].FirstName, uniqueCustomer.FirstName);
                 Assert.AreEqual(listOfuniqueCustomer[0].LastName, "Petersen");
                 Assert.AreEqual(listOfuniqueCustomer[0].Address, "Granvej 5, 3000 Gryse");
-                Assert.AreEqual(listOfuniqueCustomer[0].Phone, "789849302");
+                Assert.AreEqual(listOfuniqueCustomer[0].Phone, "74765432");
                 Assert.AreEqual(listOfuniqueCustomer[0].Email, "AnnaPetersen@gmail.com");
             }
             

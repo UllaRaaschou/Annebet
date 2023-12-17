@@ -16,7 +16,7 @@ BEGIN
     )
     BEGIN
         DECLARE @ErrorMessageExists NVARCHAR(1000);
-        SET @ErrorMessageExists = 'Fejl: Duplicate Customer found. INSERT operation aborted.';
+        SET @ErrorMessageExists = 'Kunden er oprettet i forvejen, aktuelle kunde er ikke tilføjet i databasen.';
         THROW 50000, @ErrorMessageExists, 1;
     END
 
@@ -29,7 +29,7 @@ BEGIN
         )
         BEGIN
 			DECLARE @ErrorMessagePhoneLength NVARCHAR(1000);
-			SET @ErrorMessagePhoneLength = 'Phone Number must be 8 characters and not Null. INSERT operation aborted';
+			SET @ErrorMessagePhoneLength = 'Telefonnummer skal være præcis 8 karakterer langt, aktulle kunder er ikke tilføjet i databasen';
             THROW 50000, @ErrorMessagePhoneLength, 1;
         END
 	
@@ -60,7 +60,7 @@ BEGIN
     )
     BEGIN
         DECLARE @ErrorMessageExists NVARCHAR(1000);
-        SET @ErrorMessageExists = 'Fejl: Duplicate product og treatment found. INSERT operation aborted.';
+        SET @ErrorMessageExists = 'Produktet eller behandlingen er oprettet i forvejen og aktuelle produkt/behandling er ikke tilføjet i databasen.';
         THROW 50000, @ErrorMessageExists, 1;
     END
     
@@ -71,7 +71,7 @@ BEGIN
     )
     BEGIN
         DECLARE @ErrorMessageType NVARCHAR(1000);
-        SET @ErrorMessageType = 'Fejl: Category skal være enten ''Product'' eller ''Treatment''. INSERT operationen blev afbrudt.';
+        SET @ErrorMessageType = 'Kategori skal enten være af typen produkt eller behandling, og aktuelle produkt/behandling er ikke tilføjet i databasen .';
         THROW 50000, @ErrorMessageType, 1;
 	END
 	

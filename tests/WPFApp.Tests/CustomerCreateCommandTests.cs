@@ -27,7 +27,7 @@ namespace WPFApp.Tests
             viewModel.FirstName = "Karen";
             viewModel.LastName = "Kost";
             viewModel.Address = "Kirkevej 4, 4000 Roskilde";
-            viewModel.Phone = "1234567";
+            viewModel.Phone = "12345678";
             viewModel.Email = "Karen@gmail.com";
 
             // Act
@@ -38,7 +38,7 @@ namespace WPFApp.Tests
             Assert.AreEqual(repository.customers[0].FirstName, "Karen");
             Assert.AreEqual(repository.customers[0].LastName, "Kost");
             Assert.AreEqual(repository.customers[0].Address, "Kirkevej 4, 4000 Roskilde");
-            Assert.AreEqual(repository.customers[0].Phone, "1234567");
+            Assert.AreEqual(repository.customers[0].Phone, "12345678");
             Assert.AreEqual(repository.customers[0].Email, "Karen@gmail.com");
         }
 

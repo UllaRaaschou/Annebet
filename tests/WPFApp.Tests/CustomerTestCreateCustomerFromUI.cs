@@ -14,7 +14,7 @@ namespace WPFApp.Tests
             string firstName = "Jens";
             string lastName = "Hansen";
             string address = "Enebærvej 17, 4000 Roskilde";
-            string phone = "1234567890";
+            string phone = "12345678";
             string email = "JensHansen@gmail.com";
 
             // Act
@@ -24,7 +24,7 @@ namespace WPFApp.Tests
             Assert.AreEqual("Jens", customer.FirstName);
             Assert.AreEqual("Hansen", customer.LastName);
             Assert.AreEqual("Enebærvej 17, 4000 Roskilde", customer.Address);
-            Assert.AreEqual("1234567890", customer.Phone);
+            Assert.AreEqual("12345678", customer.Phone);
             Assert.AreEqual("JensHansen@gmail.com", customer.Email);
             
                            

@@ -53,7 +53,7 @@ namespace WPFApp.Models
                     catch (Exception ex) // udstiller en eventuel fejlmeddelelse
                     {
                         throw new Exception("Det var ikke muligt at tilføje en kunde til databasen", ex);
-                      
+
                     }
                 }
             }

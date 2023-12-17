@@ -20,7 +20,7 @@ namespace WPFApp.Tests
                                                                                 //Test - repo bruges som parameter i vores Command-Construcor, hvorved vi skifter fra brug
                                                                                 // af løsningens normale repo til vores testRepo.
 
-            Customer customer = Customer.CreateCustomerFromDb(3, "Minna", "Olsen", "Minnavej 3", "52627", "Minna@gmail.com");
+            Customer customer = Customer.CreateCustomerFromDb(3, "Minna", "Olsen", "Minnavej 3", "52627888", "Minna@gmail.com");
             repository.customers.Add(customer);
 
             CustomerDeleteCommand cdc = new CustomerDeleteCommand(repository);

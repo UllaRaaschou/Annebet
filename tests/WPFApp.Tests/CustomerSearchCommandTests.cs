@@ -17,8 +17,8 @@ namespace WPFApp.Tests
         {
             // Arrange
             CustomerTESTRepository repository = new CustomerTESTRepository();
-            repository.customers.Add(Customer.CreateCustomerFromDb(4, "Lotte", "Hansen", "Lottevej 3", "8765", "Lotte@gmail.com"));
-            repository.customers.Add(Customer.CreateCustomerFromDb(7, "Lotte", "Hansen", "Skovvej 5", "98765", "Hansen@gmail.com"));
+            repository.customers.Add(Customer.CreateCustomerFromDb(4, "Lotte", "Hansen", "Lottevej 3", "87654444", "Lotte@gmail.com"));
+            repository.customers.Add(Customer.CreateCustomerFromDb(7, "Lotte", "Hansen", "Skovvej 5", "98765555", "Hansen@gmail.com"));
             CustomerSearchCommand csc = new CustomerSearchCommand(repository);
             CustomerUpdateViewModel viewModel = new CustomerUpdateViewModel();  
             viewModel.FirstName = "Lotte";
@@ -39,8 +39,8 @@ namespace WPFApp.Tests
         {
             // Arrange
             CustomerTESTRepository repository = new CustomerTESTRepository();
-            repository.customers.Add(Customer.CreateCustomerFromDb(4, "Lotte", "Hansen", "Lottevej 3", "8765", "Lotte@gmail.com"));
-            repository.customers.Add(Customer.CreateCustomerFromDb(7, "Lotte", "Hansen", "Skovvej 5", "98765", "Hansen@gmail.com"));
+            repository.customers.Add(Customer.CreateCustomerFromDb(4, "Lotte", "Hansen", "Lottevej 3", "87654444", "Lotte@gmail.com"));
+            repository.customers.Add(Customer.CreateCustomerFromDb(7, "Lotte", "Hansen", "Skovvej 5", "98765555", "Hansen@gmail.com"));
             CustomerSearchCommand csc = new CustomerSearchCommand(repository);
             CustomerDeleteViewModel viewModel = new CustomerDeleteViewModel();
             viewModel.FirstName = "Lotte";

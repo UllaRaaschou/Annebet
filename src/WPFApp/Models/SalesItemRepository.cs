@@ -113,7 +113,7 @@ namespace WPFApp.Models
             SqlConnection con = GetOpenSqlConnection(); // skaber forbindelse til vores db med vores connectionstring
             // Ingen brug af using, da de lukker readeren ned, hvorved children ikke kan bruge reader-metoden
 
-            using (SqlCommand cmd = new SqlCommand("dbo.sp_GetAllSalesItemsFromCategoryAndTypeAndName_abs", con)) // Anvender vores stored procedure, via klassen SQLCommand
+            using (SqlCommand cmd = new SqlCommand("dbo.sp_GetAllSalesItems", con)) // Anvender vores stored procedure, via klassen SQLCommand
                                                                                                                   // Ingen brug af using, da de lukker readeren ned, hvorved children ikke kan bruge reader-metoden
                 try
                 {
