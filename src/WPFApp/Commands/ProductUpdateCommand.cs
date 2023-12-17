@@ -71,7 +71,10 @@ namespace WPFApp.Commands
             {
                 Product updatedProduct = Product.CreateProductFromDb(puvm.SelectedProduct.Id, puvm.SelectedProduct.Type, puvm.SelectedProduct.Name,
                     puvm.SelectedProduct.Description, puvm.SelectedProduct.Price);
-                
+
+                puvm.SelectedProduct = null; // Tekstboksenes indhold nulstilles
+                puvm.Type = null;
+                puvm.Name = null;
                 repository.UpdateProduct(updatedProduct);
                 if(repository is ProductRepository) 
                 {
