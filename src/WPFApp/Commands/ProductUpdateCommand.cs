@@ -33,7 +33,7 @@ namespace WPFApp.Commands
 
         public ProductUpdateCommand(IProductRepository repository)   // Constuctor, der kan bruges, når vi i unit-test bruger Test-repo som parameter,
         {                                                            // og vi dermed sætter repo-feltet til test-Repo
-            this.repository = new ProductTESTRepository();
+            this.repository = repository;   
         }
 
 
