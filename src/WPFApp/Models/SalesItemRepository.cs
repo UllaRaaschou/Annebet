@@ -50,8 +50,7 @@ namespace WPFApp.Models
 
                 catch (Exception ex) // udstiller en eventuel fejlmeddelelse
                 {
-                    Console.WriteLine(ex.Message);
-                    return -1;
+                    throw new Exception("Produkt eller behandling kunne ikke føjes til databasen", ex);
                 }
             }
         }
@@ -81,7 +80,7 @@ namespace WPFApp.Models
 
                 catch (Exception ex) // udstiller en eventuel fejlmeddelelse
                 {
-                    Console.WriteLine(ex.Message);
+                    throw new Exception("Produkt eller behandling kunne ikke opdateres", ex);
                 }
             }            
         }
@@ -102,7 +101,7 @@ namespace WPFApp.Models
                 }
                 catch (Exception ex) // evt fejl udstilles
                 {
-                    Console.WriteLine(ex.Message);
+                    throw new Exception("Produkt eller behandling kunne ikke slettes i databasen", ex);
                 }
             }            
         }
@@ -116,22 +115,25 @@ namespace WPFApp.Models
 
             using (SqlCommand cmd = new SqlCommand("dbo.sp_GetAllSalesItemsFromCategoryAndTypeAndName_abs", con)) // Anvender vores stored procedure, via klassen SQLCommand
                                                                                                                   // Ingen brug af using, da de lukker readeren ned, hvorved children ikke kan bruge reader-metoden
-            {
-                cmd.CommandType = CommandType.StoredProcedure; // Anvender kommandotypen til stored procedures
+                try
+                {
+                    cmd.CommandType = CommandType.StoredProcedure; // Anvender kommandotypen til stored procedures
 
-                cmd.Parameters.AddWithValue("@category", Enum.GetName(category));  // Indsætter vores parametre
-                cmd.Parameters.AddWithValue("@type", type);
-                cmd.Parameters.AddWithValue("@name", name);
+                    cmd.Parameters.AddWithValue("@category", Enum.GetName(category));  // Indsætter vores parametre
+                    cmd.Parameters.AddWithValue("@type", type);
+                    cmd.Parameters.AddWithValue("@name", name);
 
-                return cmd.ExecuteReader();  // Metoden ExecuteReader køres på SQLDataReader objektet og repræsenterer den datastrøm, der er resultatet af database-forespørgslen
-                                             // Ingen brug af using, da de lukker readeren ned, hvorved children ikke kan bruge reader-metoden
-            }              
+                    return cmd.ExecuteReader();  // Metoden ExecuteReader køres på SQLDataReader objektet og repræsenterer den datastrøm, der er resultatet af database-forespørgslen
+                                                 // Ingen brug af using, da de lukker readeren ned, hvorved children ikke kan bruge reader-metoden
+                }
+                catch (SqlException ex) 
+                {
+                    throw new Exception("Produkter eller behandlinger med specificeret type og navn kunne ikke fremsøges", ex);
+                }
         }
 
 
         private SqlConnection sqlConnection = new SqlConnection(connectionString); // Instatiering af SqlConnection-klassen
-
-
 
 
         /// <summary>
