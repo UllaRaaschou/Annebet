@@ -12,7 +12,7 @@ AS
 BEGIN
 INSERT INTO dbo.CUSTOMER (FirstName, LastName, [Address], Phone, Email) 
 VALUES(@firstName, @lastName, @address, @phone, @email);
-SELECT SCOPE_IDENTITY() AS NewId;
+SELECT @@identity AS NewId;
 END;
 
 GO

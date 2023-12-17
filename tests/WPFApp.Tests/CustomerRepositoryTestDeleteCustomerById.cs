@@ -4,10 +4,10 @@ using WPFApp.Models;
 namespace WPFApp.Tests
 {
     [TestClass]
-    public class CustomerRepositoryTestDeleteCustomerById
+    public class CustomerRepositoryTestAaaAndDeleteCustomerById
     {
         [TestMethod]
-        public void TestCustomerRepositoryDeleteCustomerById()
+        public void TestCustomerRepositoryAddAndDeleteCustomerById()
         {
             // "TranscationScope": Laver testen til et scope, hvor alle operationer udføres i een transaktion
             //                     Enten udføres alle - eller også rulles alle tilbage. Vi ruller alle tilbage.
