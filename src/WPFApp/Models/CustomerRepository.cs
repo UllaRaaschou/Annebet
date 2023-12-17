@@ -52,8 +52,8 @@ namespace WPFApp.Models
 
                     catch (Exception ex) // udstiller en eventuel fejlmeddelelse
                     {
-                        Console.WriteLine(ex.Message);
-                        return -1;
+                        throw new Exception("Det var ikke muligt at tilføje en kunde til databasen", ex);
+                      
                     }
                 }
             }
@@ -82,7 +82,7 @@ namespace WPFApp.Models
 
                     catch (Exception ex) // udstiller en eventuel fejlmeddelelse
                     {
-                        Console.WriteLine(ex.Message);
+                        throw new Exception("Kunden kunne ikke opdateres", ex);
                     }
                 }
             }
@@ -105,7 +105,7 @@ namespace WPFApp.Models
                     }
                     catch (Exception ex) // evt fejl udstilles
                     {
-                        Console.WriteLine(ex.Message);
+                        throw new Exception("Kunden kunne ikke slettes", ex);
                     }
                 }
             }
@@ -143,8 +143,7 @@ namespace WPFApp.Models
                         }
                         catch (Exception ex) // Eventuel fejl udstilles
                         {
-                            Console.WriteLine(ex.Message);
-                            return null;
+                            throw new Exception("Kunder med specificerede for- og efternavn kunne ikke fremsøges", ex);
 
                         }
                     }

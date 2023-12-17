@@ -20,14 +20,21 @@ namespace WPFApp.Models
 
             using SqlDataReader reader = base.GetAllSalesItems(EnumCategory.Treatment, type, name); //  Kalder den abstrakte getAll-metode i parent-class med en treatments værdier.
             // Her tjekker vi ikke for, om reader != 0, da den abstrakte metode altid returnerer et readerObjekt.
-            while (reader.Read())
+            try 
             {
-                int id = (int)reader.GetInt32(0);
-                string description = reader.GetString(1);
-                decimal price = reader.GetDecimal(2);
+                while (reader.Read())
+                {
+                    int id = (int)reader.GetInt32(0);
+                    string description = reader.GetString(1);
+                    decimal price = reader.GetDecimal(2);
 
-                Treatment treatment = Treatment.CreateTreatmentFromDb(id, type, name, description, price); // Et treatment skabes ud fra de læste værdier
-                wantedTreatments.Add(treatment); // treatmentet lægges i den instantierede liste
+                    Treatment treatment = Treatment.CreateTreatmentFromDb(id, type, name, description, price); // Et treatment skabes ud fra de læste værdier
+                    wantedTreatments.Add(treatment); // treatmentet lægges i den instantierede liste
+                }
+            }
+            catch (Exception ex) 
+            {
+                throw new Exception("Produkter med specificerede type og navn kunne ikke fremsøges", ex);
             }
 
             return wantedTreatments; // listen returneres
