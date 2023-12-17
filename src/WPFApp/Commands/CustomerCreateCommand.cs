@@ -15,6 +15,7 @@ namespace WPFApp.Commands
     public class CustomerCreateCommand : ICommand  // Nedarvning fra interfacet ICommand
     {
         
+
         /// <summary>
         /// CanExecuteChanged-eventet har fået add'et et RequerySuggested-event. 
         /// Requery udløses så snart WPF mener, at command properties skal re-evalueres - ofte sfa bruger-acts.
