@@ -32,7 +32,6 @@ namespace WPFApp.Models
         }
 
 
-
         /// <summary>
         /// Metode, der skaber en Customer-instans med værdier fra db (incl. id)
         /// Metoden er statisk, så den kan kaldes uden en instans af klassen
