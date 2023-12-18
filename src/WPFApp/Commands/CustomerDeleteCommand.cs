@@ -72,24 +72,29 @@ namespace WPFApp.Commands
         /// </summary>
         public void Execute(object? parameter)
         {
-            if (parameter is CustomerDeleteViewModel cdvm) //det tjekkes, om datakontekst er kommet med som paramter                                                           // som parameter
+            MessageBoxResult choise = MessageBox.Show("Er du sikker?", "Bekræft", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (choise == MessageBoxResult.Yes)
             {
-                int id = cdvm.SelectedCustomer.Id;  // en variabel sættes til selected customers id
-
-                repository.DeleteCustomerById(id); //customerRepo sletter selected Customer
-
-                cdvm.SelectedCustomer = null;  //Tekstboksenes værdier nulstilles
-
-                cdvm.FirstName = null;
-                cdvm.LastName = null;
-                cdvm.CustomersToView.Clear();
-
-                if (repository is CustomerRepository)
+                if (parameter is CustomerDeleteViewModel cdvm) //det tjekkes, om datakontekst er kommet med som paramter                                                           // som parameter
                 {
-                    MessageBox.Show("Kunde slettet");
+                    int id = cdvm.SelectedCustomer.Id;  // en variabel sættes til selected customers id
+
+                    repository.DeleteCustomerById(id); //customerRepo sletter selected Customer
+
+                    cdvm.SelectedCustomer = null;  //Tekstboksenes værdier nulstilles
+
+                    cdvm.FirstName = null;
+                    cdvm.LastName = null;
+                    cdvm.CustomersToView.Clear();
+
+                    if (repository is CustomerRepository)
+                    {
+                        MessageBox.Show("Kunde slettet");
+                    }
                 }
+                else throw new Exception("Wrong type of parameter");
             }
-            else throw new Exception("Wrong type of parameter");
+            else { }
         }
     }
 }
