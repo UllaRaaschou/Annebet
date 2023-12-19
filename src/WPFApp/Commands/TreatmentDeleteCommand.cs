@@ -76,22 +76,27 @@ namespace WPFApp.Commands
         /// </summary>
         public void Execute(object? parameter)
         {
-            // Tjek af parameter
-            if (parameter is TreatmentDeleteViewModel tdvm)
+            MessageBoxResult choise = MessageBox.Show("Er du sikker?", "Bekræft", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (choise == MessageBoxResult.Yes)
             {
-                // Repo deleter selected Product fra db
-                repository.DeleteTreatmentById(tdvm.SelectedTreatment.Id);
-                tdvm.Type = null;
-                tdvm.Name = null;
-
-                tdvm.TreatmentsToView.Clear();
-
-                if (repository is TreatmentRepository)
+                // Tjek af parameter
+                if (parameter is TreatmentDeleteViewModel tdvm)
                 {
-                    MessageBox.Show("Behandling oprettet");
+                    // Repo deleter selected Product fra db
+                    repository.DeleteTreatmentById(tdvm.SelectedTreatment.Id);
+                    tdvm.Type = null;
+                    tdvm.Name = null;
+
+                    tdvm.TreatmentsToView.Clear();
+
+                    if (repository is TreatmentRepository)
+                    {
+                        MessageBox.Show("Behandling oprettet");
+                    }
                 }
+                else throw new Exception("Wrong type of parameter");
             }
-            else throw new Exception("Wrong type of parameter");
+            else { }
         }
     }
 }

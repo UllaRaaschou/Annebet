@@ -66,20 +66,25 @@ namespace WPFApp.Commands
         /// </summary>
         public void Execute(object? parameter)
         {
-            if (parameter is ProductDeleteViewModel pdvm) // tjek af parameter
+            MessageBoxResult choise = MessageBox.Show("Er du sikker?", "Bekræft", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (choise == MessageBoxResult.Yes)
             {
-                repository.DeleteProductById(pdvm.SelectedProduct.Id); // Repo deleter selected Product fra db
-                if (repository is ProductRepository)
+                if (parameter is ProductDeleteViewModel pdvm) // tjek af parameter
                 {
-                    MessageBox.Show("Produkt slettet");
-                }
-                pdvm.SelectedProduct = null;// Tekstbokse nulstilles
-                pdvm.Type = null;
-                pdvm.Name = null;
+                    repository.DeleteProductById(pdvm.SelectedProduct.Id); // Repo deleter selected Product fra db
+                    if (repository is ProductRepository)
+                    {
+                        MessageBox.Show("Produkt slettet");
+                    }
+                    pdvm.SelectedProduct = null;// Tekstbokse nulstilles
+                    pdvm.Type = null;
+                    pdvm.Name = null;
 
-                pdvm.ProductsToView.Clear();
+                    pdvm.ProductsToView.Clear();
+                }
+                else throw new Exception("Wrong type of parameter");
             }
-            else throw new Exception("Wrong type of parameter");
+            else { }
         }
     }
 }

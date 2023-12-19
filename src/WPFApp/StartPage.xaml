@@ -8,20 +8,98 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="StartPage">
 
-    <Grid Background="White">
-        <Label Content="Annebet" HorizontalAlignment="Center" Margin="0,43,0,0" Height="62" Width="146" FontSize="36" VerticalAlignment="Top"/>
-        <Label Content="Kunder" HorizontalAlignment="Left" Margin="133,123,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <Button x:Name="Bt_OpretKunde" Content="Opret Kunde" HorizontalAlignment="Left" Margin="116,178,0,0" VerticalAlignment="Top" Height="39" Width="108" Click="Bt_OpretKunde_Click"/>
-        <Button x:Name="Bt_OpdaterKunde" Content="Opdater Kunde" HorizontalAlignment="Left" Margin="116,242,0,0" VerticalAlignment="Top" Height="39" Width="108" Click="Bt_OpdaterKunde_Click"/>
-        <Button x:Name="Bt_SletKunde" Content="SletKunde" HorizontalAlignment="Left" Margin="116,307,0,0" VerticalAlignment="Top" Height="39" Width="108" Click="Bt_SletKunde_Click"/>
-        <Label Content="Produkter" HorizontalAlignment="Left" Margin="294,123,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <Button x:Name="Bt_OpretProdukt" Content="Opret &#xA;Produkt " HorizontalAlignment="Left" Margin="279,178,0,0" VerticalAlignment="Top" Height="39" Width="154" Click="Bt_OpretProduct_Click"/>
-        <Button x:Name="Bt_SletProdukt" Content="Slet &#xA;Produkt " HorizontalAlignment="Left" Margin="279,307,0,0" VerticalAlignment="Top" Height="39" Width="154" Click="Bt_SletProdukt_Click"/>
-        <Button x:Name="Bt_OpdaterProdukt" Content="Opdater &#xA;Produkt " HorizontalAlignment="Left" Margin="279,242,0,0" VerticalAlignment="Top" Height="39" Width="154" Click="Bt_OpdaterProdukt_Click"/>
-        <Label Content="behandlinger" HorizontalAlignment="Left" Margin="490,123,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <Button x:Name="Bt_OpretBehandling" Content="Opret &#xA;Behandling" HorizontalAlignment="Left" Margin="477,178,0,0" VerticalAlignment="Top" Height="39" Width="154" Click="Bt_OpretBehandling_Click"/>
-        <Button x:Name="Bt_OpdaterBehandling" Content="Opdater  Behandling" HorizontalAlignment="Left" Margin="477,242,0,0" VerticalAlignment="Top" Height="39" Width="154" Click="Bt_OpdaterBehandling_Click"/>
-        <Button x:Name="Bt_SletBehandling" Content="Slet &#xA;Behandling" HorizontalAlignment="Left" Margin="477,307,0,0" VerticalAlignment="Top" Height="39" Width="154" Click="Bt_SletBehandling_Click"/>
+    <Grid Background="#F7F7F7">
+        <Rectangle HorizontalAlignment="Left" Height="254" Margin="502,0,0,0" VerticalAlignment="Center" Width="186" Fill="#FFE6E6E6"/>
+
+        <Rectangle HorizontalAlignment="Left" Height="254" Margin="304,0,0,0" VerticalAlignment="Center" Width="186" Fill="#FFE6E6E6"/>
+
+        <Rectangle HorizontalAlignment="Left" Height="254" Margin="106,0,0,0" VerticalAlignment="Center" Width="187" Fill="#FFDCDDE8"/>
+
+        <Label Content="Kunder" HorizontalAlignment="Left" Margin="162,113,0,0" VerticalAlignment="Top" FontSize="20" Foreground="#FF002B4B" FontFamily="Bahnschrift"/>
+        <Button x:Name="Bt_OpretKunde" Content="Opret Kunde" HorizontalAlignment="Left" Margin="147,152,0,0" VerticalAlignment="Top" Height="40" Width="104" Click="Bt_OpretKunde_Click" FontFamily="Bahnschrift" FontSize="12" Foreground="White">
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border CornerRadius="8" Background="#FF002B4B">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button x:Name="Bt_OpdaterKunde" Content="Opdater Kunde" HorizontalAlignment="Left" Margin="147,217,0,0" VerticalAlignment="Top" Height="40" Width="104" Click="Bt_OpdaterKunde_Click" FontFamily="Bahnschrift" FontSize="12" Foreground="White">
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border CornerRadius="8" Background="#FF002B4B">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button x:Name="Bt_SletKunde" Content="Slet Kunde" HorizontalAlignment="Left" Margin="147,277,0,0" VerticalAlignment="Top" Height="40" Width="104" Click="Bt_SletKunde_Click" FontFamily="Bahnschrift" FontSize="12" Foreground="White">
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border CornerRadius="8" Background="#FF002B4B">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Label Content="Produkter" HorizontalAlignment="Left" Margin="352,112,0,0" VerticalAlignment="Top" FontSize="20" Foreground="#FF002B4B" FontFamily="Bahnschrift"/>
+        <Button x:Name="Bt_OpretProdukt" Content="Opret Produkt" HorizontalAlignment="Left" Margin="344,156,0,0" VerticalAlignment="Top" Height="40" Width="104" Click="Bt_OpretProduct_Click" FontFamily="Bahnschrift" Foreground="White">
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border CornerRadius="8" Background="#FF002B4B">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button x:Name="Bt_SletProdukt" Content="Slet Produkt" HorizontalAlignment="Left" Margin="344,277,0,0" VerticalAlignment="Top" Height="40" Width="104" Click="Bt_SletProdukt_Click" FontFamily="Bahnschrift" Foreground="White">
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border CornerRadius="8" Background="#FF002B4B">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button x:Name="Bt_OpdaterProdukt" Content="Opdater Produkt" HorizontalAlignment="Left" Margin="344,217,0,0" VerticalAlignment="Top" Height="40" Width="104" Click="Bt_OpdaterProdukt_Click" FontFamily="Bahnschrift" Foreground="White">
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border CornerRadius="8" Background="#FF002B4B">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Label Content="Behandlinger" HorizontalAlignment="Left" Margin="530,118,0,0" VerticalAlignment="Top" FontSize="20" Foreground="#FF002B4B" FontFamily="Bahnschrift"/>
+        <Button x:Name="Bt_OpretBehandling" Content="Opret Behandling" HorizontalAlignment="Left" Margin="533,160,0,0" VerticalAlignment="Top" Height="40" Width="123" Click="Bt_OpretBehandling_Click" FontFamily="Bahnschrift" Foreground="White">
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border CornerRadius="8" Background="#FF002B4B">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button x:Name="Bt_OpdaterBehandling" Content="Opdater Behandling" HorizontalAlignment="Left" Margin="533,221,0,0" VerticalAlignment="Top" Height="40" Width="123" Click="Bt_OpdaterBehandling_Click" FontFamily="Bahnschrift" Foreground="White">
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border CornerRadius="8" Background="#FF002B4B">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button x:Name="Bt_SletBehandling" Content="Slet Behandling" HorizontalAlignment="Left" Margin="533,281,0,0" VerticalAlignment="Top" Height="40" Width="123" Click="Bt_SletBehandling_Click" FontFamily="Bahnschrift" Foreground="White">
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border CornerRadius="8" Background="#FF002B4B">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Label Content="Annebet" HorizontalAlignment="Left" Margin="325,40,0,0" VerticalAlignment="Top" FontFamily="Bahnschrift" FontSize="36" Foreground="#FF002B4B"/>
 
     </Grid>
 </Page>

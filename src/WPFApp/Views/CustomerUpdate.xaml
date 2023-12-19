@@ -8,33 +8,34 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="CustomerUpdate">
 
-    <Grid Background="White" Margin="0,0,10,0">
-        <Label Content="Opdater Kunde" HorizontalAlignment="Left" Margin="345,22,0,0" VerticalAlignment="Top" Height="34" Width="143"/>
-        <Label Content="Fornavn:" HorizontalAlignment="Left" Margin="35,55,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Height="27" Width="121">
-            <Label.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="0.175"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Label.RenderTransform>
-        </Label>
-        <Label Content="Efternavn:" HorizontalAlignment="Left" Margin="31,99,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Height="28" Width="66">
-            <Label.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="0.175"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Label.RenderTransform>
-        </Label>
-        <TextBox x:Name="Tb_FirstName_Search" Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="98,58,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="174" Height="23"/>
-        <TextBox x:Name="Tb_EfterNavn_Search" Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="98,99,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="174" Height="23" />
-        <Button x:Name="Bt_Customer_Search" Content="Søg"  Command="{Binding Path=CustomerSearchCommand}" CommandParameter="{Binding}" HorizontalAlignment="Left" Margin="144,136,0,0" VerticalAlignment="Top" Height="56" Width="82"/>
-        <Button x:Name="Bt_Opdater" Content="Opdater" Command="{Binding Path=CustomerUpdateCommand}" CommandParameter="{Binding}" HorizontalAlignment="Left" Margin="635,280,0,0" VerticalAlignment="Top" Height="88" Width="97" />
-        <ListBox ItemsSource="{Binding CustomersToView}" SelectedItem="{Binding SelectedCustomer}" HorizontalAlignment="Left" Margin="345,53,0,316" Width="379" d:ItemsSource="{d:SampleData ItemCount=5}">
+    <Grid Background="#FFF7F7F7" Margin="0,0,10,0">
+        <TextBox x:Name="Tb_FirstName_Search" Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Margin="0,58,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="210" FontFamily="Bahnschrift"/>
+        <TextBox x:Name="Tb_EfterNavn_Search" Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Margin="0,81,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="210" FontFamily="Bahnschrift"/>
+        <Button x:Name="Bt_Customer_Search" Content="Søg"  Command="{Binding Path=CustomerSearchCommand}" CommandParameter="{Binding}" HorizontalAlignment="Left" Margin="536,68,0,0" VerticalAlignment="Top" Height="33" Width="48" FontFamily="Bahnschrift" FontSize="14">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="8" Background="#FF002B4B">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+            <Button.Foreground>
+                <SolidColorBrush Color="White"/>
+            </Button.Foreground>
+        </Button>
+        <Button x:Name="Bt_Opdater" Content="Opdater" Command="{Binding Path=CustomerUpdateCommand}" CommandParameter="{Binding}" HorizontalAlignment="Left" Margin="518,299,0,0" VerticalAlignment="Top" Height="33" Width="66" FontFamily="Bahnschrift" FontSize="14">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="8" Background="#FF002B4B">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+            <Button.Foreground>
+                <SolidColorBrush Color="White"/>
+            </Button.Foreground>
+        </Button>
+        <ListBox ItemsSource="{Binding CustomersToView}" SelectedItem="{Binding SelectedCustomer}" HorizontalAlignment="Center" Margin="0,121,0,248" Width="378" FontFamily="Bahnschrift">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
@@ -51,62 +52,31 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Label Content="Fornavn:" HorizontalAlignment="Left" Margin="96,236,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Height="27" Width="121">
-            <Label.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="0.175"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Label.RenderTransform>
-        </Label>
-        <Label Content="Efternavn:" HorizontalAlignment="Left" Margin="95,278,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Height="27" Width="121">
-            <Label.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="0.175"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Label.RenderTransform>
-        </Label>
-        <Label Content="Adresse:" HorizontalAlignment="Left" Margin="94,313,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Height="27" Width="121">
-            <Label.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="0.175"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Label.RenderTransform>
-        </Label>
-        <Label Content="Telefonnummer:" HorizontalAlignment="Left" Margin="95,348,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Height="27" Width="121">
-            <Label.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="0.175"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Label.RenderTransform>
-        </Label>
-        <Label Content="Email:" HorizontalAlignment="Left" Margin="96,390,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Height="27" Width="121">
-            <Label.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="0.175"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Label.RenderTransform>
-        </Label>
-        <TextBox x:Name="Tb_FirstName_Updated" Text="{Binding SelectedCustomer.FirstName, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="221,239,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="283" Height="28" />
-        <TextBox x:Name="Tb_LastName_Updated" Text="{Binding SelectedCustomer.LastName, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="221,280,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="283" Height="28"/>
-        <TextBox x:Name="Tb_Address_Updated" Text="{Binding SelectedCustomer.Address, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="221,313,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="283" Height="28"/>
-        <TextBox x:Name="Tb_Phone_Updated" Text="{Binding SelectedCustomer.Phone, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="221,354,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="283" Height="28"/>
-        <TextBox x:Name="Tb_Email_Updated" Text="{Binding SelectedCustomer.Email, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="221,395,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="283" Height="28" />
-        <Button x:Name="Bt_Tilbage" Content="Tilbage" HorizontalAlignment="Left" Margin="38,164,0,0" VerticalAlignment="Top" Height="40" Width="61" Click="Button_Click"/>
+        <TextBox x:Name="Tb_FirstName_Updated" Text="{Binding SelectedCustomer.FirstName, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Margin="0,232,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="210" FontFamily="Bahnschrift"/>
+        <TextBox x:Name="Tb_LastName_Updated" Text="{Binding SelectedCustomer.LastName, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Margin="0,253,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="210" FontFamily="Bahnschrift"/>
+        <TextBox x:Name="Tb_Address_Updated" Text="{Binding SelectedCustomer.Address, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Margin="0,274,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="210" FontFamily="Bahnschrift"/>
+        <TextBox x:Name="Tb_Phone_Updated" Text="{Binding SelectedCustomer.Phone, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Margin="0,295,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="210" FontFamily="Bahnschrift"/>
+        <TextBox x:Name="Tb_Email_Updated" Text="{Binding SelectedCustomer.Email, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Margin="0,316,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="210" FontFamily="Bahnschrift"/>
+        <Button Content="Tilbage" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Click="Button_Click" FontFamily="Bahnschrift" FontSize="14" Width="58" Height="30">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="8" Background="#FF002B4B">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+            <Button.Foreground>
+                <SolidColorBrush Color="White"/>
+            </Button.Foreground>
+        </Button>
+        <Label Content="Opdater en kunde" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Foreground="#FF002B4B" FontFamily="Bahnschrift" FontSize="20"/>
+        <Label Content="Fornavn" HorizontalAlignment="Left" Margin="231,54,0,0" VerticalAlignment="Top" Foreground="#FF002B4B" FontFamily="Bahnschrift"/>
+        <Label Content="Efternavn" HorizontalAlignment="Left" Margin="223,77,0,0" VerticalAlignment="Top" Foreground="#FF002B4B" FontFamily="Bahnschrift"/>
+        <Label Content="Fornavn" HorizontalAlignment="Left" Margin="232,228,0,0" VerticalAlignment="Top" Foreground="#FF002B4B" FontFamily="Bahnschrift"/>
+        <Label Content="Efternavn" HorizontalAlignment="Left" Margin="224,249,0,0" VerticalAlignment="Top" Foreground="#FF002B4B" FontFamily="Bahnschrift"/>
+        <Label Content="Adresse" HorizontalAlignment="Left" Margin="231,270,0,0" VerticalAlignment="Top" Foreground="#FF002B4B" FontFamily="Bahnschrift"/>
+        <Label Content="Telefonnummer" HorizontalAlignment="Left" Margin="192,291,0,0" VerticalAlignment="Top" Foreground="#FF002B4B" FontFamily="Bahnschrift"/>
+        <Label Content="Email" HorizontalAlignment="Left" Margin="245,312,0,0" VerticalAlignment="Top" Foreground="#FF002B4B" FontFamily="Bahnschrift"/>
 
     </Grid>
 </Page>
