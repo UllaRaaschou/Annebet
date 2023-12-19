@@ -12,7 +12,7 @@ namespace WPFApp.Models
     {
         public int AddProduct(Product product)
         {
-            return base.AddSalesItem(product, EnumCategory.Product);  // Kalder den abstrakte add-metode i parent-class med et products værdier
+            return base.AddSalesItem(product);  // Kalder den abstrakte add-metode i parent-class med et products værdier
         }
 
        public List<Product> GetAllProducts(string type, string name)
@@ -46,7 +46,7 @@ namespace WPFApp.Models
 
         public void UpdateProduct(Product productWithUpdatedValues)
         {
-            base.UpdateSalesItem(productWithUpdatedValues, EnumCategory.Product); // kalder Update-metoden i parent-class med et products værdier
+            base.UpdateSalesItem(productWithUpdatedValues); // kalder Update-metoden i parent-class med et products værdier
         }
 
         public void DeleteProductById(int id)

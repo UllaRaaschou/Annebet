@@ -14,7 +14,7 @@ namespace WPFApp.Models
     {
         private const string connectionString = "Server=10.56.8.36;Database=DB_F23_TEAM_04;User Id=DB_F23_TEAM_04;Password=TEAMDB_DB_04; TrustServerCertificate=True";
         // sættes til en konstant for at kunne genbruges
-        protected int AddSalesItem(SalesItem salesItem, EnumCategory category) // Add-metode, der tager et salesItem og bruger category til differentiator
+        protected int AddSalesItem(SalesItem salesItem) // Add-metode, der tager et salesItem og bruger category til differentiator
                                                                                 // mellem children Product og Treatment.
                                                                                 //Metoden er protected og nedarves til children
         {
@@ -26,7 +26,7 @@ namespace WPFApp.Models
             {
                 cmd.CommandType = CommandType.StoredProcedure; // Anvender kommandotypen til stored procedures (både INSERT INTO og SELECT SCOPE_IDENTITY as NewId)
 
-                cmd.Parameters.AddWithValue("@category", Enum.GetName(category)); //Indsætter værdier i parametrene fra SQL-statement
+                cmd.Parameters.AddWithValue("@category", Enum.GetName(salesItem.Category)); //Indsætter værdier i parametrene fra SQL-statement
                 cmd.Parameters.AddWithValue("@type", salesItem.Type);
                 cmd.Parameters.AddWithValue("@name", salesItem.Name);
                 cmd.Parameters.AddWithValue("@description", salesItem.Description);
@@ -55,7 +55,7 @@ namespace WPFApp.Models
             }
         }
 
-        protected void UpdateSalesItem(SalesItem salesItemWithUpdatedValues, EnumCategory category) // Update-metode, der tager et salesItem og bruger category til differentiator
+        protected void UpdateSalesItem(SalesItem salesItemWithUpdatedValues) // Update-metode, der tager et salesItem og bruger category til differentiator
                                                                                                     // mellem children Product og Treatment
                                                                                                     //Metoden er protected og nedarves til children
         {
@@ -67,7 +67,7 @@ namespace WPFApp.Models
 
                 cmd.Parameters.AddWithValue("@salesItemId", salesItemWithUpdatedValues.Id);  // Indsætter den opdaterede parameter-kundens
                                                                                                 // properties som værdier i SQL-queryens parametre 
-                cmd.Parameters.AddWithValue("@category", Enum.GetName(category));
+                cmd.Parameters.AddWithValue("@category", Enum.GetName(salesItemWithUpdatedValues.Category));
                 cmd.Parameters.AddWithValue("@type", salesItemWithUpdatedValues.Type);
                 cmd.Parameters.AddWithValue("@name", salesItemWithUpdatedValues.Name);
                 cmd.Parameters.AddWithValue("@description", salesItemWithUpdatedValues.Description);

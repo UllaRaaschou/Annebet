@@ -83,7 +83,7 @@ namespace WPFApp.Commands
                 foreach (Customer c in trueCustomers)
                 {
                     CustomerToViewModel customerViewModel = ctvm.CustomerToViewModelConvert(c); // De hentede Customers converteres til ViewModels
-                    cuvm.CustomersToView.Add(customerViewModel); // viewModels lægges i Observable Collection i dataontexten
+                    cuvm.CustomersToView.Add(customerViewModel); // viewModels lægges i Observable Collection i datakontexten
                 }
             }
 
@@ -95,7 +95,7 @@ namespace WPFApp.Commands
                 foreach (Customer c in trueCustomers)
                 {
                     CustomerToViewModel customerViewModel = ctvm.CustomerToViewModelConvert(c);// De hentede Customers converteres til ViewModels
-                    cdvm.CustomersToView.Add(customerViewModel); // viewModels lægges i Observable Collection i dataontexten
+                    cdvm.CustomersToView.Add(customerViewModel); // viewModels lægges i Observable Collection i datakontexten
                 }
             }
            

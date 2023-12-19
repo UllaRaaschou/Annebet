@@ -10,14 +10,16 @@ namespace WPFApp.Models
     {             
 
         public int Id{ get;  }
+        public EnumCategory Category { get; }
         public string Type { get; }
         public string Name { get; }
         public string Description { get; }
         public decimal Price { get; }
 
-        protected SalesItem(int id, string type, string name, string description, decimal price)  // protected konstructør, der bruges i de to create-metoder
+        protected SalesItem(int id, EnumCategory category, string type, string name, string description, decimal price)  // protected konstructør, der bruges i de to create-metoder
         {
             Id = id;
+            Category = category;
             Type = type;
             Name = name;
             Price = price;

@@ -3,7 +3,7 @@
         public class Treatment : SalesItem // Nedarvning fra SalesItem
         {
             private Treatment(int id, string type, string name, string description, decimal price) :  //privat constructor til brug for de 2 create-Metoder 
-            base(id, type, name, description, price) { }                                                                                                   // create-metoder
+            base(id, EnumCategory.Treatment, type, name, description, price) { }                                                                                                   // create-metoder
            
 
             

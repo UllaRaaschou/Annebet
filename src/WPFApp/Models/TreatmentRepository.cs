@@ -11,7 +11,7 @@ namespace WPFApp.Models
     {
         public int AddTreatment(Treatment treatment)
         {
-            return base.AddSalesItem(treatment, EnumCategory.Treatment); // Kalder den abstrakte add-metode i parent-class med en treatments værdier
+            return base.AddSalesItem(treatment); // Kalder den abstrakte add-metode i parent-class med en treatments værdier
         }
 
         public List<Treatment> GetAllTreatments(string type, string name)
@@ -42,9 +42,9 @@ namespace WPFApp.Models
         }
 
 
-        public void UpdateTreatment(Treatment treatment) 
+        public void UpdateTreatment(Treatment treatmentWithUpdatedValues) 
         {
-            base.UpdateSalesItem(treatment, EnumCategory.Treatment); // kalder Update-metoden i parent-class med en treatments værdier
+            base.UpdateSalesItem(treatmentWithUpdatedValues); // kalder Update-metoden i parent-class med en treatments værdier
         }
 
         public void DeleteTreatmentById(int id) 
@@ -52,5 +52,5 @@ namespace WPFApp.Models
             base.DeleteSalesItemById(id);  // kalder Delete-metoden i parent-class med et products værdier
         }
     }
-      
+    
 }
