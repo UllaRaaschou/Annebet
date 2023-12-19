@@ -8,15 +8,11 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="StartPage">
 
-<<<<<<< Updated upstream
-    <Grid Background="White">
-        <Label Content="Kunder" HorizontalAlignment="Left" Margin="91,108,0,0" VerticalAlignment="Top" FontSize="24" Foreground="#FF002B4B" FontFamily="Bahnschrift Light Condensed"/>
-        <Button x:Name="Bt_OpretKunde" Content="Opret Kunde" HorizontalAlignment="Left" Margin="72,152,0,0" VerticalAlignment="Top" Height="40" Width="104" Click="Bt_OpretKunde_Click" FontFamily="Bahnschrift Light Condensed" FontSize="14">
-=======
+
+
     <Grid Background="#F7F7F7">
         <Label Content="Kunder" HorizontalAlignment="Left" Margin="242,107,0,0" VerticalAlignment="Top" FontSize="20" Foreground="#FF002B4B" FontFamily="Bahnschrift"/>
         <Button x:Name="Bt_OpretKunde" Content="Opret Kunde" HorizontalAlignment="Left" Margin="227,146,0,0" VerticalAlignment="Top" Height="40" Width="104" Click="Bt_OpretKunde_Click" FontFamily="Bahnschrift">
->>>>>>> Stashed changes
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Border CornerRadius="8" Background="#FF002B4B">
@@ -28,11 +24,7 @@
                 <SolidColorBrush Color="White"/>
             </Button.Foreground>
         </Button>
-<<<<<<< Updated upstream
-        <Button x:Name="Bt_OpdaterKunde" Content="Opdater Kunde" HorizontalAlignment="Left" Margin="72,217,0,0" VerticalAlignment="Top" Height="40" Width="104" Click="Bt_OpdaterKunde_Click" FontFamily="Bahnschrift Light Condensed" FontSize="14">
-=======
         <Button x:Name="Bt_OpdaterKunde" Content="Opdater Kunde" HorizontalAlignment="Left" Margin="227,211,0,0" VerticalAlignment="Top" Height="40" Width="104" Click="Bt_OpdaterKunde_Click" FontFamily="Bahnschrift">
->>>>>>> Stashed changes
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Border CornerRadius="8" Background="#FF002B4B">
@@ -44,11 +36,7 @@
                 <SolidColorBrush Color="White"/>
             </Button.Foreground>
         </Button>
-<<<<<<< Updated upstream
-        <Button x:Name="Bt_SletKunde" Content="Slet Kunde" HorizontalAlignment="Left" Margin="72,277,0,0" VerticalAlignment="Top" Height="40" Width="104" Click="Bt_SletKunde_Click" FontFamily="Bahnschrift Light Condensed" FontSize="14">
-=======
         <Button x:Name="Bt_SletKunde" Content="Slet Kunde" HorizontalAlignment="Left" Margin="227,271,0,0" VerticalAlignment="Top" Height="40" Width="104" Click="Bt_SletKunde_Click" FontFamily="Bahnschrift">
->>>>>>> Stashed changes
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Border CornerRadius="8" Background="#FF002B4B">
