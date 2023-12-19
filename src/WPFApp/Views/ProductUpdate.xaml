@@ -8,22 +8,10 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ProductUpdate">
 
-    <Grid Background="White">
-        <Label Content="Opdater Produkt" HorizontalAlignment="Left" Margin="344,53,0,0" VerticalAlignment="Top" Height="37" Width="182"/>
-        <Label Content="Type" HorizontalAlignment="Left" Margin="50,101,0,0" VerticalAlignment="Top" Height="26" Width="49"/>
-        <Label Content="Navn" HorizontalAlignment="Left" Margin="50,155,0,0" VerticalAlignment="Top" Height="26" Width="49" RenderTransformOrigin="0.5,0.5">
-            <Label.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="0.195"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Label.RenderTransform>
-        </Label>
-        <TextBox x:Name="Tb_Type" HorizontalAlignment="Left" Margin="139,105,0,0" TextWrapping="Wrap" Text="{Binding Type, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="Tb_Navn" HorizontalAlignment="Left" Margin="139,149,0,0" TextWrapping="Wrap" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
-        <ListBox ItemsSource="{Binding ProductsToView}" SelectedItem="{Binding SelectedProduct}" Margin="279,101,162,272">
+    <Grid Background="#FFF7F7F7">
+        <TextBox x:Name="Tb_Type" HorizontalAlignment="Center" Margin="0,74,0,0" TextWrapping="Wrap" Text="{Binding Type, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="200"/>
+        <TextBox x:Name="Tb_Navn" HorizontalAlignment="Center" Margin="0,101,0,0" TextWrapping="Wrap" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="200"/>
+        <ListBox ItemsSource="{Binding ProductsToView}" SelectedItem="{Binding SelectedProduct}" Margin="220,162,220,210">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
@@ -38,17 +26,53 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Button x:Name="Bt_Søg" Content="Søg" HorizontalAlignment="Left" Margin="679,114,0,0" VerticalAlignment="Top" Command="{Binding ProductSearchCommand}" CommandParameter="{Binding}" Height="44" Width="53"/>
-        <Label Content="Type" HorizontalAlignment="Left" Margin="50,0,0,0" VerticalAlignment="Center" Height="26" Width="49"/>
-        <Label Content="Navn" HorizontalAlignment="Left" Margin="50,243,0,0" VerticalAlignment="Top" Height="33" Width="58"/>
-        <Label Content="Beskrivelse" HorizontalAlignment="Left" Margin="50,281,0,0" VerticalAlignment="Top" Height="27" Width="105"/>
-        <Label Content="Pris" HorizontalAlignment="Left" Margin="50,327,0,0" VerticalAlignment="Top" Height="26" Width="49"/>
-        <TextBox x:Name="Tb_OpdateretPris" Text="{Binding SelectedProduct.Price, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="199,331,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="Tb_OpdateretBeskrivelse" Text="{Binding SelectedProduct.Description, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="199,290,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="Tb_OpdateretNavn" Text="{Binding SelectedProduct.Name, UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Left" Margin="199,251,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" />
-        <TextBox x:Name="Tb__OpdateretType" Text="{Binding SelectedProduct.Type, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="199,0,0,0" TextWrapping="Wrap"  VerticalAlignment="Center" Width="120"/>
-        <Button x:Name="Bt_Opdater" Content="Opdater&#xD;&#xA;" HorizontalAlignment="Left" Margin="484,268,0,0" VerticalAlignment="Top" Command="{Binding ProductUpdateCommand}" CommandParameter="{Binding}" Height="44" Width="53"/>
-        <Button x:Name="Bt_Tilbage" Content="Tilbage" HorizontalAlignment="Left" Margin="38,32,0,0" VerticalAlignment="Top" Height="40" Width="61" Click="Button_Click"/>
+        <Button x:Name="Bt_Søg" Content="Søg" HorizontalAlignment="Left" Margin="535,87,0,0" VerticalAlignment="Top" Command="{Binding ProductSearchCommand}" CommandParameter="{Binding}" Height="32" Width="45" FontFamily="Bahnschrift" FontSize="14">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="8" Background="#FF002B4B">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+            <Button.Foreground>
+                <SolidColorBrush Color="White"/>
+            </Button.Foreground>
+        </Button>
+        <TextBox x:Name="Tb_OpdateretPris" Text="{Binding SelectedProduct.Price, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Margin="0,364,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="200"/>
+        <TextBox x:Name="Tb_OpdateretBeskrivelse" Text="{Binding SelectedProduct.Description, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Margin="0,327,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="200"/>
+        <TextBox x:Name="Tb_OpdateretNavn" Text="{Binding SelectedProduct.Name, UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Center" Margin="0,289,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="200" />
+        <TextBox x:Name="Tb__OpdateretType" Text="{Binding SelectedProduct.Type, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Margin="0,253,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="200"/>
+        <Button x:Name="Bt_Opdater" Content="Opdater" HorizontalAlignment="Left" Margin="518,351,0,0" VerticalAlignment="Top" Command="{Binding ProductUpdateCommand}" CommandParameter="{Binding}" Height="34" Width="62" FontFamily="Bahnschrift" FontSize="14">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="8" Background="#FF002B4B">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+            <Button.Foreground>
+                <SolidColorBrush Color="White"/>
+            </Button.Foreground>
+        </Button>
+        <Button Content="Tilbage" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Click="Button_Click" FontFamily="Bahnschrift" FontSize="14" Width="58" Height="30">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="8" Background="#FF002B4B">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+            <Button.Foreground>
+                <SolidColorBrush Color="White"/>
+            </Button.Foreground>
+        </Button>
+        <Label Content="Opdater et produkt" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" FontFamily="Bahnschrift" FontSize="20" Foreground="#FF002B4B"/>
+        <Label Content="Type" HorizontalAlignment="Left" Margin="261,71,0,0" VerticalAlignment="Top" Foreground="#FF002B4B" FontFamily="Bahnschrift"/>
+        <Label Content="Navn" HorizontalAlignment="Left" Margin="258,98,0,0" VerticalAlignment="Top" Foreground="#FF002B4B" FontFamily="Bahnschrift"/>
+        <Label Content="Navn" HorizontalAlignment="Left" Margin="258,286,0,0" VerticalAlignment="Top" Foreground="#FF002B4B" FontFamily="Bahnschrift"/>
+        <Label Content="Type" HorizontalAlignment="Left" Margin="261,250,0,0" VerticalAlignment="Top" Foreground="#FF002B4B" FontFamily="Bahnschrift"/>
+        <Label Content="Beskrivelse" HorizontalAlignment="Left" Margin="222,324,0,0" VerticalAlignment="Top" Foreground="#FF002B4B" FontFamily="Bahnschrift"/>
+        <Label Content="Pris" HorizontalAlignment="Left" Margin="263,361,0,0" VerticalAlignment="Top" Foreground="#FF002B4B" FontFamily="Bahnschrift"/>
 
     </Grid>
 </Page>
