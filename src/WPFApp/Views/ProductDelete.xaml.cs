@@ -32,5 +32,10 @@ namespace WPFApp.Views
         {
             NavigationService.Navigate(new StartPage());
         }
+
+        private void Bt_Søg_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

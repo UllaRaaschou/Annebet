@@ -8,20 +8,40 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ProductCreate">
 
-    <Grid Background="White">
-        <Label Content="Annebet" HorizontalAlignment="Left" Margin="318,23,0,0" Height="62" Width="146" FontSize="36" VerticalAlignment="Top"/>
-        <Label Content="Oprettelse af Produkt" HorizontalAlignment="Center" Margin="0,72,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <Button Content="Tilbage" HorizontalAlignment="Left" Margin="48,23,0,0" VerticalAlignment="Top" FontSize="16" Click="Button_Click"/>
-        <Label Content="Type" HorizontalAlignment="Left" Margin="153,199,0,0" VerticalAlignment="Top" Height="28" Width="114"/>
-        <Label Content="Navn" HorizontalAlignment="Left" Margin="153,243,0,0" VerticalAlignment="Top" Height="28" Width="114"/>
-        <Label Content="Beskrivelse" HorizontalAlignment="Left" Margin="153,285,0,0" VerticalAlignment="Top" Height="28" Width="114"/>
-        <Label Content="Pris" HorizontalAlignment="Left" Margin="153,328,0,0" VerticalAlignment="Top" Height="28" Width="114"/>
-        <TextBox x:Name="Tb_Type" HorizontalAlignment="Left" Margin="288,199,0,0" TextWrapping="Wrap" Text="{Binding Type, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="351" Height="28" TextChanged="Tb_Type_TextChanged"/>
-        <TextBox x:Name="Tb_Name" HorizontalAlignment="Left" Margin="288,243,0,0" TextWrapping="Wrap" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="351" Height="28"/>
-        <TextBox x:Name="Tb_Description" HorizontalAlignment="Left" Margin="288,285,0,0" TextWrapping="Wrap" Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="351" Height="28"/>
-        <TextBox x:Name="Tb_Price" HorizontalAlignment="Left" Margin="288,328,0,0" TextWrapping="Wrap" Text="{Binding Price, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="351" Height="28" />
-        <Button x:Name="Bt_CreateProduct" Content="Opret Produkt" Command="{Binding ProductCreateCommand}" CommandParameter="{Binding}" HorizontalAlignment="Center" Margin="0,379,0,0" VerticalAlignment="Top" Height="23" Width="151"/>
-        <Button HorizontalAlignment="Left" Margin="288,109,0,0" VerticalAlignment="Top"/>
+    <Grid Background="#FFF7F7F7">
+        <Button Content="Tilbage" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Click="Button_Click" FontFamily="Bahnschrift" FontSize="14" Width="58" Height="30">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="8" Background="#FF002B4B">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+            <Button.Foreground>
+                <SolidColorBrush Color="White"/>
+            </Button.Foreground>
+        </Button>
+        <TextBox x:Name="Tb_Type" HorizontalAlignment="Center" Margin="0,96,0,0" TextWrapping="Wrap" Text="{Binding Type, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="352" TextChanged="Tb_Type_TextChanged" FontFamily="Bahnschrift" FontSize="14"/>
+        <TextBox x:Name="Tb_Name" HorizontalAlignment="Center" Margin="0,135,0,0" TextWrapping="Wrap" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="352" FontFamily="Bahnschrift" FontSize="14"/>
+        <TextBox x:Name="Tb_Description" HorizontalAlignment="Center" Margin="0,177,0,0" TextWrapping="Wrap" Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="352" FontFamily="Bahnschrift" FontSize="14"/>
+        <TextBox x:Name="Tb_Price" HorizontalAlignment="Center" TextWrapping="Wrap" Text="{Binding Price, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="352" FontFamily="Bahnschrift" FontSize="14"/>
+        <Button x:Name="Bt_CreateProduct" Content="Opret Produkt" Command="{Binding ProductCreateCommand}" CommandParameter="{Binding}" HorizontalAlignment="Center" Margin="0,249,0,0" VerticalAlignment="Top" Height="30" Width="100" FontFamily="Bahnschrift" FontSize="14">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="8" Background="#FF002B4B">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+            <Button.Foreground>
+                <SolidColorBrush Color="White"/>
+            </Button.Foreground>
+        </Button>
+        <Label Content="Opret et produkt" HorizontalAlignment="Center" Margin="0,17,0,0" VerticalAlignment="Top" Foreground="#FF002B4B" FontFamily="Bahnschrift" FontSize="20"/>
+        <Label Content="Type" HorizontalAlignment="Left" Margin="181,92,0,0" VerticalAlignment="Top" Foreground="#FF002B4B" FontFamily="Bahnschrift" FontSize="14"/>
+        <Label Content="Navn" HorizontalAlignment="Left" Margin="177,131,0,0" VerticalAlignment="Top" Foreground="#FF002B4B" FontFamily="Bahnschrift" FontSize="14"/>
+        <Label Content="Beskrivelse" HorizontalAlignment="Left" Margin="135,173,0,0" VerticalAlignment="Top" Foreground="#FF002B4B" FontFamily="Bahnschrift" FontSize="14"/>
+        <Label Content="Pris" HorizontalAlignment="Left" Margin="184,0,0,0" VerticalAlignment="Center" Foreground="#FF002B4B" FontFamily="Bahnschrift" FontSize="14"/>
 
     </Grid>
 </Page>
