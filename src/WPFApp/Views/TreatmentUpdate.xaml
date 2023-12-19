@@ -26,7 +26,7 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Button x:Name="Bt_Søg" Content="Søg" HorizontalAlignment="Left" Margin="534,100,0,0" VerticalAlignment="Top" Command="{Binding TreatmentSearchCommand}" CommandParameter="{Binding}" Height="34" Width="50" FontFamily="Bahnschrift" FontSize="14" >
+        <Button x:Name="Bt_Søg" Content="Søg" HorizontalAlignment="Left" Margin="530,100,0,0" VerticalAlignment="Top" Command="{Binding TreatmentSearchCommand}" CommandParameter="{Binding}" Height="34" Width="50" FontFamily="Bahnschrift" FontSize="14" >
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Border CornerRadius="8" Background="#FF002B4B">
@@ -43,7 +43,7 @@
         <TextBox x:Name="Tb_OpdateretBeskrivelse" Text="{Binding SelectedTreatment.Description, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Margin="0,347,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="168" FontFamily="Bahnschrift"/>
         <TextBox x:Name="Tb_OpdateretNavn" Text="{Binding SelectedTreatment.Name, UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Center" Margin="0,312,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="168" RenderTransformOrigin="0.5,0.5" FontFamily="Bahnschrift"/>
         <TextBox x:Name="Tb__OpdateretType" Text="{Binding SelectedTreatment.Type, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Margin="0,277,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="168" FontFamily="Bahnschrift"/>
-        <Button x:Name="Bt_Opdater" Content="Opdater" HorizontalAlignment="Left" Margin="524,364,0,0" VerticalAlignment="Top" Command="{Binding TreatmentUpdateCommand}" CommandParameter="{Binding}" Height="34" Width="70" FontFamily="Bahnschrift" FontSize="14">
+        <Button x:Name="Bt_Opdater" Content="Opdater" HorizontalAlignment="Left" Margin="510,364,0,0" VerticalAlignment="Top" Command="{Binding TreatmentUpdateCommand}" CommandParameter="{Binding}" Height="34" Width="70" FontFamily="Bahnschrift" FontSize="14">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Border CornerRadius="8" Background="#FF002B4B">

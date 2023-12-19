@@ -24,7 +24,7 @@
         <TextBox x:Name="Tb_Type" HorizontalAlignment="Center" Margin="0,96,0,0" TextWrapping="Wrap" Text="{Binding Type, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="352" TextChanged="Tb_Type_TextChanged" FontFamily="Bahnschrift" FontSize="14"/>
         <TextBox x:Name="Tb_Name" HorizontalAlignment="Center" Margin="0,135,0,0" TextWrapping="Wrap" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="352" FontFamily="Bahnschrift" FontSize="14"/>
         <TextBox x:Name="Tb_Description" HorizontalAlignment="Center" Margin="0,177,0,0" TextWrapping="Wrap" Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="352" FontFamily="Bahnschrift" FontSize="14"/>
-        <TextBox x:Name="Tb_Price" HorizontalAlignment="Center" TextWrapping="Wrap" Text="{Binding Price, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="352" FontFamily="Bahnschrift" FontSize="14"/>
+        <TextBox x:Name="Tb_Price" HorizontalAlignment="Center" TextWrapping="Wrap" Margin="0,215,0,0" Text="{Binding Price, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="352" FontFamily="Bahnschrift" FontSize="14"/>
         <Button x:Name="Bt_CreateProduct" Content="Opret Produkt" Command="{Binding ProductCreateCommand}" CommandParameter="{Binding}" HorizontalAlignment="Center" Margin="0,249,0,0" VerticalAlignment="Top" Height="30" Width="100" FontFamily="Bahnschrift" FontSize="14">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
@@ -41,7 +41,7 @@
         <Label Content="Type" HorizontalAlignment="Left" Margin="181,92,0,0" VerticalAlignment="Top" Foreground="#FF002B4B" FontFamily="Bahnschrift" FontSize="14"/>
         <Label Content="Navn" HorizontalAlignment="Left" Margin="177,131,0,0" VerticalAlignment="Top" Foreground="#FF002B4B" FontFamily="Bahnschrift" FontSize="14"/>
         <Label Content="Beskrivelse" HorizontalAlignment="Left" Margin="135,173,0,0" VerticalAlignment="Top" Foreground="#FF002B4B" FontFamily="Bahnschrift" FontSize="14"/>
-        <Label Content="Pris" HorizontalAlignment="Left" Margin="184,0,0,0" VerticalAlignment="Center" Foreground="#FF002B4B" FontFamily="Bahnschrift" FontSize="14"/>
+        <Label Content="Pris" HorizontalAlignment="Left" Margin="184,211,0,0" VerticalAlignment="Top" Foreground="#FF002B4B" FontFamily="Bahnschrift" FontSize="14"/>
 
     </Grid>
 </Page>
