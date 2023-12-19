@@ -40,7 +40,7 @@
         </Button>
         <TextBox x:Name="Tb_Type" HorizontalAlignment="Center" Margin="0,83,0,0" TextWrapping="Wrap" Text="{Binding Type, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="168" FontFamily="Bahnschrift"/>
         <TextBox x:Name="Tb_Navn" HorizontalAlignment="Center" Margin="0,117,0,0" TextWrapping="Wrap" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="168" FontFamily="Bahnschrift"/>
-        <ListBox ItemsSource="{Binding TreatmentsToView}" SelectedItem="{Binding SelectedTreatment}" Margin="224,170,216,202" FontFamily="Bahnschrift">
+        <ListBox ItemsSource="{Binding TreatmentsToView}" SelectedItem="{Binding SelectedTreatment}" Margin="224,157,216,215" FontFamily="Bahnschrift">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
