@@ -57,7 +57,6 @@ CREATE TABLE BOOKING (
 PK_BookingId INT IDENTITY(1,1) PRIMARY KEY,
 CurrentTime DateTime2 NOT NULL,
 BookingTime DateTime2 NOT NULL,
-Treatment NVarChar(50) NOT NULL,
 Canceled Bit NOT NULL,
 FK_Booking_Customer INT NOT NULL,
 FK_Booking_SalesItem_Product_Treatment INT NOT NULL,
