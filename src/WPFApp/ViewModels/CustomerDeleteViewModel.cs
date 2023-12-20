@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using WPFApp.Commands;
 
@@ -28,14 +23,7 @@ namespace WPFApp.ViewModels
                 propertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
-
-
-
-        public CustomerDeleteViewModel()
-        {
-            CustomersToView = new ObservableCollection<CustomerToViewModel>(); // instansierer  Observable Collection til fremsøgte customers
-
-        }
+       
         public ObservableCollection<CustomerToViewModel> CustomersToView { get; }  // Observable Collection laves til property
 
 
@@ -44,8 +32,7 @@ namespace WPFApp.ViewModels
         public ICommand CustomerDeleteCommand { get; } = new CustomerDeleteCommand();
 
         
-        
-        
+                
         private string firstName;
         public string FirstName
         {
@@ -58,6 +45,7 @@ namespace WPFApp.ViewModels
             }
         }
 
+
         private string lastName;
         public string LastName
         {
@@ -68,7 +56,6 @@ namespace WPFApp.ViewModels
                 OnPropertyChanged(nameof(lastName));
             }
         }
-
         
         
         private CustomerToViewModel selectedCustomer; // Property til listbox's selected item
@@ -83,6 +70,9 @@ namespace WPFApp.ViewModels
         }
 
 
-
+        public CustomerDeleteViewModel()
+        {
+            CustomersToView = new ObservableCollection<CustomerToViewModel>(); // instansierer  Observable Collection til fremsøgte customers
+        }
     }
 }

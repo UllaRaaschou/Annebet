@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using WPFApp.Models;
 using WPFApp.ViewModels;
@@ -25,7 +22,10 @@ namespace WPFApp.Commands
         }
 
 
+
         private ITreatmentRepository repository; // Simpel deklarering af repo. Dette kan skiftes afhængigt af den anvendte konstructor
+
+
 
         public TreatmentSearchCommand() // Constructor, der som default vil blive aktiveret og som sætter repo-feltet til det almindelige TreatmentReposity
         {
@@ -39,10 +39,9 @@ namespace WPFApp.Commands
 
 
 
-
         /// <summary>
         /// Metode, der undersøger, om Execute skal afvikles.
-        /// Parameteren er i xaml-koden sat som "CommandParameter = Binding", og datakontekst er i code behind sat til tsvm.
+        /// Parameteren er i xaml-koden sat som "CommandParameter = Binding", og datakontekst er i code behind sat til tuvm eller tdvm.
         /// </summary>
         public bool CanExecute(object? parameter)
         {
@@ -79,7 +78,7 @@ namespace WPFApp.Commands
 
         /// <summary>
         /// Metoden, der udfører søg_behandling_funktionen og får den add'et til database.
-        /// Parameteren er i xaml-koden sat som "CommandParameter = Binding", og datakontekst er i code behind sat til tsvm.
+        /// Parameteren er i xaml-koden sat som "CommandParameter = Binding", og datakontekst er i code behind sat til tuvm eller tdvm.
         /// </summary>
         public void Execute(object? parameter)
         {

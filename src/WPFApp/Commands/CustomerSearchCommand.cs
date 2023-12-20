@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using WPFApp.Models;
 using WPFApp.ViewModels;
@@ -27,6 +24,8 @@ namespace WPFApp.Commands
 
         private ICustomerRepository repository;  // simpel deklarering af repo. Dette kan skiftes afhængigt af den anvendte konstructor
 
+
+
         public CustomerSearchCommand() // Constructor, der som default vil blive aktiveret og som sætter repo-feltet til det almindelige CustomerReposity
         {
             this.repository = new CustomerRepository();
@@ -42,7 +41,7 @@ namespace WPFApp.Commands
 
         /// <summary>
         /// Metode, der undersøger, om Execute skal afvikles.
-        /// Parameteren er i xaml-koden sat som "CommandParameter = Binding", og datakontekst er i code behind sat til cdvm.
+        /// Parameteren er i xaml-koden sat som "CommandParameter = Binding", og datakontekst er i code behind sat til cuvm eller cdvm.
         /// </summary>
         public bool CanExecute(object? parameter)
         {
@@ -71,7 +70,7 @@ namespace WPFApp.Commands
 
         /// <summary>
         /// Metoden, der udfører søg_kunde_funktionen og får den add'et til database.
-        /// Parameteren er i xaml-koden sat som "CommandParameter = Binding", og datakontekst er i code behind sat til csvm.
+        /// Parameteren er i xaml-koden sat som "CommandParameter = Binding", og datakontekst er i code behind sat til cuvm eller cdvm.
         /// </summary>
         public void Execute(object? parameter)
         {
@@ -97,8 +96,7 @@ namespace WPFApp.Commands
                     CustomerToViewModel customerViewModel = ctvm.CustomerToViewModelConvert(c);// De hentede Customers converteres til ViewModels
                     cdvm.CustomersToView.Add(customerViewModel); // viewModels lægges i Observable Collection i datakontexten
                 }
-            }
-           
+            }           
         }
     }
 }

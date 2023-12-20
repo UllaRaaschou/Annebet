@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using WPFApp.Commands;
 
 namespace WPFApp.ViewModels
 {
+    // Interface-nedarves
     public class ProductDeleteViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged; // Interface implementeres som event
@@ -31,6 +27,12 @@ namespace WPFApp.ViewModels
 
 
 
+        // Ny instans af Command-klassen, der implementerer Icommand-interfacet
+        public ICommand ProductSearchCommand { get; } = new ProductSearchCommand();
+        // Ny instans af Command-klassen, der implementerer Icommand-interfacet
+        public ICommand ProductDeleteCommand { get; } = new ProductDeleteCommand();
+
+
 
         public ProductDeleteViewModel()
         {
@@ -40,9 +42,9 @@ namespace WPFApp.ViewModels
 
 
 
-
+        // Metoden kaldes, fordi type ændres.
+        // Det udløser PropertyChanged-eventet og abonnenter informeres
         private string type;
-
         public string Type
         {
             get { return type; }
@@ -64,10 +66,6 @@ namespace WPFApp.ViewModels
                 OnPropertyChanged(nameof(name));
             }
         }
-
-        public ICommand ProductSearchCommand { get; } = new ProductSearchCommand(); // Ny instans af Command-klassen, der implementerer Icommand-interfacet
-        public ICommand ProductDeleteCommand { get; } = new ProductDeleteCommand();
-
 
 
         private ProductToViewModel selectedProduct; // Property til selected item fra listbox

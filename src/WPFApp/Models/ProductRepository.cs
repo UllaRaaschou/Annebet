@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Navigation;
 
 namespace WPFApp.Models
 {
@@ -14,6 +10,8 @@ namespace WPFApp.Models
         {
             return base.AddSalesItem(product);  // Kalder den abstrakte add-metode i parent-class med et products værdier
         }
+
+
 
        public List<Product> GetAllProducts(string type, string name)
         {
@@ -41,13 +39,16 @@ namespace WPFApp.Models
                 }              
             } return wantedProducts; // listen returneres
                                    // using lukker readeren
-
         }
+
+
 
         public void UpdateProduct(Product productWithUpdatedValues)
         {
             base.UpdateSalesItem(productWithUpdatedValues); // kalder Update-metoden i parent-class med et products værdier
         }
+
+
 
         public void DeleteProductById(int id)
         {

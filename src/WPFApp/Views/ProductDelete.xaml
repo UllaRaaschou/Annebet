@@ -26,7 +26,7 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Button x:Name="Bt_Søg" Content="Søg" HorizontalAlignment="Left" Margin="535,80,0,0" VerticalAlignment="Top" Command="{Binding ProductSearchCommand}" CommandParameter="{Binding}" Height="32" Width="45" Click="Bt_Søg_Click" FontFamily="Bahnschrift" FontSize="14">
+        <Button x:Name="Bt_Søg" Content="Søg" HorizontalAlignment="Left" Margin="535,80,0,0" VerticalAlignment="Top" Command="{Binding ProductSearchCommand}" CommandParameter="{Binding}" Height="32" Width="45" FontFamily="Bahnschrift" FontSize="14">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Border CornerRadius="8" Background="#FF002B4B">

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using WPFApp.Models;
@@ -24,16 +20,23 @@ namespace WPFApp.Commands
             remove { CommandManager.RequerySuggested -= value; }
         }
 
+
+
         private IProductRepository repository; // simpel deklarering af repo. Dette kan skiftes afhængigt af den anvendte konstructor
+     
+        
+        
         public ProductDeleteCommand()  // Constructor, der som default vil blive aktiveret og som sætter repo-feltet til det almindelige CustomerReposity
         {
             this.repository = new ProductRepository();
         }
+     
         public ProductDeleteCommand(IProductRepository repository)  // Constuctor, der kan bruges, når vi i unit-test bruger Test-repo som parameter,
                                                                     // og vi dermed sætter repo-feltet til test-Repo
         {
             this.repository = repository;
         }
+
 
 
         /// <summary>
@@ -58,6 +61,7 @@ namespace WPFApp.Commands
             }
             return false; // hvis parameter test fejler, returenes false
         }
+
 
 
         /// <summary>

@@ -1,20 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WPFApp.Models
 {
     public abstract class SalesItem // Abstrakt parent-class med Product og Treatment som children
     {             
-
         public int Id{ get;  }
         public EnumCategory Category { get; }
         public string Type { get; }
         public string Name { get; }
         public string Description { get; }
         public decimal Price { get; }
+
+
 
         protected SalesItem(int id, EnumCategory category, string type, string name, string description, decimal price)  // protected konstructør, der bruges i de to create-metoder
         {
@@ -25,6 +22,8 @@ namespace WPFApp.Models
             Price = price;
             Description = description;
         }
+       
+
 
         public static SalesItem CreateSalesItemFromDb(int id, EnumCategory category, string type, string name, string description, decimal price) // salesItemværdier hentet fra db
         {
@@ -42,8 +41,9 @@ namespace WPFApp.Models
             {
                 throw new Exception("Fejl i category");
             }
-
         }
+
+
 
         public static SalesItem CreateSalesItemFromUI(EnumCategory category, string type, string name, string description, decimal price) // salesItemværdier fra UI
         {
@@ -61,7 +61,6 @@ namespace WPFApp.Models
             {
                 throw new Exception("Fejl i category");
             }
-
         }
     }
 }

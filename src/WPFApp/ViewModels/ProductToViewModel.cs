@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WPFApp.Models;
+﻿using WPFApp.Models;
 
 namespace WPFApp.ViewModels
 {
     public class ProductToViewModel
     {
-       
+        public int Id { get; set; }
+        public string Type { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public decimal Price { get; set; }
+
 
         public ProductToViewModel() { }// parameterløs constructor
        
@@ -39,14 +37,6 @@ namespace WPFApp.ViewModels
             Product createdProduct = Product.CreateProductFromDb(id, type, name, description, price); // product-klassens statiske metode creater product
             ProductToViewModel model = new ProductToViewModel(createdProduct); // product konverteres til ProductToViewModel
             return model; // ProductToViewModel returneres
-        }
-
-        public int Id { get; set; }
-        public string Type { get;set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public decimal Price { get; set; }
-
-        
+        }        
     }
 }

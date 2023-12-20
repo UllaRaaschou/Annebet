@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using WPFApp.Models;
@@ -26,17 +22,22 @@ namespace WPFApp.Commands
         }
 
 
+
         private ITreatmentRepository repository; // Simpel deklarering af repo. Dette kan skiftes afhængigt af den anvendte konstructor
+
+
 
         public TreatmentDeleteCommand()  // Constructor, der som default vil blive aktiveret og som sætter repo-feltet til det almindelige CustomerReposity
         {
             this.repository = new TreatmentRepository();
         }
+ 
         public TreatmentDeleteCommand(ITreatmentRepository repository)  // Constuctor, der kan bruges, når vi i unit-test bruger Test-repo som parameter,
                                                                         // og vi dermed sætter repo-feltet til test-Repo
         {
             this.repository = repository;
         }
+
 
 
         /// <summary>
@@ -91,7 +92,7 @@ namespace WPFApp.Commands
 
                     if (repository is TreatmentRepository)
                     {
-                        MessageBox.Show("Behandling oprettet");
+                        MessageBox.Show("Behandling slettet");
                     }
                 }
                 else throw new Exception("Wrong type of parameter");

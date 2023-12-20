@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using WPFApp.Models;
@@ -27,8 +22,11 @@ namespace WPFApp.Commands
         }
 
 
+
         private ITreatmentRepository repository; // simpel deklarering af repo. Dette kan skiftes afhængigt af den anvendte konstructor
         
+
+
         public TreatmentCreateCommand()  // Constructor, der som default vil blive aktiveret og som sætter repo-feltet til det almindelige CustomerReposity
         {
             this.repository = new TreatmentRepository();
@@ -62,11 +60,12 @@ namespace WPFApp.Commands
                 }
                 // Variablen returneres
                 return result;
-
             }
             // Hvis datacontext ikke er sat korrekt, returneres false
             return false;
         }
+
+
 
         /// <summary>
         /// Metoden, der udfører opret_behandling_funktionen og får den add'et til repository.
@@ -76,9 +75,7 @@ namespace WPFApp.Commands
         {
             // Parameter tjekkes
             if (parameter is TreatmentCreateViewModel tcvm)
-            {
-                
-
+            {                
                 // Repo add'er product i listen
                 repository.AddTreatment(Treatment.CreateTreatmentFromUI(tcvm.Type, tcvm.Name, tcvm.Description, tcvm.Price));
                 tcvm.Type = null;

@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WPFApp.Models
 {
@@ -13,6 +10,8 @@ namespace WPFApp.Models
         {
             return base.AddSalesItem(treatment); // Kalder den abstrakte add-metode i parent-class med en treatments værdier
         }
+
+
 
         public List<Treatment> GetAllTreatments(string type, string name)
         {
@@ -47,10 +46,11 @@ namespace WPFApp.Models
             base.UpdateSalesItem(treatmentWithUpdatedValues); // kalder Update-metoden i parent-class med en treatments værdier
         }
 
+
+
         public void DeleteTreatmentById(int id) 
         {
             base.DeleteSalesItemById(id);  // kalder Delete-metoden i parent-class med et products værdier
         }
-    }
-    
+    }    
 }

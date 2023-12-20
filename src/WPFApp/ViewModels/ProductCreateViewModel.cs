@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Windows.Input;
 using WPFApp.Commands;
 
@@ -25,6 +24,11 @@ namespace WPFApp.ViewModels
         }
 
 
+        public ICommand ProductCreateCommand { get; } = new ProductCreateCommand();  // Property til Create command sættes til instans af klassen
+
+
+        // Metoden kaldes, fordi type ændres.
+        // Det udløser PropertyChanged-eventet og abonnenter informeres
         private string type;
         public string Type
         {
@@ -34,6 +38,8 @@ namespace WPFApp.ViewModels
                 OnPropertyChanged(nameof(type));
              }
         }
+
+
         private string name;
         public string Name
         {
@@ -44,6 +50,7 @@ namespace WPFApp.ViewModels
                 OnPropertyChanged(nameof(name));
             }
         }
+
 
         private string description;
         public string Description
@@ -56,6 +63,7 @@ namespace WPFApp.ViewModels
             }
         }
 
+
         private decimal price;
         public decimal Price
         {
@@ -66,18 +74,5 @@ namespace WPFApp.ViewModels
                 OnPropertyChanged(nameof(price));
             }
         }
-
-        public ICommand ProductCreateCommand { get; } = new ProductCreateCommand();  // Property til Create command sættes til instans af klassen
-
-        
-
-        
-
-
-
-
-    }
-
-    
-
+    }    
 }
