@@ -45,7 +45,7 @@ GO
 CREATE TABLE SALE_SALESITEM_PRODUCT_TREATMENT (
 PK_SaleIdSalesItemId_Product_Treatment INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
 Amount DECIMAL NOT NULL,
-TotalPrice DECIMAL NOT NULL,
+Price DECIMAL NOT NULL,
 FK_SaleIdSalesItem_Product_Treatment_Sale INT NOT NULL,
 FK_SaleIdSalesItem_Product_Treatment_SalesItem_Product_Treatment INT NOT NULL,
 FOREIGN KEY (FK_SaleIdSalesItem_Product_Treatment_Sale) REFERENCES SALE (PK_SaleId),
