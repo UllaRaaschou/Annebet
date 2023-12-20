@@ -12,7 +12,13 @@ namespace WPFApp.Models
                                                             // Implementerer IDisposable for at kunne genbruge Repositoriets connection til Db i hele
                                                             // Repo'ets levetid.
     {
-        private const string connectionString = "Server=10.56.8.36;Database=DB_F23_TEAM_04;User Id=DB_F23_TEAM_04;Password=TEAMDB_DB_04; TrustServerCertificate=True";
+        /// <summary>
+        /// Modtager connectionstring fra den statiske klasse ConnectionStringManager
+        /// </summary>        
+        static string connectionString = ConnectionStringManager.ConnectionString;
+
+
+        // private const string connectionString = "Server=10.56.8.36;Database=DB_F23_TEAM_04;User Id=DB_F23_TEAM_04;Password=TEAMDB_DB_04; TrustServerCertificate=True";
         // sættes til en konstant for at kunne genbruges
         protected int AddSalesItem(SalesItem salesItem) // Add-metode, der tager et salesItem og bruger category til differentiator
                                                                                 // mellem children Product og Treatment.

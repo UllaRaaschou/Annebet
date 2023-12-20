@@ -11,10 +11,9 @@ namespace WPFApp.Models
     public class CustomerRepository : ICustomerRepository
     {
         /// <summary>
-        /// Tekststreng, der inkluderer server-id, database-id, vores brugernavn og vores kode
-        /// </summary>
-        private string connectionString = "Server=10.56.8.36;Database=DB_F23_TEAM_04;User Id=DB_F23_TEAM_04;Password=TEAMDB_DB_04; TrustServerCertificate=True";
-
+        /// Modtager connectionstring fra den statiske klasse ConnectionStringManager
+        /// </summary>        
+        static string connectionString = ConnectionStringManager.ConnectionString;
 
         public int AddCustomer(Customer customer)
         {
