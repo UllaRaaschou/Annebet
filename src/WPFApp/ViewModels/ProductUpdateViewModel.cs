@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using WPFApp.Commands;
 
 namespace WPFApp.ViewModels
 {
-	public class ProductUpdateViewModel: INotifyPropertyChanged
+    // Interface-nedarves
+    public class ProductUpdateViewModel: INotifyPropertyChanged
 	{
         public event PropertyChangedEventHandler PropertyChanged; // Interface implementeres som event
 
@@ -31,15 +27,19 @@ namespace WPFApp.ViewModels
 
 
 
+        // Ny instans af Command-klassen, der implementerer Icommand-interfacet
+        public ICommand ProductSearchCommand { get; } = new ProductSearchCommand();
+        // Ny instans af Command-klassen, der implementerer Icommand-interfacet
+        public ICommand ProductUpdateCommand { get; } = new ProductUpdateCommand();
 
-        public ProductUpdateViewModel()  // constructoer instantierer Observable Collections af fremsøgte Products's ToViewModels
-        {
-            ProductsToView = new ObservableCollection<ProductToViewModel>();
-        }
+
 
         public ObservableCollection<ProductToViewModel> ProductsToView { get; } //ObservableCollection sættes som property
 
-		
+
+
+        // Metoden kaldes, fordi type ændres.
+        // Det udløser PropertyChanged-eventet og abonnenter informeres
         private string type;
         public string Type
 		{
@@ -60,11 +60,7 @@ namespace WPFApp.ViewModels
                 OnPropertyChanged(nameof(Name));
             }
         }
-
-        public ICommand ProductSearchCommand { get; } = new ProductSearchCommand(); // Ny instans af Command-klassen, der implementerer Icommand-interfacet
-        public ICommand ProductUpdateCommand { get; } = new ProductUpdateCommand();
-
-
+       
 
         private ProductToViewModel selectedProduct;  // property til brug for selected item
         public ProductToViewModel SelectedProduct
@@ -75,5 +71,10 @@ namespace WPFApp.ViewModels
             }
         }
 
+
+        public ProductUpdateViewModel()  // constructoer instantierer Observable Collections af fremsøgte Products's ToViewModels
+        {
+            ProductsToView = new ObservableCollection<ProductToViewModel>();
+        }
     }
 }

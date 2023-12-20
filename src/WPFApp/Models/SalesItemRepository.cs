@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WPFApp.Models
 {
@@ -12,11 +8,19 @@ namespace WPFApp.Models
                                                             // Implementerer IDisposable for at kunne genbruge Repositoriets connection til Db i hele
                                                             // Repo'ets levetid.
     {
-        private const string connectionString = "Server=10.56.8.36;Database=DB_F23_TEAM_04;User Id=DB_F23_TEAM_04;Password=TEAMDB_DB_04; TrustServerCertificate=True";
-        // sættes til en konstant for at kunne genbruges
-        protected int AddSalesItem(SalesItem salesItem) // Add-metode, der tager et salesItem og bruger category til differentiator
-                                                                                // mellem children Product og Treatment.
-                                                                                //Metoden er protected og nedarves til children
+        // <summary>
+        // Modtager connectionstring fra den statiske klasse ConnectionStringManager
+        // </summary>        
+        static string connectionString = ConnectionStringManager.ConnectionString;
+
+
+        private SqlConnection sqlConnection = new SqlConnection(connectionString); // Instatiering af SqlConnection-klassen
+
+
+        /// Add-metode, der tager et salesItem og bruger category til differentiator
+        /// mellem children Product og Treatment.
+        ///Metoden er protected og nedarves til children
+        protected int AddSalesItem(SalesItem salesItem) 
         {
             int newId; // Simpel variabel-deklaration uden værdi-tildeling
 
@@ -47,7 +51,6 @@ namespace WPFApp.Models
                         return newId;
                     }
                 }
-
                 catch (Exception ex) // udstiller en eventuel fejlmeddelelse
                 {
                     throw new Exception("Produkt eller behandling kunne ikke føjes til databasen", ex);
@@ -55,9 +58,12 @@ namespace WPFApp.Models
             }
         }
 
-        protected void UpdateSalesItem(SalesItem salesItemWithUpdatedValues) // Update-metode, der tager et salesItem og bruger category til differentiator
-                                                                                                    // mellem children Product og Treatment
-                                                                                                    //Metoden er protected og nedarves til children
+
+
+        /// Update-metode, der tager et salesItem og bruger category til differentiator
+        /// mellem children Product og Treatment
+        ///Metoden er protected og nedarves til children
+        protected void UpdateSalesItem(SalesItem salesItemWithUpdatedValues)                                                                                                                                                           
         {
             SqlConnection con = GetOpenSqlConnection(); // skaber forbindelse til vores db med vores connectionstring ***** uden brug af "using"
 
@@ -85,7 +91,10 @@ namespace WPFApp.Models
             }            
         }
 
-        protected void DeleteSalesItemById(int id)  //Metoden er protected og nedarves til children. Differentierer ikke mellem children-objekter
+
+
+        ///Metoden er protected og nedarves til children. Differentierer ikke mellem children-objekter
+        protected void DeleteSalesItemById(int id) 
         {
             SqlConnection con = GetOpenSqlConnection(); // skaber forbindelse til vores db med vores connectionstring *****uden brug af "using"
 
@@ -107,8 +116,11 @@ namespace WPFApp.Models
         }
 
 
-        protected SqlDataReader GetAllSalesItems(EnumCategory category, string type, string name) // Bruger category som differentiator, når children skal arve metoden
-                                                                                                  //Metoden er protected og nedarves til children
+
+        /// Bruger category som differentiator, når children skal arve metoden
+        ///Metoden er protected og nedarves til children
+        protected SqlDataReader GetAllSalesItems(EnumCategory category, string type, string name)
+                                                                                                 
         {
             SqlConnection con = GetOpenSqlConnection(); // skaber forbindelse til vores db med vores connectionstring
             // Ingen brug af using, da de lukker readeren ned, hvorved children ikke kan bruge reader-metoden
@@ -133,8 +145,6 @@ namespace WPFApp.Models
         }
 
 
-        private SqlConnection sqlConnection = new SqlConnection(connectionString); // Instatiering af SqlConnection-klassen
-
 
         /// <summary>
         /// Dispose-metoden søger for, at alt lukkes ned korrekt
@@ -144,7 +154,6 @@ namespace WPFApp.Models
             sqlConnection.Dispose(); // Instansen af SqlConnection sættes til at kalde Dispose-metoden, så Sql-connection lukkes korrekt ned.
                                      //  Som konsekvens overflødigøres brugen af "using" i forb med Sqlconnection  
         }
-
         
         
         
@@ -157,11 +166,9 @@ namespace WPFApp.Models
             {
                 sqlConnection.Open();
             }
-
             return sqlConnection;
         }
-    }
-    
+    }   
 }
 
 

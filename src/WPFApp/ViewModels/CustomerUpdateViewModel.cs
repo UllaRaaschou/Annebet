@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using WPFApp.Commands;
-using WPFApp.Models;
 
 namespace WPFApp.ViewModels
 {
@@ -29,20 +23,15 @@ namespace WPFApp.ViewModels
                 propertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
-               
 
 
-        public CustomerUpdateViewModel() 
-        {
-            CustomersToView = new ObservableCollection<CustomerToViewModel>(); // instansierer  Observable collection til fremsøgte customer's ToViewModels
-                      
-        }
-        public ObservableCollection<CustomerToViewModel> CustomersToView { get; } // Collection sættes som property
 
-
-       
         public ICommand CustomerSearchCommand { get; } = new CustomerSearchCommand(); // Ny instans af Command-klassen, der implementerer Icommand-interfacet
         public ICommand CustomerUpdateCommand { get; } = new CustomerUpdateCommand();
+
+
+
+        public ObservableCollection<CustomerToViewModel> CustomersToView { get; } // Collection sættes som property
 
 
 
@@ -79,6 +68,9 @@ namespace WPFApp.ViewModels
         }
 
 
-        
+        public CustomerUpdateViewModel()
+        {
+            CustomersToView = new ObservableCollection<CustomerToViewModel>(); // instansierer  Observable collection til fremsøgte customer's ToViewModels                      
+        }
     }
 }

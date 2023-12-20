@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace WPFApp.Models
+﻿namespace WPFApp.Models
 {
     public class Product : SalesItem  //Nedarvning fra SalesItem
     {
         private Product(int id, string type, string name, string description, decimal price) : 
             base(id, EnumCategory.Product, type, name, description, price) { }//privat constructor til brug for de 2 create-metoder                                                                                                                                      // create-metoder
         
+
 
         /// <summary>
         /// Create-metode ud fra UI-input, dvs uden et id.
@@ -35,7 +29,5 @@ namespace WPFApp.Models
             //Product product = new Product(id, type, name, description, price);
             //return product;
         }
-
-
-    }
+   }
 }

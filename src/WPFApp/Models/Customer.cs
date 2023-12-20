@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-
-namespace WPFApp.Models
+﻿namespace WPFApp.Models
 {
     public class Customer
     {
@@ -10,6 +8,7 @@ namespace WPFApp.Models
         public string Phone { get; }
         public string Email { get; }
         public int Id { get; private set; }
+
 
         private Customer(int id, string firstName, string lastName, string address, string phone, string email) // privat construktør til brug for de create-metoder
         {
@@ -22,6 +21,7 @@ namespace WPFApp.Models
         }
 
 
+
         /// <summary>
         /// Metode, der skaber en Customer-instans fra UI-input (uden id)
         /// Metoden er statisk, så den kan kaldes uden en instans af klassen
@@ -32,6 +32,7 @@ namespace WPFApp.Models
         }
 
 
+
         /// <summary>
         /// Metode, der skaber en Customer-instans med værdier fra db (incl. id)
         /// Metoden er statisk, så den kan kaldes uden en instans af klassen
@@ -40,9 +41,5 @@ namespace WPFApp.Models
         {
             return new Customer(id, firstName, lastName, address, phone, email);
         }
-
-        
-
-
-    }
+   }
 }

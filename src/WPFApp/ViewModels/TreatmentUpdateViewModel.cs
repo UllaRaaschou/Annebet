@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using WPFApp.Commands;
 
 namespace WPFApp.ViewModels
 {
+    // Interface-nedarves 
     public class TreatmentUpdateViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged; // Interface implementeres som event
@@ -51,6 +47,7 @@ namespace WPFApp.ViewModels
             }
         }
 
+
         private string name;
         public string Name
         {
@@ -59,6 +56,7 @@ namespace WPFApp.ViewModels
                 OnPropertyChanged(nameof(name));
             }
         }
+
 
         // Property til listbox's selected item
         private TreatmentToViewModel selectedTreatment;

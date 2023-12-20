@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Windows.Input;
 using WPFApp.Commands;
-using WPFApp.Models;
 
 namespace WPFApp.ViewModels
 {
@@ -45,8 +44,8 @@ namespace WPFApp.ViewModels
             }
         }
 
-        private string name;
 
+        private string name;
         public string Name
         {
             get { return name; }
@@ -57,8 +56,8 @@ namespace WPFApp.ViewModels
             }
         }
 
-        private string description;
 
+        private string description;
         public string Description
         {
             get { return description; }
@@ -69,8 +68,8 @@ namespace WPFApp.ViewModels
             }
         }
 
-        private decimal price;
 
+        private decimal price;
         public decimal Price
         {
             get { return price; }

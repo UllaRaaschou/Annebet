@@ -1,14 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 using System.Windows.Input;
 using WPFApp.Commands;
-using WPFApp.Models;
 
 namespace WPFApp.ViewModels
 {
@@ -32,7 +24,6 @@ namespace WPFApp.ViewModels
         }
 
             
-
         /// <summary>
         /// Property af typen "interfacet ICommand", instantieres til ConstructCustomer-kommandoen. 
         /// </summary>
@@ -51,6 +42,7 @@ namespace WPFApp.ViewModels
                }
         }
 
+
         private string lastName;
         public string LastName
         {
@@ -58,6 +50,7 @@ namespace WPFApp.ViewModels
             set { lastName = value;
                 OnPropertyChanged(nameof(lastName)); }
         }
+
 
         private string address;
         public string Address
@@ -67,6 +60,7 @@ namespace WPFApp.ViewModels
                 OnPropertyChanged(nameof(address)); }
         }
 
+
         private string phone;
         public string Phone
         {
@@ -75,20 +69,13 @@ namespace WPFApp.ViewModels
                 OnPropertyChanged(nameof(phone)); }
         }
 
-        private string email;
 
+        private string email;
         public string Email
         {
             get { return email; }
             set { email = value;
                 OnPropertyChanged(nameof(email)); }
         }
-
-       
-
-        
-       
-
-
     }   
 }

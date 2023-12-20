@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using WPFApp.Models;
@@ -27,6 +23,8 @@ namespace WPFApp.Commands
 
 
         private ICustomerRepository repository; // simpel deklarering af repo. Dette kan skiftes afhængigt af den anvendte konstructor
+
+
 
         public CustomerUpdateCommand()  // Constructor, der som default vil blive aktiveret og som sætter repo-feltet til det almindelige CustomerReposity
         {
@@ -63,6 +61,7 @@ namespace WPFApp.Commands
         }
 
 
+
         /// <summary>
         /// Metoden, der udfører opdater_kunde_funktionen og får den add'et til database.
         /// Parameteren er i xaml-koden sat som "CommandParameter = Binding", og datakontekst er i code behind sat til cuvm.
@@ -84,7 +83,6 @@ namespace WPFApp.Commands
                 if (repository is CustomerRepository)
                 {
                     MessageBox.Show("Kunde opdateret");
-
                 }
 
             }

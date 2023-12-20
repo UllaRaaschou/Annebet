@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using WPFApp.Models;
@@ -24,7 +20,11 @@ namespace WPFApp.Commands
             remove { CommandManager.RequerySuggested -= value; }
         }
 
+
+
         private IProductRepository repository;  // simpel deklarering af repo. Dette kan skiftes afhængigt af den anvendte konstructor
+
+
 
         public ProductUpdateCommand()  // Constructor, der som default vil blive aktiveret og som sætter repo-feltet til det almindelige CustomerReposity
         {
@@ -35,6 +35,7 @@ namespace WPFApp.Commands
         {                                                            // og vi dermed sætter repo-feltet til test-Repo
             this.repository = repository;   
         }
+
 
 
         /// <summary>
@@ -61,6 +62,7 @@ namespace WPFApp.Commands
         }
 
 
+
         /// <summary>
         /// Metoden, der udfører opdater_produkt_funktionen og får den add'et til database.
         /// Parameteren er i xaml-koden sat som "CommandParameter = Binding", og datakontekst er i code behind sat til puvm.
@@ -82,8 +84,7 @@ namespace WPFApp.Commands
                 if(repository is ProductRepository) 
                 {
                     MessageBox.Show("Produkt er opdateret");
-                }
-                    
+                }                    
             }
             else throw new Exception("Wrong type of parameter");
         }

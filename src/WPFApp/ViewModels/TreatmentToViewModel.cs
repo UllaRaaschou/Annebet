@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WPFApp.Models;
+﻿using WPFApp.Models;
 
 namespace WPFApp.ViewModels
 {
     public class TreatmentToViewModel
-    {
-        
-
+    {       
         public int Id { get; set; }
         public string Type { get; set; }
         public string Name { get; set; }
@@ -46,7 +38,5 @@ namespace WPFApp.ViewModels
             TreatmentToViewModel model = new TreatmentToViewModel(createdTreatment);
             return model;
         }
-
-
     }
 }

@@ -18,7 +18,6 @@
 
 
 
-
             /// <summary>
             /// Create-metode ud fra Db, dvs med et id
             /// </summary>    
@@ -27,9 +26,5 @@
                 Treatment treatment = new Treatment(id, type, name, description, price);
                 return treatment;
             }
-            
-        
-
-            
-        }
+       }
 }

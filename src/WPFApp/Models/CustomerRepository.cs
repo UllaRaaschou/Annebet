@@ -2,20 +2,20 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WPFApp.Models
 {
+    // Implementerer interfacet IProductRepository
     public class CustomerRepository : ICustomerRepository
     {
         /// <summary>
-        /// Tekststreng, der inkluderer server-id, database-id, vores brugernavn og vores kode
-        /// </summary>
-        private string connectionString = "Server=10.56.8.36;Database=DB_F23_TEAM_04;User Id=DB_F23_TEAM_04;Password=TEAMDB_DB_04; TrustServerCertificate=True";
+        /// Modtager connectionstring fra den statiske klasse ConnectionStringManager
+        /// </summary>        
+        static string connectionString = ConnectionStringManager.ConnectionString;
 
 
+
+        /// Add-metode, der tager en Customer
         public int AddCustomer(Customer customer)
         {
             int newId; // Simpel variabel-deklaration uden værdi-tildeling
@@ -47,18 +47,18 @@ namespace WPFApp.Models
                             newId = 0; // hvis der ikke er kommet noget retur
                             return newId;
                         }
-
                     }
-
                     catch (Exception ex) // udstiller en eventuel fejlmeddelelse
                     {
                         throw new Exception("Det var ikke muligt at tilføje en kunde til databasen", ex);
-
                     }
                 }
             }
-
         }
+
+
+
+        /// Update-metode, der tager et SalesItem
         public void UpdateCustomer(Customer customerWithUpdatedValues)
         {
             using (SqlConnection con = new SqlConnection(connectionString)) // skaber forbindelse til vores db med vores connectionstring
@@ -79,7 +79,6 @@ namespace WPFApp.Models
                     {
                         cmd.ExecuteNonQuery();
                     }
-
                     catch (Exception ex) // udstiller en eventuel fejlmeddelelse
                     {
                         throw new Exception("Kunden kunne ikke opdateres", ex);
@@ -87,6 +86,10 @@ namespace WPFApp.Models
                 }
             }
         }
+
+
+
+        /// Update-metode
         public void DeleteCustomerById(int id)
         {
             using (SqlConnection con = new SqlConnection(connectionString)) // skaber forbindelse til vores db med vores connectionstring
@@ -110,6 +113,10 @@ namespace WPFApp.Models
                 }
             }
         }
+
+
+
+        /// Update-metode, der tager firstName & lastName
         public List<Customer> GetAllCustomers(string firstName, string lastName)
         {
             List<Customer> allSpecifiedCustomer = new List<Customer>(); // instantiering af tom Customerliste
@@ -151,9 +158,5 @@ namespace WPFApp.Models
             }
             return allSpecifiedCustomer; // listen returneres
         }
-
-       
-
-        
     }
 }
