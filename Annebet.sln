@@ -10,8 +10,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BDC0F042-E086-48D5-9F0B-C7289EA92902}"
 	ProjectSection(SolutionItems) = preProject
 		SqlQueries.sql = SqlQueries.sql
-		SqlQuery_CreateTables.sql = SqlQuery_CreateTables.sql
-		Triggers.sql = Triggers.sql
+		CreateTriggers.sql = CreateTriggers.sql
+		CreateTables.sql = CreateTables.sql
 	EndProjectSection
 EndProject
 Global
