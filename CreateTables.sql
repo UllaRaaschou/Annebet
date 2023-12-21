@@ -1,13 +1,4 @@
-﻿DROP TABLE BOOKING
-GO
-
-DROP TABLE SALE_SALESITEM_PRODUCT_TREATMENT
-GO
-
-DROP TABLE SALESITEM_PRODUCT_TREATMENT
-GO
-
-DROP TABLE SALE
+﻿DROP TABLE SALESITEM_PRODUCT_TREATMENT
 GO
 
 DROP TABLE CUSTOMER
@@ -23,15 +14,6 @@ CREATE TABLE CUSTOMER (
    );
 GO
 
-   CREATE TABLE SALE (
-PK_SaleId INT IDENTITY(1,1) PRIMARY KEY,
-TotalPrice DECIMAL NOT NULL,
-TimeOfSale DateTime2 NOT NULL,
-FK_Sale_Customer INT NOT NULL,
-FOREIGN KEY (FK_Sale_Customer) REFERENCES CUSTOMER(PK_CustomerId)
-);
-GO
-
 CREATE TABLE SALESITEM_PRODUCT_TREATMENT (
 PK_SalesItemId_Product_Treatment INT IDENTITY(1,1) PRIMARY KEY,
 Category NVarChar(50) NOT NULL,
@@ -39,29 +21,5 @@ Type NVarChar(50) NOT NULL,
 Name NVarChar(100) NOT NULL,
 Description NVarChar(MAX) NOT NULL,
 Price Decimal NOT NULL,
-);
-GO
-
-CREATE TABLE SALE_SALESITEM_PRODUCT_TREATMENT (
-PK_SaleIdSalesItemId_Product_Treatment INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
-Amount DECIMAL NOT NULL,
-TotalPrice DECIMAL NOT NULL,
-FK_SaleIdSalesItem_Product_Treatment_Sale INT NOT NULL,
-FK_SaleIdSalesItem_Product_Treatment_SalesItem_Product_Treatment INT NOT NULL,
-FOREIGN KEY (FK_SaleIdSalesItem_Product_Treatment_Sale) REFERENCES SALE (PK_SaleId),
-FOREIGN KEY (FK_SaleIdSalesItem_Product_Treatment_SalesItem_Product_Treatment) REFERENCES SALESITEM_PRODUCT_TREATMENT(PK_SalesItemId_Product_Treatment)
-);
-GO
-
-CREATE TABLE BOOKING (
-PK_BookingId INT IDENTITY(1,1) PRIMARY KEY,
-CurrentTime DateTime2 NOT NULL,
-BookingTime DateTime2 NOT NULL,
-Treatment NVarChar(50) NOT NULL,
-Canceled Bit NOT NULL,
-FK_Booking_Customer INT NOT NULL,
-FK_Booking_SalesItem_Product_Treatment INT NOT NULL,
-FOREIGN KEY (FK_Booking_Customer) REFERENCES CUSTOMER (PK_CustomerId),
-FOREIGN KEY (FK_Booking_SalesItem_Product_Treatment) REFERENCES SALESITEM_PRODUCT_TREATMENT (PK_SalesItemId_Product_Treatment)
 );
 GO
