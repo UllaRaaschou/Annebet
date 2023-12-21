@@ -77,8 +77,8 @@ namespace WPFApp.Commands
             if (parameter is CustomerUpdateViewModel cuvm) // Hvis datekontekst er cuvm
             {
                 cuvm.CustomersToView.Clear(); //  Observable collection tømmes for eventuelle items
-                CustomerToViewModel ctvm = new CustomerToViewModel(); // Customer-til-ViemModel-Converter instantieres
                 List<Customer> trueCustomers = repository.GetAllCustomers(cuvm.FirstName, cuvm.LastName); // Dens CustomerRepo henter Customers ud fra kriterier
+                CustomerToViewModel ctvm = new CustomerToViewModel(); // Customer-til-ViemModel-Converter instantieres
                 foreach (Customer c in trueCustomers)
                 {
                     CustomerToViewModel customerViewModel = ctvm.CustomerToViewModelConvert(c); // De hentede Customers converteres til ViewModels

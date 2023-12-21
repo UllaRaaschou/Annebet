@@ -9,10 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPFApp.Tests", "tests\WPFAp
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BDC0F042-E086-48D5-9F0B-C7289EA92902}"
 	ProjectSection(SolutionItems) = preProject
-		..\..\..\Downloads\Brugsmanual.pdf = ..\..\..\Downloads\Brugsmanual.pdf
-		SqlQueries.sql = SqlQueries.sql
-		SqlQuery_CreateTables.sql = SqlQuery_CreateTables.sql
-		Triggers.sql = Triggers.sql
+		..\..\..\Downloads\Brugsmanual AnneBet.pdf = ..\..\..\Downloads\Brugsmanual AnneBet.pdf
+		SqlQueries_CreateTables.sql = SqlQueries_CreateTables.sql
+		SqlQueries_Ceatesp.sql = SqlQueries_Ceatesp.sql
 	EndProjectSection
 EndProject
 Global

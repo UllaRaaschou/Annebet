@@ -87,11 +87,11 @@ namespace WPFApp.Commands
             {
                 tuvm.TreatmentsToView.Clear(); // Observable Collection tømmes for eventuelle items
 
-                // Treatment-to-Viewodel-Converter instantieres
-                var ttvm = new TreatmentToViewModel();
-
                 // Dens repo henter ønskede produkter
                 List<Treatment> trueTreatments = repository.GetAllTreatments(tuvm.Type, tuvm.Name);
+
+                // Treatment-to-Viewodel-Converter instantieres
+                var ttvm = new TreatmentToViewModel();
 
                 foreach (Treatment t in trueTreatments)
                 {
