@@ -70,8 +70,7 @@ namespace WPFApp.Commands
         /// </summary>
         public void Execute(object? parameter)
         {
-            MessageBoxResult choise = MessageBox.Show("Er du sikker?", "Bekræft", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            if (choise == MessageBoxResult.Yes)
+            if (ConfirmProductDeletion() == MessageBoxResult.Yes)
             {
                 if (parameter is ProductDeleteViewModel pdvm) // tjek af parameter
                 {
@@ -88,7 +87,16 @@ namespace WPFApp.Commands
                 }
                 else throw new Exception("Wrong type of parameter");
             }
-            else { }
+        }
+
+        private MessageBoxResult ConfirmProductDeletion()
+        {
+            if(repository is ProductRepository)
+            {
+                return MessageBox.Show("Er du sikker?", "Bekræft", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            }
+
+            return MessageBoxResult.Yes;
         }
     }
 }

@@ -77,8 +77,7 @@ namespace WPFApp.Commands
         /// </summary>
         public void Execute(object? parameter)
         {
-            MessageBoxResult choise = MessageBox.Show("Er du sikker?", "Bekræft", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            if (choise == MessageBoxResult.Yes)
+            if (ConfirmTreatmentDeletion() == MessageBoxResult.Yes)
             {
                 // Tjek af parameter
                 if (parameter is TreatmentDeleteViewModel tdvm)
@@ -97,7 +96,16 @@ namespace WPFApp.Commands
                 }
                 else throw new Exception("Wrong type of parameter");
             }
-            else { }
+        }
+
+        private MessageBoxResult ConfirmTreatmentDeletion()
+        {
+            if (repository is TreatmentRepository)
+            {
+                return MessageBox.Show("Er du sikker?", "Bekræft", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            }
+
+            return MessageBoxResult.Yes;
         }
     }
 }
