@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPFApp.Tests", "tests\WPFAp
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BDC0F042-E086-48D5-9F0B-C7289EA92902}"
 	ProjectSection(SolutionItems) = preProject
-		SqlQueries.sql = SqlQueries.sql
+		CreateStoredProcedures.sql = CreateStoredProcedures.sql
 		CreateTriggers.sql = CreateTriggers.sql
 		CreateTables.sql = CreateTables.sql
 	EndProjectSection
