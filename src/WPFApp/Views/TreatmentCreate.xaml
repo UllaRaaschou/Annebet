@@ -25,7 +25,7 @@
         <TextBox x:Name="Tb_Name" HorizontalAlignment="Center" Margin="0,176,0,0" TextWrapping="Wrap" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="246" FontFamily="Bahnschrift" FontSize="14"/>
         <TextBox x:Name="Tb_Description" HorizontalAlignment="Center" TextWrapping="Wrap" Margin="0,215,0,0" Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="246" FontFamily="Bahnschrift" FontSize="14"/>
         <TextBox x:Name="Tb_Price" HorizontalAlignment="Center" Margin="0,253,0,0" TextWrapping="Wrap" Text="{Binding Price, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="246" FontFamily="Bahnschrift" FontSize="14" />
-        <Button x:Name="Bt_CreateTreatment" Content="Opret behandling" Command="{Binding TreatmentCreateCommand}" CommandParameter="{Binding}" HorizontalAlignment="Center" Margin="0,291,0,0" VerticalAlignment="Top" Height="31" Width="128" FontFamily="Bahnschrift" FontSize="14">
+        <Button x:Name="Bt_CreateTreatment" Content="Opret" Command="{Binding TreatmentCreateCommand}" CommandParameter="{Binding}" HorizontalAlignment="Center" Margin="0,291,0,0" VerticalAlignment="Top" Height="31" Width="69" FontFamily="Bahnschrift" FontSize="14">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Border CornerRadius="8" Background="#FF002B4B">

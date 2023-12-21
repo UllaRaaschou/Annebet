@@ -28,7 +28,7 @@
         <TextBox x:Name="Tb_Address" HorizontalAlignment="Center" Margin="0,138,0,0" TextWrapping="Wrap" Text="{Binding Address, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="290" FontFamily="Bahnschrift" FontSize="14"/>
         <TextBox x:Name="Tb_Phone" HorizontalAlignment="Center" Margin="0,162,0,0" TextWrapping="Wrap" Text="{Binding Phone, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="290" FontFamily="Bahnschrift" FontSize="14"/>
         <TextBox x:Name="Tb_Email" HorizontalAlignment="Center" Margin="0,186,0,0" TextWrapping="Wrap" Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="290" FontFamily="Bahnschrift" FontSize="14"/>
-        <Button Content="Opret Kunde" Command="{Binding Path=CustomerCreateCommand, UpdateSourceTrigger=PropertyChanged}" CommandParameter="{Binding}" HorizontalAlignment="Center" Margin="0,225,0,0" VerticalAlignment="Top" Height="28" Width="94" FontFamily="Bahnschrift" FontSize="14">
+        <Button Content="Opret" Command="{Binding Path=CustomerCreateCommand, UpdateSourceTrigger=PropertyChanged}" CommandParameter="{Binding}" HorizontalAlignment="Center" Margin="0,225,0,0" VerticalAlignment="Top" Height="28" Width="61" FontFamily="Bahnschrift" FontSize="14">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Border CornerRadius="8" Background="#FF002B4B">
