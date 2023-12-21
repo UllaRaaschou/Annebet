@@ -89,6 +89,10 @@ namespace WPFApp.Commands
             }
         }
 
+        /// <summary>
+        /// Metode, der returnerer yes, når kunden har bekræftet sletning.
+        /// I unittests returneres altid yes
+        /// </summary
         private MessageBoxResult ConfirmProductDeletion()
         {
             if(repository is ProductRepository)

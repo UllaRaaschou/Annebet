@@ -93,7 +93,11 @@ namespace WPFApp.Commands
             }
         }
 
-        private MessageBoxResult ConfirmCustomerDeletion()
+        /// <summary>
+        /// Metode, der returnerer yes, når kunden har bekræftet sletning.
+        /// I unittests returneres altid yes
+        /// </summary>
+       private MessageBoxResult ConfirmCustomerDeletion()
         {
             if (repository is CustomerRepository)
             {
