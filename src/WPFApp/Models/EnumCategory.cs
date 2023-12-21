@@ -2,7 +2,7 @@
 {
     public enum EnumCategory // Enum-klasse
     {
-        Product, //Enumv-værdier
+        Product, //Enum-værdier
         Treatment
     }
 }

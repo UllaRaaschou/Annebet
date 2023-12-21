@@ -94,7 +94,7 @@ namespace WPFApp.Commands
                     pdvm.ProductsToView.Add(productViewModel); // ViewModels lægger i Observable Collection i pdvm
                 }
             }
-            else throw new Exception("Wrong type of parameter");
+           
         }
     }
 }

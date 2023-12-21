@@ -122,7 +122,7 @@ namespace WPFApp.Commands
                     tdvm.TreatmentsToView.Add(treatmentViewModel);
                 }
             }
-            else throw new Exception("Wrong type of paratemer");
+            
         }
     }
 }
